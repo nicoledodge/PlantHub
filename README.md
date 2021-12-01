@@ -23,8 +23,15 @@ Video link  : ***insert here***
 
 
 ## Credits
-Uses the Inquierer Package <br>
-Uses Jest <br>
+This application was built using: <br>
+Apollo Server Express <br>
+Bcrypt <br>
+Express <br>
+JWT <br>
+Mongoose <br>
+React <br>
+Node.js <br>
+MongoDB <br>
 
 
 
