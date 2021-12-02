@@ -18,7 +18,8 @@ const userSchema = new Schema({
   email: {
     type: String,
     required: true,
-    unique: true
+    unique: true,
+    match: [/.+@.+\..+/, 'Must match an email address!']
   },
   password: {
     type: String,
@@ -28,7 +29,7 @@ const userSchema = new Schema({
   myPlants: [
     {
       type: Schema.Types.ObjectId,
-      ref: 'Plant',
+      ref: 'Plant'
     },
   ],
 });
