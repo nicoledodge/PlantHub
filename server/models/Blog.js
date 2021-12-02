@@ -1,10 +1,10 @@
 const { Schema, model } = require('mongoose');
 const dateFormat = require('../utils/dateFormat');
 
-const blogPostSchema = new Schema({
+const blogSchema = new Schema({
   postText: {
     type: String,
-    required: 'You need to enter a post.',
+    required: 'Please enter a post.',
     minlength: 1,
     maxlength: 280,
     trim: true,
@@ -36,6 +36,6 @@ const blogPostSchema = new Schema({
   ],
 });
 
-const BlogPost = model('Blog', blogPostSchema);
+const BlogPost = model('Blog', blogSchema);
 
 module.exports = BlogPost;
