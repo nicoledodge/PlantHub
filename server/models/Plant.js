@@ -1,5 +1,5 @@
 const { Schema, model } = require('mongoose');
-// const dateFormat = require('../utils/dateFormat');
+const dateFormat = require('../utils/dateFormat');
 
 const plantSchema = new Schema({
   name: {
@@ -15,6 +15,11 @@ const plantSchema = new Schema({
     type: Number,
     default: 0,
   },
+  createdAt: {
+    type: Date,
+    default: Date.now,
+    get: (timestamp) => dateFormat(timestamp),
+  }
 },
 {
     timestamps: true
