@@ -1,5 +1,5 @@
 const { AuthenticationError } = require('apollo-server-express');
-const { User, Plant } = require('../models');
+const { User, Plant, Blog } = require('../models');
 const { signToken } = require('../utils/auth');
 
 const resolvers = {
@@ -21,6 +21,13 @@ const resolvers = {
         return User.findOne({ _id: context.user._id }).populate('plants');
       }
       throw new AuthenticationError('You need to be logged in!');
+    },
+    posts: async () => {
+      return Blog.find().sort({ createdAt: -1 });
+    },
+
+    post: async (parent, { blogId }) => {
+      return Blog.findOne({ _id: blogId });
     },
   },
 
