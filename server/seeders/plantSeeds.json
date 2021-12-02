@@ -1,0 +1,10 @@
+[
+    {
+      "name": "Cactus",
+      "waterNeeded": 1
+    },
+    {
+        "name": "Tree",
+        "waterNeeded": "10"
+    }
+  ]
