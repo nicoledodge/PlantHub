@@ -175,6 +175,33 @@ const resolvers = {
       }
       throw new AuthenticationError('You need to be logged in!');
     },
+    // start of blog mutations
+    addPost: async (parent, { postText, postCreator }) => {
+      return Blog.create({ postText, postCreator });
+    },
+    addComment: async (parent, { blogId, commentText }) => {
+      return Blog.findOneAndUpdate(
+        { _id: blogId },
+        {
+          $addToSet: { comments: { commentText } },
+        },
+        {
+          new: true,
+          runValidators: true,  
+        }
+      );
+    },
+    removePost: async (parent, { blogId }) => {
+      return Blog.findOneAndDelete({ _id: blogId });
+    },
+    removeComment: async (parent, { blogId, commentId }) => {
+      return Blog.findOneAndUpdate(
+        { _id: blogId },
+        { $pull: { comments: { _id: commentId } } },
+        { new: true }
+      );
+    },
+
   },
 };
 
