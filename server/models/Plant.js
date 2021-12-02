@@ -1,0 +1,25 @@
+const { Schema, model } = require('mongoose');
+// const dateFormat = require('../utils/dateFormat');
+
+const plantSchema = new Schema({
+  name: {
+    type: String,
+    trim: true,
+    unique: true,
+  },
+  waterNeeded: {
+    type: Number,
+    required: true,
+  },
+  waterAdded: {
+    type: Number,
+    default: 0,
+  },
+},
+{
+    timestamps: true
+})
+
+const Plant = model('Plant', plantSchema);
+
+module.exports = Plant;
