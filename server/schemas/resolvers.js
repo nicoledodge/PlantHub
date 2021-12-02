@@ -1,5 +1,5 @@
 const { AuthenticationError } = require('apollo-server-express');
-const { User, Plant } = require('../models');
+const { User, Plant, Blog } = require('../models');
 const { signToken } = require('../utils/auth');
 
 const resolvers = {
@@ -50,6 +50,14 @@ const resolvers = {
         return User.findOne({ _id: context.user._id }).populate('myPlants');
       }
       throw new AuthenticationError('You need to be logged in!');
+    },
+    // blog posts
+    allPosts: async () => {
+      return Blog.find().sort({ createdAt: -1 });
+    },
+
+    post: async (parent, { postId }) => {
+      return Blog.findOne({ _id: postId });
     },
   },
 
@@ -244,6 +252,32 @@ const resolvers = {
       }
       throw new AuthenticationError('You need to be logged in!');
     },
+    //blog posts
+      addPost: async (parent, { postText, postCreator }) => {
+        return Blog.create({ postText, postCreator });
+      },
+      addComment: async (parent, { postId, commentText }) => {
+        return Blog.findOneAndUpdate(
+          { _id: postId },
+          {
+            $addToSet: { comments: { commentText } },
+          },
+          {
+            new: true,
+            runValidators: true,
+          }
+        );
+      },
+      removePost: async (parent, { postId }) => {
+        return Blog.findOneAndDelete({ _id: postId });
+      },
+      removeComment: async (parent, { postId, commentId }) => {
+        return Blog.findOneAndUpdate(
+          { _id: postId },
+          { $pull: { comments: { _id: commentId } } },
+          { new: true }
+        );
+      },
   },
 };
 
