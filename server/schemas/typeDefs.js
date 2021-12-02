@@ -23,10 +23,10 @@ const typeDefs = gql`
     user: User
   }
 
-  type Blog {
+  type Post {
     _id: ID
-    thoughtText: String
-    thoughtAuthor: String
+    postText: String
+    postCreator: String
     createdAt: String
     comments: [Comment]!
   }
@@ -44,8 +44,9 @@ const typeDefs = gql`
     plant(plantId: ID!): Plant
     allPlants: [Plant]
     me: User
-    blog: [Blog]!
-    blog(blogId: ID!): Blog
+
+    allPosts: [Post]!
+    post(postId: ID!): Post
   }
 
   type Mutation {
@@ -57,10 +58,11 @@ const typeDefs = gql`
     addWaterTest(plantId: ID!, waterAdded: Int!): Plant
     removePlant(plantId: ID!): Plant
     removeWater(plantId: ID!, waterAdded: Int!): Plant
-    addPost(postText: String!, postCreator: String!): Blog
-    addComment(postId: ID!, commentText: String!): Blog
-    removePost(postId: ID!): Blog
-    removeComment(postId: ID!, commentId: ID!): Blog
+
+    addPost(postText: String!, postCreator: String!): Post
+    addComment(postId: ID!, commentText: String!): Post
+    removePost(postId: ID!): Post
+    removeComment(postId: ID!, commentId: ID!): Post
   }
 `;
 

@@ -17,7 +17,10 @@
     },
     {
       "postText": "Plant 5 - Low Maintenance",
-      "postCreator": "Carley Ruiz"
+      "postCreator": "Carley Ruiz",
+      "comments":[
+        {"commentText": "Try getting some snake plants"}
+      ]
     }
 ]
   

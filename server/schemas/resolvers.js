@@ -22,12 +22,13 @@ const resolvers = {
       }
       throw new AuthenticationError('You need to be logged in!');
     },
-    posts: async () => {
+    // blog posts
+    allPosts: async () => {
       return Blog.find().sort({ createdAt: -1 });
     },
 
-    post: async (parent, { blogId }) => {
-      return Blog.findOne({ _id: blogId });
+    post: async (parent, { postId }) => {
+      return Blog.findOne({ _id: postId });
     },
   },
 
@@ -175,33 +176,32 @@ const resolvers = {
       }
       throw new AuthenticationError('You need to be logged in!');
     },
-    // start of blog mutations
-    addPost: async (parent, { postText, postCreator }) => {
-      return Blog.create({ postText, postCreator });
-    },
-    addComment: async (parent, { blogId, commentText }) => {
-      return Blog.findOneAndUpdate(
-        { _id: blogId },
-        {
-          $addToSet: { comments: { commentText } },
-        },
-        {
-          new: true,
-          runValidators: true,  
-        }
-      );
-    },
-    removePost: async (parent, { blogId }) => {
-      return Blog.findOneAndDelete({ _id: blogId });
-    },
-    removeComment: async (parent, { blogId, commentId }) => {
-      return Blog.findOneAndUpdate(
-        { _id: blogId },
-        { $pull: { comments: { _id: commentId } } },
-        { new: true }
-      );
-    },
-
+    //blog posts
+      addPost: async (parent, { postText, postCreator }) => {
+        return Blog.create({ postText, postCreator });
+      },
+      addComment: async (parent, { postId, commentText }) => {
+        return Blog.findOneAndUpdate(
+          { _id: postId },
+          {
+            $addToSet: { comments: { commentText } },
+          },
+          {
+            new: true,
+            runValidators: true,
+          }
+        );
+      },
+      removePost: async (parent, { postId }) => {
+        return Blog.findOneAndDelete({ _id: postId });
+      },
+      removeComment: async (parent, { postId, commentId }) => {
+        return Blog.findOneAndUpdate(
+          { _id: postId },
+          { $pull: { comments: { _id: commentId } } },
+          { new: true }
+        );
+      },
   },
 };
 
