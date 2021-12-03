@@ -11,9 +11,9 @@ db.once('open', async () => {
   await User.create(userSeeds);
 
   for (let i = 0; i < plantSeeds.length; i++) {
-      const { _id } = await Plant.create(plantSeeds[i]);
+      const { _id,  } = await Plant.create(plantSeeds[i]);
       const user = await User.findOneAndUpdate(
-        { email: "bkernighan@techfriends.dev" },
+        { username: "BetaTester" },
         {
           $addToSet: {
             myPlants: _id,
@@ -25,7 +25,7 @@ db.once('open', async () => {
   for (let i = 0; i < blogSeeds.length; i++) {
       const { _id, postCreator } = await Blog.create(blogSeeds[i]);
       const user = await User.findOneAndUpdate(
-        { email: postCreator },
+        { username: postCreator },
         {
           $addToSet: { myPosts: _id, myComments: _id },
         }
