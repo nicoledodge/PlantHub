@@ -46,7 +46,7 @@ function App() {
    <ApolloProvider client={client}>
      <Router>
          <Navbar/>
-     <div>
+     <div className="content-container">
          <Route exact path="/"><Home/></Route>
          <Route exact path="/contact"><Contact/></Route>
          <Route exact path="/about"><About/></Route>

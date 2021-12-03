@@ -1,77 +1,82 @@
-import React from "react";
+import React from 'react'
 import {
-    Box,
     Container,
-    Row,
-    Column,
-    FooterLink,
-    Heading,
-} from "./FooterStyles";
+    Divider,
+    Grid,
+    Header,
+    Image,
+    List,
+    Segment
+} from 'semantic-ui-react'
+import 'semantic-ui-css/semantic.min.css'
+import '../App.css'
+import { Link } from "react-router-dom"
 
-const Footer = () => {
-    return (
-        <Box>
-            <h1 style={{ color: "green",
-                textAlign: "center",
-                marginTop: "-50px" }}>
-                GeeksforGeeks: A Computer Science Portal for Geeks
-            </h1>
-            <Container>
-                <Row>
-                    <Column>
-                        <Heading>About Us</Heading>
-                        <FooterLink href="about">Aim</FooterLink>
-                        <FooterLink href="#">Vision</FooterLink>
-                        <FooterLink href="#">Testimonials</FooterLink>
-                    </Column>
-                    <Column>
-                        <Heading>Services</Heading>
-                        <FooterLink href="#">Writing</FooterLink>
-                        <FooterLink href="#">Internships</FooterLink>
-                        <FooterLink href="#">Coding</FooterLink>
-                        <FooterLink href="#">Teaching</FooterLink>
-                    </Column>
-                    <Column>
-                        <Heading>Contact Us</Heading>
-                        <FooterLink href="#">Uttar Pradesh</FooterLink>
-                        <FooterLink href="#">Ahemdabad</FooterLink>
-                        <FooterLink href="#">Indore</FooterLink>
-                        <FooterLink href="#">Mumbai</FooterLink>
-                    </Column>
-                    <Column>
-                        <Heading>Social Media</Heading>
-                        <FooterLink href="#">
-                            <i className="fab fa-facebook-f">
-				<span style={{ marginLeft: "10px" }}>
-				Facebook
-				</span>
-                            </i>
-                        </FooterLink>
-                        <FooterLink href="#">
-                            <i className="fab fa-instagram">
-				<span style={{ marginLeft: "10px" }}>
-				Instagram
-				</span>
-                            </i>
-                        </FooterLink>
-                        <FooterLink href="#">
-                            <i className="fab fa-twitter">
-				<span style={{ marginLeft: "10px" }}>
-				Twitter
-				</span>
-                            </i>
-                        </FooterLink>
-                        <FooterLink href="#">
-                            <i className="fab fa-youtube">
-				<span style={{ marginLeft: "10px" }}>
-				Youtube
-				</span>
-                            </i>
-                        </FooterLink>
-                    </Column>
-                </Row>
+const Footer = () => (
+    <div className="footer--pin">
+        <Segment  inverted vertical style={{ margin: '5em 0em 0em', padding: '5em 0em' }}>
+            <Container textAlign='center'>
+                <Grid divided inverted stackable>
+                    <Grid.Column width={3}>
+                        <Header inverted as='h4' content='Group 1' />
+                        <List link inverted>
+                            <Link to="/about">
+                            <List.Item as='a'>About</List.Item>
+                            </Link>
+                            <Link to="/contact">
+                                <List.Item as='a'>Contact Support</List.Item>
+                            </Link>
+                            <Link to="/team">
+                                <List.Item as='a'>Meet the Team</List.Item>
+                            </Link>
+                            {/*<List.Item as='a'>Link Four</List.Item>*/}
+                        </List>
+                    </Grid.Column>
+                    <Grid.Column width={3}>
+                        <Header inverted as='h4' content='Group 2' />
+                        <List link inverted>
+                            <List.Item as='a'>Link One</List.Item>
+                            <List.Item as='a'>Link Two</List.Item>
+                            <List.Item as='a'>Link Three</List.Item>
+                            <List.Item as='a'>Link Four</List.Item>
+                        </List>
+                    </Grid.Column>
+                    <Grid.Column width={3}>
+                        <Header inverted as='h4' content='Group 3' />
+                        <List link inverted>
+                            <List.Item as='a'>Link One</List.Item>
+                            <List.Item as='a'>Link Two</List.Item>
+                            <List.Item as='a'>Link Three</List.Item>
+                            <List.Item as='a'>Link Four</List.Item>
+                        </List>
+                    </Grid.Column>
+                    <Grid.Column width={7}>
+                        <Header inverted as='h4' content='Footer Header' />
+                        <p>
+                            Extra space for a call to action inside the footer that could help re-engage users.
+                        </p>
+                    </Grid.Column>
+                </Grid>
+
+                <Divider inverted section />
+                <Image centered size='mini' src='/logo.png' />
+                <List horizontal inverted divided link size='small'>
+                    <List.Item as='a' href='#'>
+                        Site Map
+                    </List.Item>
+                    <List.Item as='a' href='#'>
+                        Contact Us
+                    </List.Item>
+                    <List.Item as='a' href='#'>
+                        Terms and Conditions
+                    </List.Item>
+                    <List.Item as='a' href='#'>
+                        Privacy Policy
+                    </List.Item>
+                </List>
             </Container>
-        </Box>
-    );
-};
+        </Segment>
+    </div>
+)
+
 export default Footer;
