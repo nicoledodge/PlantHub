@@ -6,11 +6,9 @@ const blogSeeds = require('./blogSeeds.json');
 
 db.once('open', async () => {
   try{
-  // await Blog.deleteMany({});
   await Plant.deleteMany({});
   await User.deleteMany({});
   await User.create(userSeeds);
-  // await Blog.create(blogSeeds);
 
   for (let i = 0; i < plantSeeds.length; i++) {
       const { _id } = await Plant.create(plantSeeds[i]);
@@ -23,12 +21,13 @@ db.once('open', async () => {
         }
       );
     }
+    
   for (let i = 0; i < blogSeeds.length; i++) {
       const { _id, postCreator } = await Blog.create(blogSeeds[i]);
       const user = await User.findOneAndUpdate(
         { email: postCreator },
         {
-          $addToSet: { myPosts: _id  },
+          $addToSet: { myPosts: _id, myComments: _id },
         }
       );
     }

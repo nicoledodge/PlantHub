@@ -2,7 +2,7 @@ const mongoose = require('mongoose');
 
 const { Schema } = mongoose;
 const bcrypt = require('bcrypt');
-const planttSchema = require('./Plant');
+
 
 const userSchema = new Schema({
   firstName: {
@@ -18,8 +18,7 @@ const userSchema = new Schema({
   email: {
     type: String,
     required: true,
-    unique: true,
-    match: [/.+@.+\..+/, 'Must match an email address!']
+    unique: true
   },
   password: {
     type: String,
@@ -29,7 +28,7 @@ const userSchema = new Schema({
   myPlants: [
     {
       type: Schema.Types.ObjectId,
-      ref: 'Plant'
+      ref: 'Plant',
     },
   ],
   myPosts: [

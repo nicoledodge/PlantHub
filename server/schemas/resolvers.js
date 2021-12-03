@@ -5,10 +5,39 @@ const { signToken } = require('../utils/auth');
 const resolvers = {
   Query: {
     allUsers: async () => {
-      return User.find().populate('plants');
+      return User.find().populate('myPlants');
+// Test query to make sure this works
+      // query user{
+      //   allUsers{
+      //     _id
+      //     lastName
+      //     firstName
+      //     myPlants{
+      //       _id
+      //       name
+      //       waterNeeded
+      //       waterAdded
+      //     }
+      //     }
+      //   }
     },
     user: async (parent, { email }) => {
-      return User.findOne({ email }).populate('plants');
+      return User.findOne({ email }).populate('myPlants');
+      // Test query to make sure it works
+      // query User($email: String!) {
+      //   user(email: $email) {
+      //     _id
+      //     firstName
+      //     lastName
+      //     email
+      //     myPlants {
+      //       _id
+      //       name
+      //       waterAdded
+      //       waterNeeded
+      //     }
+      //   }
+      // }
     },
     plant: async (parent, { plantId }) => {
       return Plant.findOne({ _id: plantId });
@@ -18,7 +47,7 @@ const resolvers = {
     },
     me: async (parent, args, context) => {
       if (context.user) {
-        return User.findOne({ _id: context.user._id }).populate('plants');
+        return User.findOne({ _id: context.user._id }).populate('myPlants');
       }
       throw new AuthenticationError('You need to be logged in!');
     },
@@ -60,21 +89,18 @@ const resolvers = {
     {
       // hardcoded query
       // mutation {
-      //   addPlant(name: "example2", waterNeeded: 2000){
+      //   addPlantTest(name: "example2", waterNeeded: 2000){
       //     _id
       //     name
       //     waterNeeded
-      //     createdAt
       // }
       // }
-        const plant = await Plant.create({
-          name: name,
-          waterNeeded: waterNeeded
-        });
+        const plant = await Plant.create({name,waterNeeded});
+        console.log(plant)
 
         await User.findOneAndUpdate(
-          { _id: "enter the right ID here"},
-          { $addToSet: { myPlants: plant._id } }
+          { _id: "INSERT THE RIGHT ID HERE"},
+          { $addToSet: { myPlants: plant._id}}
         );
 
         return plant;
@@ -102,7 +128,7 @@ const resolvers = {
       {
         // find a plant and hardcode the id with query:
         // mutation {
-        //   addWaterTest(plantId:"61a7e63614b1571c44168682", waterAdded: 1){
+        //   addWaterTest(plantId:"INSERT THE RIGHT ID HERE", waterAdded: 1){
         //     _id
         //     name
         //     waterAdded
@@ -160,6 +186,31 @@ const resolvers = {
       }
       throw new AuthenticationError('You need to be logged in!');
     },
+    // Remove Plant Test route without context.user
+    removePlantTest: async (parent, { plantId }) => {
+    {
+      // mutation {
+      //   removePlantTest(plantId:"INSERT YOUR OWN ID HERE"){
+      //     _id
+      //     name
+      //     waterAdded
+      //     waterNeeded
+      // }
+      // }
+
+        const plant = await Plant.findOneAndDelete({
+          _id: plantId,
+        });
+
+        await User.findOneAndUpdate(
+          { _id: "INSERT YOUR OWN ID HERE"},
+          { $pull: { myPlants: plant._id } }
+        );
+
+        return plant;
+      }
+      throw new AuthenticationError('You need to be logged in!');
+    },    
     removeWater: async (parent, { plantId, lessWater }, context) => {
       if (context.user) {
         const plant = await Plant.findOne({_id: plantId})
@@ -176,6 +227,31 @@ const resolvers = {
       }
       throw new AuthenticationError('You need to be logged in!');
     },
+    // removeWaterTest: async (parent, { plantId, waterAdded }) => {
+    //  {
+    //   // mutation {
+    //   //   removeWaterTest(plantId:"ENTER YOUR OWN PLANT ID", waterAdded:-1){
+    //   //     _id
+    //   //     name
+    //   //     waterAdded
+    //   //     waterNeeded
+    //   // }
+    //   // }
+
+    //     const plant = await Plant.findOne({_id: plantId})
+
+    //     return Plant.findOneAndUpdate(
+    //       { _id: plantId },
+    //       {
+    //         $set: {
+    //           waterAdded: plant.waterAdded + waterAdded,
+    //         },
+    //       },
+    //       { new: true }
+    //     );
+    //   }
+    //   throw new AuthenticationError('You need to be logged in!');
+    // },
     //blog posts
       addPost: async (parent, { postText, postCreator }, context) => {
         if (context.user) {
@@ -188,7 +264,7 @@ const resolvers = {
             { _id: context.user._id},
             { $addToSet: { myPosts: post._id } }
           );
-          
+
           return post;
         }
         throw new AuthenticationError('Please login to create a post.');

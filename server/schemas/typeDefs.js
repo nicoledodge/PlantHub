@@ -46,8 +46,8 @@ const typeDefs = gql`
     allPlants: [Plant]
     me: User
 
-    allPosts: [Post]
-    post(postId: ID!): Post
+    allPosts: [Blog]
+    post(postId: ID!): Blog
   }
 
   type Mutation {
@@ -55,10 +55,11 @@ const typeDefs = gql`
     login(email: String!, password: String!): Auth
     
     addPlant(name: String!, waterNeeded: Int!): Plant
-    addPlantTest(name: String!, waterNeeded: Int!): Plant
+    addPlantTest(name: String!, waterNeeded: Int): Plant
     addWater(plantId: ID!, waterAdded: Int!): Plant
     addWaterTest(plantId: ID!, waterAdded: Int!): Plant
     removePlant(plantId: ID!): Plant
+    removePlantTest(plantId: ID!): Plant
     removeWater(plantId: ID!, waterAdded: Int!): Plant
 
     addPost(postText: String!, postCreator: String!): Blog
