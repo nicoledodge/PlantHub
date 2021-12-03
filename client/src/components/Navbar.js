@@ -1,15 +1,27 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { Link } from 'react-router-dom';
 
 
 import Auth from '../utils/auth';
 
-const Nav = () => {
+const Nav = ({ currentPage, handlePageChange }) => {
     return(
         <div>
             <ul>
-                <li></li>
+                <li>
+            <a href="#about" onClick={() => handlePageChange('About')}>
+           About
+          </a>
+          </li>
+                <li>
+                <a  href="#contact" onClick={() => handlePageChange('Contact')}>
+            Contact 
+          </a>
+                </li>
             </ul>
         </div>
     )
 }
+
+
+export default Nav;
