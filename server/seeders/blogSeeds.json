@@ -1,7 +1,7 @@
 [
     {
       "postText": "Plant 1 - Pretty green colors",
-      "postCreator": "Karin Miller"
+      "postCreator": "bkernighan@techfriends.dev"
     },
     {
       "postText": "Plant 2 - Big Plants",
@@ -18,7 +18,7 @@
     {
       "postText": "Plant 5 - Low Maintenance",
       "postCreator": "Carley Ruiz",
-      "comments":[
+      "comment":[
         {"commentText": "Try getting some snake plants"}
       ]
     }

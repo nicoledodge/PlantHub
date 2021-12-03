@@ -10,9 +10,10 @@ const blogSchema = new Schema({
     trim: true,
   },
   postCreator: {
-    type: String,
+    type: User,
     required: true,
     trim: true,
+    ref: 'User'
   },
   createdAt: {
     type: Date,
