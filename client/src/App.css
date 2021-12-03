@@ -4,6 +4,10 @@ body {
     min-width: 100% !important;
     height: 100% !important;
 }
+
+#logo {
+    height: 120px;
+}
 .Router {
     background-color: rgba(229, 255, 0, 0.404);
     padding: 1.5rem 2rem 35px 2rem;
