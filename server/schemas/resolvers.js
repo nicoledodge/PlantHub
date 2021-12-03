@@ -347,7 +347,7 @@ const resolvers = {
 
         return post;
       }
-         throw new AuthenticationError('You need to be logged in!');
+         throw new AuthenticationError('Please login to delete a post');
       },
       removePostTest: async (parent, { postId }) => {
         {
@@ -363,9 +363,43 @@ const resolvers = {
   
           return post;
         }
-        throw new AuthenticationError('Please login to create a comment.');
+        throw new AuthenticationError('Please login to delete a post.');
       },
+      removeComment: async (parent, { postId, commentId }) => {
+        if (context.user) {
+          return Blog.findOneAndUpdate(
+            { _id: postId },
+            {
+              $pull: {
+                comments: {
+                  _id: commentId,
+                  commentAuthor: context.user.username,
+                },
+              },
+            },
+            { new: true }
+          );
+        }
+        throw new AuthenticationError('Please login to delete a comment.');
       },
+      removeCommentTest: async (parent, { postId, commentId }) => {
+        {
+          return Blog.findOneAndUpdate(
+            { _id: postId },
+            {
+              $pull: {
+                comments: {
+                  _id: commentId,
+                  commentCreator: "james",
+                },
+              },
+            },
+            { new: true }
+          );
+        }
+        throw new AuthenticationError('Please login to delete a comment.');
+      },
+    },
   };
 
 module.exports = resolvers;
