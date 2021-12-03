@@ -1,5 +1,5 @@
 import React from 'react';
-import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
+import { BrowserRouter as Router, Route } from 'react-router-dom';
 import {
     ApolloClient,
     InMemoryCache,
@@ -7,20 +7,18 @@ import {
     createHttpLink,
 } from '@apollo/client';
 import { setContext } from '@apollo/client/link/context';
-import NavContainer from "./components/NavContainer"
-import Navbar from './components/Navbar';
 
 import './App.css';
-//import react router dom
-//import graphql apollo (2 imports)
-//import components
-//import pages
 
-// const auth link for auth token
+import Navbar from './components/Navbar';
+import Footer from './components/Footer';
+import About from './pages/About';
+import MyGarden from './pages/MyGarden';
+import Home from './pages/Home';
+import Contact from './pages/Contact';
+import Team from './pages/Team';
+import Forum from './pages/Forum';
 
-// apollo client with auth link
-
-// Construct our main GraphQL API endpoint
 const httpLink = createHttpLink({
     uri: '/graphql',
 });
@@ -48,13 +46,19 @@ function App() {
   return (
    <ApolloProvider client={client}>
      <Router>
-     <NavContainer />
-       <Switch>
-
-       {/*  route exact path "/" */}
-         {/*  route exact path "/saved" */}
-         {/*  route render 404 page, *** create 404 component *** */}
-       </Switch>
+         <Navbar/>
+     <div className="content-container">
+         <Route exact path="/"><Home/></Route>
+         <Route exact path="/contact"><Contact/></Route>
+         <Route exact path="/about"><About/></Route>
+         <Route exact path="/mygarden"><MyGarden/></Route>
+         {/*future development pages*/}
+         {/*<Route exact path="/plantcare"><PlantCare/></Route>*/}
+         {/*<Route exact path="/shop"><Shop/></Route>*/}
+         <Route exact path="/forum"><Forum/></Route>
+         <Route exact path="/team"><Team/></Route>
+     </div>
+        <Footer/>
      </Router>
    </ApolloProvider>
   );
