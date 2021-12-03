@@ -14,7 +14,7 @@ import { Link } from "react-router-dom"
 
 const Footer = () => (
     <div className="footer--pin">
-        <Segment  inverted vertical style={{ margin: '5em 0em 0em', padding: '5em 0em' }}>
+        <Segment  inverted vertical style={{ margin: '5em 0em 0em', padding: '5em 0em', }}>
             <Container textAlign='center'>
                 <Grid divided inverted stackable>
                     <Grid.Column width={3}>
