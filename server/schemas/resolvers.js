@@ -261,6 +261,7 @@ const resolvers = {
       }
       throw new AuthenticationError('You need to be logged in!');
     },
+
     //blog posts
       addPost: async (parent, { postText }, context) => {
         if (context.user) {
@@ -311,6 +312,7 @@ const resolvers = {
         }
         throw new AuthenticationError('Please login to create a comment.');
       },
+
       addCommentTest: async (parent, { postId, commentText }) => {
       {
         const comment = await Blog.findOne({_id: postId})
@@ -326,7 +328,42 @@ const resolvers = {
         }
         throw new AuthenticationError('Please login to create a comment.');
       },
-    },
-};
+
+      removeComment: async (parent, { postId, commentId }, context) => {
+        if (context.user) {
+          return Blog.findOneAndUpdate(
+            { _id: postId },
+            {
+              $pull: {
+                comments: {
+                  _id: commentId,
+                  commentAuthor: context.user.username,
+                },
+              },
+            },
+            { new: true }
+          );
+        }
+        throw new AuthenticationError('Please login to create a comment.');
+      },
+
+      removeCommentTest: async (parent, { postId, commentId }) => {
+         {
+            return Blog.findOneAndUpdate(
+              { _id: postId },
+              {
+                $pull: {
+                  comments: {
+                    _id: commentId
+                  },
+                },
+              },
+              { new: true }
+            );
+          }
+          throw new AuthenticationError('Please login to create a comment.');
+        },
+      },
+  };
 
 module.exports = resolvers;
