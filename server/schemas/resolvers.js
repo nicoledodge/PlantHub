@@ -390,7 +390,7 @@ const resolvers = {
               $pull: {
                 comments: {
                   _id: commentId,
-                  commentCreator: "Christa",
+                  commentCreator: "James",
                 },
               },
             },
