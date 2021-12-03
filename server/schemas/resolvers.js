@@ -227,58 +227,65 @@ const resolvers = {
       }
       throw new AuthenticationError('You need to be logged in!');
     },
-    removeWaterTest: async (parent, { plantId, waterAdded }) => {
-     {
-      // mutation {
-      //   removeWaterTest(plantId:"ENTER YOUR OWN PLANT ID", waterAdded:-1){
-      //     _id
-      //     name
-      //     waterAdded
-      //     waterNeeded
-      // }
-      // }
+    // removeWaterTest: async (parent, { plantId, waterAdded }) => {
+    //  {
+    //   // mutation {
+    //   //   removeWaterTest(plantId:"ENTER YOUR OWN PLANT ID", waterAdded:-1){
+    //   //     _id
+    //   //     name
+    //   //     waterAdded
+    //   //     waterNeeded
+    //   // }
+    //   // }
 
-        const plant = await Plant.findOne({_id: plantId})
+    //     const plant = await Plant.findOne({_id: plantId})
 
-        return Plant.findOneAndUpdate(
-          { _id: plantId },
-          {
-            $set: {
-              waterAdded: plant.waterAdded + waterAdded,
-            },
-          },
-          { new: true }
-        );
-      }
-      throw new AuthenticationError('You need to be logged in!');
-    },
+    //     return Plant.findOneAndUpdate(
+    //       { _id: plantId },
+    //       {
+    //         $set: {
+    //           waterAdded: plant.waterAdded + waterAdded,
+    //         },
+    //       },
+    //       { new: true }
+    //     );
+    //   }
+    //   throw new AuthenticationError('You need to be logged in!');
+    // },
     //blog posts
-      addPost: async (parent, { postText, postCreator }) => {
-        return Blog.create({ postText, postCreator });
+      addPost: async (parent, { postText, postCreator }, context) => {
+        if (context.user) {
+          const post = await Blog.create({
+            postText: postText,
+            postCreator: postCreator
+          });
+  
+          await User.findOneAndUpdate(
+            { _id: context.user._id},
+            { $addToSet: { myPosts: post._id } }
+          );
+
+          return post;
+        }
+        throw new AuthenticationError('Please login to create a post.');
       },
-      addComment: async (parent, { postId, commentText }) => {
-        return Blog.findOneAndUpdate(
-          { _id: postId },
-          {
-            $addToSet: { comments: { commentText } },
-          },
-          {
-            new: true,
-            runValidators: true,
-          }
-        );
+      
+      addComment: async (parent, { postId, commentText }, context) => {
+        if (context.user) {
+          const comment = await Blog.findOne({_id: postId})
+      
+          return Blog.findOneAndUpdate(
+            { _id: postId },
+            { $addToSet: { comment: comment.commentText } },
+            {
+              new: true,
+              runValidators: true,
+            }
+          );
+        }
+        throw new AuthenticationError('Please login to create a comment.');
       },
-      removePost: async (parent, { postId }) => {
-        return Blog.findOneAndDelete({ _id: postId });
-      },
-      removeComment: async (parent, { postId, commentId }) => {
-        return Blog.findOneAndUpdate(
-          { _id: postId },
-          { $pull: { comments: { _id: commentId } } },
-          { new: true }
-        );
-      },
-  },
+    },
 };
 
 module.exports = resolvers;

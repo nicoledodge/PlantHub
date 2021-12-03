@@ -5,7 +5,6 @@ const plantSchema = new Schema({
   name: {
     type: String,
     trim: true,
-    unique: true,
   },
   waterNeeded: {
     type: Number,

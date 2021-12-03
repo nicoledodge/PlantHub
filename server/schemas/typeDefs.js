@@ -3,16 +3,17 @@ const { gql } = require('apollo-server-express');
 const typeDefs = gql`
   type User {
     _id: ID
-    firstName: String
-    lastName: String
-    email: String
-    password: String
-    myPlants: [Plant]!
+    firstName: String!
+    lastName: String!
+    email: String!
+    password: String!
+    myPlant: [Plant]
+    myPosts: [Blog]
   }
 
   type Plant {
     _id: ID
-    name: String
+    name: String!
     waterNeeded: Int
     waterAdded: Int
     createdAt: String
@@ -23,17 +24,17 @@ const typeDefs = gql`
     user: User
   }
 
-  type Post {
+  type Blog {
     _id: ID
-    postText: String
+    postText: String!
     postCreator: String
     createdAt: String
-    comments: [Comment]!
+    comment: [Comment]
   }
 
   type Comment {
     _id: ID
-    commentText: String
+    commentText: String!
     createdAt: String
   }
 
@@ -45,13 +46,14 @@ const typeDefs = gql`
     allPlants: [Plant]
     me: User
 
-    allPosts: [Post]!
-    post(postId: ID!): Post
+    allPosts: [Blog]
+    post(postId: ID!): Blog
   }
 
   type Mutation {
     addUser(firstName: String!, lastName: String!, email: String!, password: String!): Auth
     login(email: String!, password: String!): Auth
+    
     addPlant(name: String!, waterNeeded: Int!): Plant
     addPlantTest(name: String!, waterNeeded: Int): Plant
     addWater(plantId: ID!, waterAdded: Int!): Plant
@@ -59,11 +61,11 @@ const typeDefs = gql`
     removePlant(plantId: ID!): Plant
     removePlantTest(plantId: ID!): Plant
     removeWater(plantId: ID!, waterAdded: Int!): Plant
-    removeWaterTest(plantId: ID!, waterAdded: Int!): Plant
-    addPost(postText: String!, postCreator: String!): Post
-    addComment(postId: ID!, commentText: String!): Post
-    removePost(postId: ID!): Post
-    removeComment(postId: ID!, commentId: ID!): Post
+
+    addPost(postText: String!, postCreator: String!): Blog
+    addComment(postId: ID!, commentText: String!): Blog
+    removePost(postId: ID!): Blog
+    removeComment(postId: ID!, commentId: ID!): Blog
   }
 `;
 
