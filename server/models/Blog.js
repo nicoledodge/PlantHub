@@ -13,6 +13,7 @@ const blogSchema = new Schema({
     type: String,
     required: true,
     trim: true,
+    ref: 'User'
   },
   createdAt: {
     type: Date,
