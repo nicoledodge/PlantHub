@@ -12,9 +12,10 @@ import Button from '@mui/material/Button';
 import Tooltip from '@mui/material/Tooltip';
 import MenuItem from '@mui/material/MenuItem';
 import { Link } from "react-router-dom"
+import profilePic from "../pages/assets/profilepic.jpeg";
 
 const pages = ['MyGarden', 'Forum'];
-const settings = ['Profile', 'Account', 'Dashboard', 'Logout'];
+const settings = ['Profile', 'Account', 'Dashboard', 'Login'];
 
 const Nav = () => {
     const [anchorElNav, setAnchorElNav] = React.useState(null);
@@ -35,8 +36,9 @@ const Nav = () => {
         setAnchorElUser(null);
     };
 
+
     return (
-        <AppBar position="static">
+        <AppBar position="static" style={{ background: '#647F4D' }}>
             <Container maxWidth="xl">
                 <Toolbar disableGutters>
                     <Link to="/">
@@ -44,9 +46,9 @@ const Nav = () => {
                         variant="h6"
                         noWrap
                         component="div"
-                        sx={{ mr: 2, display: { xs: 'none', md: 'flex' } }}
+                        sx={{ mr: 2, color: 'white', display: { xs: 'none', md: 'flex' } }}
                     >
-                        LOGO
+                        BING BONG
                     </Typography>
                     </Link>
 
@@ -90,17 +92,17 @@ const Nav = () => {
                         variant="h6"
                         noWrap
                         component="div"
-                        sx={{ flexGrow: 1, display: { xs: 'flex', md: 'none' } }}
+                        sx={{ flexGrow: 1, color: 'white', display: { xs: 'flex', md: 'none' } }}
                     >
-                        LOGO
+                        BING BONG
                     </Typography>
-                    <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' } }}>
+                    <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex', justifyContent:"center", gap:"40px"} }}>
                         {pages.map((page) => (
                             <Button
                                 key={page}
                                 href={page}
-                                // onClick={handleCloseNavMenu}
-                                sx={{ my: 2, color: 'white', display: 'block' }}
+                                onClick={handleCloseNavMenu}
+                                sx={{ fontSize: "15px", my: 2, color: 'white', display: 'block' }}
                             >
                                 {page}
                             </Button>
@@ -110,7 +112,7 @@ const Nav = () => {
                     <Box sx={{ flexGrow: 0 }}>
                         <Tooltip title="Open settings">
                             <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
-                                <Avatar alt="Remy Sharp" src="/static/images/avatar/2.jpg" />
+                                <Avatar alt="Girl with plant" src={profilePic} />
                             </IconButton>
                         </Tooltip>
                         <Menu

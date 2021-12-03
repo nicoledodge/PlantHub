@@ -20,15 +20,9 @@ const Footer = () => (
                     <Grid.Column width={3}>
                         <Header inverted as='h4' content='Group 1' />
                         <List link inverted>
-                            <Link to="/about">
-                            <List.Item as='a'>About</List.Item>
-                            </Link>
-                            <Link to="/contact">
-                                <List.Item as='a'>Contact Support</List.Item>
-                            </Link>
-                            <Link to="/team">
-                                <List.Item as='a'>Meet the Team</List.Item>
-                            </Link>
+                            <List.Item as={ Link } to='/about'>About</List.Item>
+                            <List.Item as={ Link } to='/contact'>Contact Support</List.Item>
+                                <List.Item as={ Link } to='/team'>Meet the Team</List.Item>
                             {/*<List.Item as='a'>Link Four</List.Item>*/}
                         </List>
                     </Grid.Column>

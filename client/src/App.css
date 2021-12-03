@@ -18,3 +18,16 @@ body {
 .content-container {
     min-height: calc(100vh - 20px) !important;
 }
+.header {
+    color: #647f4d !important;
+}
+Nav {
+    background-color: rebeccapurple !important;
+}
+.cards{
+    padding-top: 25px;
+}
+.homeimg {
+   min-width: 100vw;
+    opacity: 0.7;
+}

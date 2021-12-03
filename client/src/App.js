@@ -17,6 +17,7 @@ import MyGarden from './pages/MyGarden';
 import Home from './pages/Home';
 import Contact from './pages/Contact';
 import Team from './pages/Team';
+import Forum from './pages/Forum';
 
 const httpLink = createHttpLink({
     uri: '/graphql',
@@ -51,6 +52,10 @@ function App() {
          <Route exact path="/contact"><Contact/></Route>
          <Route exact path="/about"><About/></Route>
          <Route exact path="/mygarden"><MyGarden/></Route>
+         {/*future development pages*/}
+         {/*<Route exact path="/plantcare"><PlantCare/></Route>*/}
+         {/*<Route exact path="/shop"><Shop/></Route>*/}
+         <Route exact path="/forum"><Forum/></Route>
          <Route exact path="/team"><Team/></Route>
      </div>
         <Footer/>
