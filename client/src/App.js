@@ -7,13 +7,11 @@ import {
     createHttpLink,
 } from '@apollo/client';
 import { setContext } from '@apollo/client/link/context';
-// import NavContainer from "./components/NavContainer"
-// import Navbar from './components/Navbar';
 
 import './App.css';
 
 import Navbar from './components/Navbar';
-// import Footer from './components/Footer';
+import Footer from './components/Footer';
 import About from './pages/About';
 import MyGarden from './pages/MyGarden';
 import Home from './pages/Home';
@@ -55,7 +53,7 @@ function App() {
          <Route exact path="/mygarden"><MyGarden/></Route>
          <Route exact path="/team"><Team/></Route>
      </div>
-        {/*<Footer/>*/}
+        <Footer/>
      </Router>
    </ApolloProvider>
   );
