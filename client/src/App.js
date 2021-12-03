@@ -7,7 +7,7 @@ import {
     createHttpLink,
 } from '@apollo/client';
 import { setContext } from '@apollo/client/link/context';
-
+import NavContainer from "./components/NavContainer"
 import Navbar from './components/Navbar';
 
 import './App.css';
@@ -48,7 +48,7 @@ function App() {
   return (
    <ApolloProvider client={client}>
      <Router>
-     <Navbar />
+     <NavContainer />
        <Switch>
 
        {/*  route exact path "/" */}
