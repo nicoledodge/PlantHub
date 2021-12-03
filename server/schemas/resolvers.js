@@ -333,41 +333,38 @@ const resolvers = {
         }
         throw new AuthenticationError('Please login to create a comment.');
       },
+      removePost: async (parent, { postId }, context) => {
+        if (context.user) {
+          const post = await Blog.findOneAndDelete({
+            _id: postId,
+            postCreator: context.user.username,
+          });
 
-      // removeComment: async (parent, { postId, commentId }, context) => {
-      //   if (context.user) {
-      //     return Blog.findOneAndUpdate(
-      //       { _id: postId },
-      //       {
-      //         $pull: {
-      //           comments: {
-      //             _id: commentId,
-      //             commentAuthor: context.user.username,
-      //           },
-      //         },
-      //       },
-      //       { new: true }
-      //     );
-      //   }
-      //   throw new AuthenticationError('Please login to create a comment.');
-      // },
+          await User.findOneAndUpdate(
+            { _id: context.user._id },
+            { $pull: { thoughts: thought._id } }
+          );
 
-      // removeCommentTest: async (parent, { postId, commentId }) => {
-      //    {
-      //       return Blog.findOneAndUpdate(
-      //         { _id: postId },
-      //         {
-      //           $pull: {
-      //             comments: {
-      //               _id: commentId
-      //             },
-      //           },
-      //         },
-      //         { new: true }
-      //       );
-      //     }
-      //     throw new AuthenticationError('Please login to create a comment.');
-      //   },
+        return post;
+      }
+         throw new AuthenticationError('You need to be logged in!');
+      },
+      removePostTest: async (parent, { postId }) => {
+        {
+          const post = await Blog.findOneAndDelete({
+            _id: postId,
+            postCreator: "BetaTester",
+          });
+  
+          await User.findOneAndUpdate(
+            { _id: "Enter Users ID" },
+            { $pull: { post: postId } }
+          );
+  
+          return post;
+        }
+        throw new AuthenticationError('Please login to create a comment.');
+      },
       },
   };
 
