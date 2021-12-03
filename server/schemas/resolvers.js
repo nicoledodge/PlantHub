@@ -303,7 +303,11 @@ const resolvers = {
       
           return Blog.findOneAndUpdate(
             { _id: postId },
-            { $addToSet: { comment: {commentText} } },
+            { 
+              $addToSet: { 
+                comment: {commentText, commentCreator: context.user.username } 
+              } 
+            },
             {
               new: true,
               runValidators: true,
@@ -315,11 +319,12 @@ const resolvers = {
 
       addCommentTest: async (parent, { postId, commentText }) => {
       {
-        const comment = await Blog.findOne({_id: postId})
-        console.log(comment)
           return Blog.findOneAndUpdate(
             { _id: postId },
-            { $addToSet: { comments: {commentText} } },
+            { $addToSet: {
+              comments: { commentText, commentCreator: "james"},
+            }, 
+           },
             {
               new: true,
               runValidators: true,
@@ -329,40 +334,40 @@ const resolvers = {
         throw new AuthenticationError('Please login to create a comment.');
       },
 
-      removeComment: async (parent, { postId, commentId }, context) => {
-        if (context.user) {
-          return Blog.findOneAndUpdate(
-            { _id: postId },
-            {
-              $pull: {
-                comments: {
-                  _id: commentId,
-                  commentAuthor: context.user.username,
-                },
-              },
-            },
-            { new: true }
-          );
-        }
-        throw new AuthenticationError('Please login to create a comment.');
-      },
+      // removeComment: async (parent, { postId, commentId }, context) => {
+      //   if (context.user) {
+      //     return Blog.findOneAndUpdate(
+      //       { _id: postId },
+      //       {
+      //         $pull: {
+      //           comments: {
+      //             _id: commentId,
+      //             commentAuthor: context.user.username,
+      //           },
+      //         },
+      //       },
+      //       { new: true }
+      //     );
+      //   }
+      //   throw new AuthenticationError('Please login to create a comment.');
+      // },
 
-      removeCommentTest: async (parent, { postId, commentId }) => {
-         {
-            return Blog.findOneAndUpdate(
-              { _id: postId },
-              {
-                $pull: {
-                  comments: {
-                    _id: commentId
-                  },
-                },
-              },
-              { new: true }
-            );
-          }
-          throw new AuthenticationError('Please login to create a comment.');
-        },
+      // removeCommentTest: async (parent, { postId, commentId }) => {
+      //    {
+      //       return Blog.findOneAndUpdate(
+      //         { _id: postId },
+      //         {
+      //           $pull: {
+      //             comments: {
+      //               _id: commentId
+      //             },
+      //           },
+      //         },
+      //         { new: true }
+      //       );
+      //     }
+      //     throw new AuthenticationError('Please login to create a comment.');
+      //   },
       },
   };
 

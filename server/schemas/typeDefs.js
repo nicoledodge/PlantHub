@@ -64,12 +64,15 @@ const typeDefs = gql`
     removeWater(plantId: ID!, waterAdded: Int!): Plant
     removeWaterTest(plantId: ID!, waterAdded: Int!): Plant
 
-    addPost(postText: String!): Blog
+    addPost(postText: String!, postCreator: String!): Blog
     addPostTest(postText: String!, postCreator: String!): Blog  
+
     addComment(postId: ID!, commentText: String!): Blog
-    addCommentTest(postId: ID!, commentText: String!, commentCreator: String!): Blog
+    addCommentTest(postId: ID!, commentText: String!): Blog
+
     removePost(postId: ID!): Blog
     removePostTest(postId: ID!): Blog
+
     removeComment(postId: ID!, commentId: ID!): Blog
     removeCommentTest(postId: ID!, commentId: ID!): Blog
   }
