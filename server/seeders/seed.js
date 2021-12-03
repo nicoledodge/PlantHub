@@ -24,13 +24,11 @@ db.once('open', async () => {
       );
     }
   for (let i = 0; i < blogSeeds.length; i++) {
-      const { _id } = await Blog.create(blogSeeds[i]);
+      const { _id, postCreator } = await Blog.create(blogSeeds[i]);
       const user = await User.findOneAndUpdate(
-        { email: "bkernighan@techfriends.dev" },
+        { email: postCreator },
         {
-          $addToSet: {
-            myPosts: _id,
-          },
+          $addToSet: { myPosts: _id  },
         }
       );
     }
