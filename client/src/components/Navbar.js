@@ -9,11 +9,11 @@ import MenuIcon from '@mui/icons-material/Menu';
 import Container from '@mui/material/Container';
 import Avatar from '@mui/material/Avatar';
 import Button from '@mui/material/Button';
+import "../App.css"
 import Tooltip from '@mui/material/Tooltip';
 import MenuItem from '@mui/material/MenuItem';
 import { Link } from "react-router-dom"
 import profilePic from "../pages/assets/profilepic.jpeg";
-
 const pages = ['MyGarden', 'Forum'];
 const settings = ['Profile', 'Account', 'Dashboard', 'Login'];
 
@@ -38,7 +38,7 @@ const Nav = () => {
 
 
     return (
-        <AppBar position="static" style={{ background: '#647F4D' }}>
+        <AppBar position="static" style={{ background: '#4F5902' }}>
             <Container maxWidth="xl">
                 <Toolbar disableGutters>
                     <Link to="/">
@@ -46,9 +46,9 @@ const Nav = () => {
                         variant="h6"
                         noWrap
                         component="div"
-                        sx={{ mr: 2, color: 'white', display: { xs: 'none', md: 'flex' } }}
+                        sx={{  display: { xs: 'none', md: 'flex' } }}
                     >
-                        BING BONG
+                        <img id="logo" src="./images/logo.png" alt="Planthub Logo"/>
                     </Typography>
                     </Link>
 
@@ -102,7 +102,7 @@ const Nav = () => {
                                 key={page}
                                 href={page}
                                 onClick={handleCloseNavMenu}
-                                sx={{ fontSize: "15px", my: 2, color: 'white', display: 'block' }}
+                                sx={{ fontSize: "15px", my: 2, color: '#EBDBAE', display: 'block' }}
                             >
                                 {page}
                             </Button>
