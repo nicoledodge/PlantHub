@@ -2,6 +2,7 @@
     {
       "firstName": "Brian",
       "lastName": "Kernighan",
+      "username": "BetaTester",
       "email": "bkernighan@techfriends.dev",
       "password": "password01"
     }

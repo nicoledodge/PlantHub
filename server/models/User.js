@@ -15,6 +15,11 @@ const userSchema = new Schema({
     required: true,
     trim: true
   },
+  username: {
+    type: String,
+    required: true,
+    unique: true
+  },
   email: {
     type: String,
     required: true,
@@ -34,13 +39,7 @@ const userSchema = new Schema({
   myPosts: [
     {
       type: Schema.Types.ObjectId,
-      ref: 'Post'
-    },
-  ],
-  myComments: [
-    {
-      type: Schema.Types.ObjectId,
-      ref: 'Comment'
+      ref: 'Blog'
     },
   ],
 });

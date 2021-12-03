@@ -5,24 +5,33 @@ const { signToken } = require('../utils/auth');
 const resolvers = {
   Query: {
     allUsers: async () => {
-      return User.find().populate('myPlants');
+      return User.find().populate('myPlants').populate('myPosts');
 // Test query to make sure this works
-      // query user{
-      //   allUsers{
-      //     _id
-      //     lastName
-      //     firstName
-      //     myPlants{
-      //       _id
-      //       name
-      //       waterNeeded
-      //       waterAdded
-      //     }
-      //     }
-      //   }
+// query user{
+//   allUsers{
+//     _id
+//     username
+//     lastName
+//     firstName
+//     email
+//     myPlants{
+//       _id
+//       name
+//       waterNeeded
+//       waterAdded
+//     }
+//     myPosts{
+//       postText
+//       postCreator
+//       comments{
+//         commentText
+//       }
+//     }
+//     }
+//   }
     },
-    user: async (parent, { email }) => {
-      return User.findOne({ email }).populate('myPlants');
+    user: async (parent, { username }) => {
+      return User.findOne({ username }).populate('myPlants').populate('myPosts');
       // Test query to make sure it works
       // query User($email: String!) {
       //   user(email: $email) {
@@ -62,8 +71,8 @@ const resolvers = {
   },
 
   Mutation: {
-    addUser: async (parent, { firstName, lastName, email, password }) => {
-      const user = await User.create({ firstName, lastName, email, password });
+    addUser: async (parent, { firstName, username, lastName, email, password }) => {
+      const user = await User.create({ firstName, username, lastName, email, password });
       const token = signToken(user);
       return { token, user };
     },
@@ -99,7 +108,7 @@ const resolvers = {
         console.log(plant)
 
         await User.findOneAndUpdate(
-          { _id: "INSERT THE RIGHT ID HERE"},
+          { _id: "61aa52e8b5e1155e144af12a"},
           { $addToSet: { myPlants: plant._id}}
         );
 
@@ -203,8 +212,8 @@ const resolvers = {
         });
 
         await User.findOneAndUpdate(
-          { _id: "INSERT YOUR OWN ID HERE"},
-          { $pull: { myPlants: plant._id } }
+          { _id: "61aa52e8b5e1155e144af12a"},
+          { $pull: { myPlants: plantId } }
         );
 
         return plant;
@@ -227,41 +236,58 @@ const resolvers = {
       }
       throw new AuthenticationError('You need to be logged in!');
     },
-    // removeWaterTest: async (parent, { plantId, waterAdded }) => {
-    //  {
-    //   // mutation {
-    //   //   removeWaterTest(plantId:"ENTER YOUR OWN PLANT ID", waterAdded:-1){
-    //   //     _id
-    //   //     name
-    //   //     waterAdded
-    //   //     waterNeeded
-    //   // }
-    //   // }
+    removeWaterTest: async (parent, { plantId, waterAdded }) => {
+     {
+      // mutation {
+      //   removeWaterTest(plantId:"ENTER YOUR OWN PLANT ID", waterAdded:-1){
+      //     _id
+      //     name
+      //     waterAdded
+      //     waterNeeded
+      // }
+      // }
 
-    //     const plant = await Plant.findOne({_id: plantId})
+        const plant = await Plant.findOne({_id: plantId})
 
-    //     return Plant.findOneAndUpdate(
-    //       { _id: plantId },
-    //       {
-    //         $set: {
-    //           waterAdded: plant.waterAdded + waterAdded,
-    //         },
-    //       },
-    //       { new: true }
-    //     );
-    //   }
-    //   throw new AuthenticationError('You need to be logged in!');
-    // },
+        return Plant.findOneAndUpdate(
+          { _id: plantId },
+          {
+            $set: {
+              waterAdded: plant.waterAdded + waterAdded,
+            },
+          },
+          { new: true }
+        );
+      }
+      throw new AuthenticationError('You need to be logged in!');
+    },
     //blog posts
-      addPost: async (parent, { postText, postCreator }, context) => {
+      addPost: async (parent, { postText }, context) => {
         if (context.user) {
+          const post = await Blog.create({
+            postText: postText,
+            postCreator: context.user.username
+          });
+  
+          await User.findOneAndUpdate(
+            { username: context.user.username},
+            { $addToSet: { myPosts: post._id } }
+          );
+
+          return post;
+        }
+        throw new AuthenticationError('Please login to create a post.');
+      },
+      // Test code for test route 
+      addPostTest: async (parent, { postText, postCreator} ) => {
+      {
           const post = await Blog.create({
             postText: postText,
             postCreator: postCreator
           });
   
           await User.findOneAndUpdate(
-            { _id: context.user._id},
+            { username: "BetaTester"},
             { $addToSet: { myPosts: post._id } }
           );
 
@@ -276,7 +302,22 @@ const resolvers = {
       
           return Blog.findOneAndUpdate(
             { _id: postId },
-            { $addToSet: { comment: comment.commentText } },
+            { $addToSet: { comment: {commentText} } },
+            {
+              new: true,
+              runValidators: true,
+            }
+          );
+        }
+        throw new AuthenticationError('Please login to create a comment.');
+      },
+      addCommentTest: async (parent, { postId, commentText }) => {
+      {
+        const comment = await Blog.findOne({_id: postId})
+        console.log(comment)
+          return Blog.findOneAndUpdate(
+            { _id: postId },
+            { $addToSet: { comments: {commentText} } },
             {
               new: true,
               runValidators: true,

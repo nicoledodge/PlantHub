@@ -5,9 +5,10 @@ const typeDefs = gql`
     _id: ID
     firstName: String!
     lastName: String!
+    username: String!
     email: String!
     password: String!
-    myPlant: [Plant]
+    myPlants: [Plant]
     myPosts: [Blog]
   }
 
@@ -29,7 +30,7 @@ const typeDefs = gql`
     postText: String!
     postCreator: String
     createdAt: String
-    comment: [Comment]
+    comments: [Comment]
   }
 
   type Comment {
@@ -40,18 +41,17 @@ const typeDefs = gql`
 
   type Query {
     allUsers: [User]
-    user(email: String!): User
+    user(username: String!): User
     plants(email: String!): [Plant]
     plant(plantId: ID!): Plant
     allPlants: [Plant]
     me: User
-
     allPosts: [Blog]
     post(postId: ID!): Blog
   }
 
   type Mutation {
-    addUser(firstName: String!, lastName: String!, email: String!, password: String!): Auth
+    addUser(firstName: String!, lastName: String!, username: String! email: String!, password: String!): Auth
     login(email: String!, password: String!): Auth
     
     addPlant(name: String!, waterNeeded: Int!): Plant
@@ -61,13 +61,14 @@ const typeDefs = gql`
     removePlant(plantId: ID!): Plant
     removePlantTest(plantId: ID!): Plant
     removeWater(plantId: ID!, waterAdded: Int!): Plant
-
-    addPost(postText: String!, postCreator: String!): Blog
+    removeWaterTest(plantId: ID!, waterAdded: Int!): Plant
+    addPost(postText: String!): Blog
+    addPostTest(postText: String!, postCreator: String!): Blog  
     addComment(postId: ID!, commentText: String!): Blog
+    addCommentTest(postId: ID!, commentText: String!): Blog
     removePost(postId: ID!): Blog
     removeComment(postId: ID!, commentId: ID!): Blog
   }
 `;
 
 module.exports = typeDefs;
-
