@@ -18,6 +18,11 @@ const Nav = ({ currentPage, handlePageChange }) => {
             Contact 
           </a>
                 </li>
+                <li>
+                <a  href="#contact" onClick={() => handlePageChange('Team')}>
+            Meet The Team 
+          </a>
+          </li>
             </ul>
         </div>
     )
