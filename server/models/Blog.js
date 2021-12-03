@@ -28,6 +28,12 @@ const blogSchema = new Schema({
         minlength: 1,
         maxlength: 280,
       },
+      commentCreator: {
+        type: String,
+        required: true,
+        trim: true,
+        ref: 'User'
+      },
       createdAt: {
         type: Date,
         default: Date.now,

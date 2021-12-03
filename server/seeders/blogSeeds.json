@@ -3,7 +3,9 @@
       "postText": "Plant 1 - Low maintenance",
       "postCreator": "BetaTester",
       "comments":[
-        {"commentText": "Try getting some snake plants"}
+        {"commentText": "Try getting some snake plants",
+          "commentCreator": "Tester1"
+        }
       ]
     },
     {

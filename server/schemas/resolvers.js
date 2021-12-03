@@ -261,6 +261,7 @@ const resolvers = {
       }
       throw new AuthenticationError('You need to be logged in!');
     },
+
     //blog posts
       addPost: async (parent, { postText }, context) => {
         if (context.user) {
@@ -302,7 +303,11 @@ const resolvers = {
       
           return Blog.findOneAndUpdate(
             { _id: postId },
-            { $addToSet: { comment: {commentText} } },
+            { 
+              $addToSet: { 
+                comment: {commentText, commentCreator: context.user.username } 
+              } 
+            },
             {
               new: true,
               runValidators: true,
@@ -311,13 +316,15 @@ const resolvers = {
         }
         throw new AuthenticationError('Please login to create a comment.');
       },
+
       addCommentTest: async (parent, { postId, commentText }) => {
       {
-        const comment = await Blog.findOne({_id: postId})
-        console.log(comment)
           return Blog.findOneAndUpdate(
             { _id: postId },
-            { $addToSet: { comments: {commentText} } },
+            { $addToSet: {
+              comments: { commentText, commentCreator: "james"},
+            }, 
+           },
             {
               new: true,
               runValidators: true,
@@ -326,7 +333,73 @@ const resolvers = {
         }
         throw new AuthenticationError('Please login to create a comment.');
       },
+      removePost: async (parent, { postId }, context) => {
+        if (context.user) {
+          const post = await Blog.findOneAndDelete({
+            _id: postId,
+            postCreator: context.user.username,
+          });
+
+          await User.findOneAndUpdate(
+            { _id: context.user._id },
+            { $pull: { thoughts: thought._id } }
+          );
+
+        return post;
+      }
+         throw new AuthenticationError('Please login to delete a post');
+      },
+      removePostTest: async (parent, { postId }) => {
+        {
+          const post = await Blog.findOneAndDelete({
+            _id: postId,
+            postCreator: "BetaTester",
+          });
+  
+          await User.findOneAndUpdate(
+            { _id: "Enter Users ID" },
+            { $pull: { post: postId } }
+          );
+  
+          return post;
+        }
+        throw new AuthenticationError('Please login to delete a post.');
+      },
+      removeComment: async (parent, { postId, commentId }) => {
+        if (context.user) {
+          return Blog.findOneAndUpdate(
+            { _id: postId },
+            {
+              $pull: {
+                comments: {
+                  _id: commentId,
+                  commentAuthor: context.user.username,
+                },
+              },
+            },
+            { new: true }
+          );
+        }
+        throw new AuthenticationError('Please login to delete a comment.');
+      },
+      removeCommentTest: async (parent, { postId, commentId }) => {
+        {
+          return Blog.findOneAndUpdate(
+            { _id: postId },
+            {
+              $pull: {
+                comments: {
+                  _id: commentId,
+                  commentCreator: "James",
+                },
+              },
+            },
+            { new: true }
+          );
+        }
+        throw new AuthenticationError('Please login to delete a comment.');
+      },
     },
-};
+  };
 
 module.exports = resolvers;
