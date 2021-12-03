@@ -23,7 +23,7 @@ const Footer = () => (
                             <List.Item as={ Link } to='/about'>About</List.Item>
                             <List.Item as={ Link } to='/contact'>Contact Support</List.Item>
                                 <List.Item as={ Link } to='/team'>Meet the Team</List.Item>
-                            {/*<List.Item as='a'>Link Four</List.Item>*/}
+                            <List.Item as={ Link } to='/testimonials'>Testimonials</List.Item>
                         </List>
                     </Grid.Column>
                     <Grid.Column width={3}>

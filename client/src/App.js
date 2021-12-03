@@ -15,6 +15,7 @@ import Footer from './components/Footer';
 import About from './pages/About';
 import MyGarden from './pages/MyGarden';
 import Home from './pages/Home';
+import Testimonials from './pages/Testimonials';
 import Contact from './pages/Contact';
 import Team from './pages/Team';
 import Forum from './pages/Forum';
@@ -51,6 +52,7 @@ function App() {
          <Route exact path="/"><Home/></Route>
          <Route exact path="/contact"><Contact/></Route>
          <Route exact path="/about"><About/></Route>
+         <Route exact path="/testimonials"><Testimonials/></Route>
          <Route exact path="/mygarden"><MyGarden/></Route>
          {/*future development pages*/}
          {/*<Route exact path="/plantcare"><PlantCare/></Route>*/}
