@@ -15,3 +15,18 @@ export const QUERY_ME = gql`
     }
   }
 `;
+export const QUERY_POSTS = gql`
+  {
+    allPosts{
+      _id
+      postText
+      createdAt
+      comments{
+        _id
+        createdAt
+        commentText
+        commentCreator
+      }
+    }
+  }
+`;
