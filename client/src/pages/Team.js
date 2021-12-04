@@ -37,7 +37,7 @@ export default function Team() {
       <CardActionArea>
         <CardMedia
           component="img"
-          height="140"
+          height="300"
           image="./images/portfolio-pic.jpeg"
           alt="green iguana"
         />
@@ -56,7 +56,7 @@ export default function Team() {
       <CardActionArea>
         <CardMedia
           component="img"
-          height="140"
+          height="300"
           image=""
           alt="green iguana"
         />
@@ -75,7 +75,7 @@ export default function Team() {
       <CardActionArea>
         <CardMedia
           component="img"
-          height="140"
+          height="300"
           image="/static/images/cards/contemplative-reptile.jpg"
           alt="green iguana"
         />
@@ -94,17 +94,17 @@ export default function Team() {
       <CardActionArea>
         <CardMedia
           component="img"
-          height="140"
-          image="/static/images/cards/contemplative-reptile.jpg"
-          alt="green iguana"
+          height="300"
+          image="./images/nikki-profile-pic.jpg"
+          alt="nikki"
         />
         <CardContent>
           <Typography gutterBottom variant="h5" component="div" style={{ textAlign: 'center'}}>
            Nicole Dodge
           </Typography>
           <Typography variant="body2" color="text.secondary">
-            Lizards are a widespread group of squamate reptiles, with over 6,000
-            species, ranging across all continents except Antarctica
+            Hey I’m Nicole! (some people call me Nikki)
+            I’m new to the world of web development but have been no stranger to technology. Expertised in DSLR camera processes and Adobe applications, my profession prior to computers involved Wedding & Festival Photography, as well as the team photographer for a Division I football team. I spend most of my time at festivals and traveling across different national parks and different countries!
           </Typography>
         </CardContent>
       </CardActionArea>
