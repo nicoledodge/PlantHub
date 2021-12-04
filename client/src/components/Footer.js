@@ -18,7 +18,7 @@ const Footer = () => (
             <Container textAlign='center'>
                 <Grid divided inverted stackable>
                     <Grid.Column width={3}>
-                        <Header inverted as='h4' content='Group 1' />
+                        <Header inverted as='h4' content='Explore' />
                         <List link inverted>
                             <List.Item as={ Link } to='/about'>About</List.Item>
                             <List.Item as={ Link } to='/contact'>Contact Support</List.Item>
@@ -27,33 +27,34 @@ const Footer = () => (
                         </List>
                     </Grid.Column>
                     <Grid.Column width={3}>
-                        <Header inverted as='h4' content='Group 2' />
+                        <Header inverted as='h4' content='Company' />
                         <List link inverted>
-                            <List.Item as='a'>Link One</List.Item>
-                            <List.Item as='a'>Link Two</List.Item>
-                            <List.Item as='a'>Link Three</List.Item>
-                            <List.Item as='a'>Link Four</List.Item>
+                            <List.Item as='a'>FAQs</List.Item>
+                            <List.Item as='a'>Privacy</List.Item>
+                            <List.Item as='a'>Careers</List.Item>
+                            <List.Item as='a'>Help Center</List.Item>
                         </List>
                     </Grid.Column>
                     <Grid.Column width={3}>
-                        <Header inverted as='h4' content='Group 3' />
+                        <Header inverted as='h4' content='Media' />
                         <List link inverted>
-                            <List.Item as='a'>Link One</List.Item>
-                            <List.Item as='a'>Link Two</List.Item>
-                            <List.Item as='a'>Link Three</List.Item>
-                            <List.Item as='a'>Link Four</List.Item>
+                            <List.Item as='a'>Promotions</List.Item>
+                            <List.Item as='a'>Ads</List.Item>
+                            <List.Item as='a'>News Letter</List.Item>
                         </List>
                     </Grid.Column>
                     <Grid.Column width={7}>
-                        <Header inverted as='h4' content='Footer Header' />
-                        <p>
-                            Extra space for a call to action inside the footer that could help re-engage users.
-                        </p>
+                        <Header inverted as='h4' content='Stay Connected' />
+                        
+                            <a href="https://twitter.com/Planthub1" target="_blank" rel="noreferrer"><i className="fab fa-twitter-square fa-2x footer-icons"></i></a>
+                            <a href="https://www.instagram.com/planthub.uta/" target="_blank" rel="noreferrer"><i className="fab fa-instagram-square fa-2x footer-icons"></i></a>
+                            <a href="mailto:planthub.uta@gmail.com"><i className="fas fa-envelope-open-text fa-2x footer-icons"></i></a>
+                        
                     </Grid.Column>
                 </Grid>
 
                 <Divider inverted section />
-                <Image centered size='mini' src='/logo.png' />
+                <Image centered size='small' src='./images/logo.png' />
                 <List horizontal inverted divided link size='small'>
                     <List.Item as='a' href='#'>
                         Site Map

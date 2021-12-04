@@ -6,7 +6,8 @@ body {
 }
 
 #logo {
-    height: 120px;
+    height: 100px;
+    width: 125px;
 }
 .Router {
     background-color: rgba(229, 255, 0, 0.404);
@@ -18,6 +19,16 @@ body {
     position: relative;
     left: 0;
     bottom: 0;
+}
+
+.footer-icons {
+    color: #949596;
+    transition: all 0.3s;
+    padding: 10px;
+}
+
+.footer-icons:hover {
+    color: white;
 }
 .content-container {
     min-height: calc(100vh - 20px) !important;
