@@ -16,17 +16,18 @@ export const QUERY_ME = gql`
   }
 `;
 export const QUERY_POSTS = gql`
-  {
-    allPosts{
+query {
+  allPosts{
+    _id
+    postText
+    postCreator
+    createdAt
+    comments{
       _id
-      postText
       createdAt
-      comments{
-        _id
-        createdAt
-        commentText
-        commentCreator
-      }
+      commentText
+      commentCreator
     }
   }
+}
 `;

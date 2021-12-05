@@ -1,9 +1,14 @@
 import React from "react";
 
-export default function Forum() {
+import PostForum from "../components/PostForum";
+
+const Forum = () => {
     return (
-        <>
-            <h2>FORUM PAGE</h2>
-        </>
-    )
-}
+      <main>
+        <PostForum />
+      </main>
+    );
+  };
+  
+  export default Forum;
+  
