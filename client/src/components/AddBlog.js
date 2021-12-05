@@ -76,7 +76,6 @@ const AddBlog = (props) => {
                 onChange={handleChange}
               ></textarea>
             </div>
-
             <div className="col-12 col-lg-3">
               <button className="btn btn-primary btn-block py-3" type="submit">
                 Add Post
