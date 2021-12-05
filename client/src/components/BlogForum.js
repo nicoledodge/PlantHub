@@ -1,25 +1,10 @@
-import React, { useEffect, useState } from "react";
-import { useQuery } from "@apollo/client";
-import { QUERY_POSTS } from "../utils/queries";
 
-function GetPosts() {
-  const { loading, data } = useQuery(QUERY_POSTS);
-  const [post, setPost] = useState([]);
-
-  //waits for the data to be received
-  useEffect(() => {
-    if (data) {
-      // to allow data to appear on the front-end
-      setPost(data.allPosts);
-    }
-    console.log(data);
-    // useEffect will run when there's change to the data
-  }, [data]);
+function GetPosts(props) {
 
   return (
     <div class="ui minimal comments">
       <h3 class="ui dividing header">Comments</h3>
-      {post.map((post) => (
+      {props.allPost.map((post) => (
         <div class="comment" key={`post = ${post._id}`}>
           <div class="content post">
             <a class="author">{post.postCreator}</a>
