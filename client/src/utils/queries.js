@@ -4,6 +4,7 @@ export const QUERY_ME = gql`
   {
     me {
       _id
+      username
       firstName
       lastName
       email
@@ -31,3 +32,37 @@ query {
   }
 }
 `;
+
+// export const QUERY_ALLUSERS= gql`
+// {
+//   allUsers{
+//     _id
+//     username
+//     lastName
+//     firstName
+//     email
+//     myPlants{
+//       _id
+//       name
+//       waterNeeded
+//       waterAdded
+//     }
+//     }
+//   }`
+
+
+  export const QUERY_USER= gql`
+  query {
+        user(username: "BetaTester"){
+        _id
+        firstName
+        lastName
+        email
+        myPlants {
+          _id
+          name
+          waterAdded
+          waterNeeded
+        }
+      }
+    }`
