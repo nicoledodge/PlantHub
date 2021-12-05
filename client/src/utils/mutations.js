@@ -65,3 +65,68 @@ export const REMOVE_WATER = gql`
     }
   }
 `;
+
+export const ADD_POST = gql`
+  mutation addPost($postText: String!, $postCreator: String!) {
+    addPost(postText: $postText, postCreator: $postCreator) {
+      _id
+      postText
+      postCreator
+      createdAt
+      comments {
+        _id
+        commentText
+        commentCreator
+      }
+    }
+  }
+`;
+
+export const REMOVE_POST = gql`
+  mutation removePost($postId: ID!) {
+    removePost(postId:$postId) {
+      _id
+      postText
+      postCreator
+      createdAt
+      comments {
+        _id
+        commentText
+        commentCreator
+      }
+    }
+  }
+`;
+
+export const ADD_COMMENT = gql`
+  mutation addComment($postId: ID!, $commentText: String!) {
+    addComment(postId: $postId, commentText: $commentText) {
+      _id
+      postText
+      postCreator
+      createdAt
+      comments {
+        _id
+        commentText
+        commentCreator
+        createdAt
+      }
+    }
+  }
+`;
+export const REMOVE_COMMENT = gql`
+  mutation removeComment($postId: ID!, $commentId: ID!) {
+    removeComment(postId: $postId, commentId: $commentId) {
+      _id
+      postText
+      postCreator
+      createdAt
+      comments {
+        _id
+        commentText
+        commentCreator
+        createdAt
+      }
+    }
+  }
+`;

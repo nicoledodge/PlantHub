@@ -263,24 +263,24 @@ const resolvers = {
     },
 
     //blog posts
-      addPost: async (parent, { postText }, context) => {
-        if (context.user) {
-          const post = await Blog.create({
-            postText: postText,
-            postCreator: context.user.username
-          });
+      // addPost: async (parent, { postText }, context) => {
+      //   if (context.user) {
+      //     const post = await Blog.create({
+      //       postText: postText,
+      //       postCreator: context.user.username
+      //     });
   
-          await User.findOneAndUpdate(
-            { username: context.user.username},
-            { $addToSet: { myPosts: post._id } }
-          );
+      //     await User.findOneAndUpdate(
+      //       { username: context.user.username},
+      //       { $addToSet: { myPosts: post._id } }
+      //     );
 
-          return post;
-        }
-        throw new AuthenticationError('Please login to create a post.');
-      },
+      //     return post;
+      //   }
+      //   throw new AuthenticationError('Please login to create a post.');
+      // },
       // Test code for test route 
-      addPostTest: async (parent, { postText, postCreator} ) => {
+      addPost: async (parent, { postText, postCreator} ) => {
       {
           const post = await Blog.create({
             postText: postText,
