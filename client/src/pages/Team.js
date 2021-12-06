@@ -15,7 +15,7 @@ export default function Team() {
       <br></br>
       <div style={{ width: '100%' }}>
       <Box sx={{ display: 'flex',flexWrap:'wrap', justifyContent: 'center', p: 1, m: 1}}>
-    <Card sx={{ maxWidth: 345, margin: 1, bgcolor:'#d9cba0'}}>
+    <Card id='testing' sx={{ maxWidth: 345, margin: 1, bgcolor:'#d9cba0'}}>
       <CardActionArea>
         <CardMedia
           component="img"
@@ -34,7 +34,7 @@ export default function Team() {
         </CardContent>
       </CardActionArea>
     </Card>
-    <Card sx={{ maxWidth: 345, margin: 1 ,bgcolor:'#d9cba0'}}>
+    <Card id='testing' sx={{ maxWidth: 345, margin: 1 ,bgcolor:'#d9cba0'}}>
       <CardActionArea>
         <CardMedia
           component="img"
@@ -53,7 +53,7 @@ export default function Team() {
         </CardContent>
       </CardActionArea>
     </Card>
-    <Card sx={{ maxWidth: 345, margin: 1, bgcolor:'#d9cba0'}}>
+    <Card id='testing' sx={{ maxWidth: 345, margin: 1, bgcolor:'#d9cba0'}}>
       <CardActionArea>
         <CardMedia
           component="img"
@@ -72,7 +72,7 @@ export default function Team() {
         </CardContent>
       </CardActionArea>
     </Card>
-    <Card sx={{ maxWidth: 345, margin: 1, bgcolor:'#d9cba0'}}>
+    <Card id='testing' sx={{ maxWidth: 345, margin: 1, bgcolor:'#d9cba0'}}>
       <CardActionArea>
         <CardMedia
           component="img"
@@ -91,7 +91,7 @@ export default function Team() {
         </CardContent>
       </CardActionArea>
     </Card>
-    <Card sx={{ maxWidth: 345 , margin: 1, bgcolor:'#d9cba0'}}>
+    <Card  id='testing' sx={{ maxWidth: 345 , margin: 1, bgcolor:'#d9cba0'}}>
       <CardActionArea>
         <CardMedia
           component="img"
