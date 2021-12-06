@@ -31,3 +31,19 @@ query {
   }
 }
 `;
+export const QUERY_POST = gql`
+query {
+  post{
+    _id
+    postText
+    postCreator
+    createdAt
+    comments{
+      _id
+      createdAt
+      commentText
+      commentCreator
+    }
+  }
+}
+`;

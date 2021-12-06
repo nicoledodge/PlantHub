@@ -99,8 +99,8 @@ export const REMOVE_POST = gql`
 `;
 
 export const ADD_COMMENT = gql`
-  mutation addComment($postId: ID!, $commentText: String!) {
-    addComment(postId: $postId, commentText: $commentText) {
+  mutation addComment($postId: ID!, $commentText: String! $commentCreator: String!) {
+    addComment(postId: $postId, commentText: $commentText, commentCreator: $commentCreator) {
       _id
       postText
       postCreator

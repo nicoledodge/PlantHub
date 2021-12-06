@@ -262,7 +262,7 @@ const resolvers = {
       throw new AuthenticationError('You need to be logged in!');
     },
 
-    //blog posts
+    //blog posts 
       // addPost: async (parent, { postText }, context) => {
       //   if (context.user) {
       //     const post = await Blog.create({
@@ -297,27 +297,27 @@ const resolvers = {
         throw new AuthenticationError('Please login to create a post.');
       },
       
-      addComment: async (parent, { postId, commentText }, context) => {
-        if (context.user) {
-          const comment = await Blog.findOne({_id: postId})
+      // addComment: async (parent, { postId, commentText }, context) => {
+      //   if (context.user) {
+      //     const comment = await Blog.findOne({_id: postId})
       
-          return Blog.findOneAndUpdate(
-            { _id: postId },
-            { 
-              $addToSet: { 
-                comment: {commentText, commentCreator: context.user.username } 
-              } 
-            },
-            {
-              new: true,
-              runValidators: true,
-            }
-          );
-        }
-        throw new AuthenticationError('Please login to create a comment.');
-      },
+      //     return Blog.findOneAndUpdate(
+      //       { _id: postId },
+      //       { 
+      //         $addToSet: { 
+      //           comment: {commentText, commentCreator: context.user.username } 
+      //         } 
+      //       },
+      //       {
+      //         new: true,
+      //         runValidators: true,
+      //       }
+      //     );
+      //   }
+      //   throw new AuthenticationError('Please login to create a comment.');
+      // },
 
-      addCommentTest: async (parent, { postId, commentText }) => {
+      addComment: async (parent, { postId, commentText }) => {
       {
           return Blog.findOneAndUpdate(
             { _id: postId },
@@ -333,6 +333,7 @@ const resolvers = {
         }
         throw new AuthenticationError('Please login to create a comment.');
       },
+      
       removePost: async (parent, { postId }, context) => {
         if (context.user) {
           const post = await Blog.findOneAndDelete({

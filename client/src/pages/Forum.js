@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import BlogForum from "../components/BlogForum";
-import AddBlog from "../components/AddBlog";
+import AddPost from "../components/AddPost";
 import { useQuery } from "@apollo/client";
 import { QUERY_POSTS } from "../utils/queries";
 
@@ -13,14 +13,14 @@ const Forum = () => {
     if (data) {
       setAllPost(data.allPosts);
     }
-    console.log(data);
+    //console.log(data);
   }, [data]);
 
-  console.log(allPosts);
+  //console.log(allPosts);
   return (
     <main>
       <BlogForum allPost={allPost} />
-      <AddBlog setAllPost={setAllPost} allPost={allPost} />
+      <AddPost setAllPost={setAllPost} allPost={allPost} />
     </main>
   );
 };

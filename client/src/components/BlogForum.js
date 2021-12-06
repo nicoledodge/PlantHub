@@ -1,3 +1,4 @@
+import AddComment from "../components/AddComment";
 
 function GetPosts(props) {
 
@@ -12,12 +13,13 @@ function GetPosts(props) {
               <span class="date">{post.createdAt}</span>
             </div>
             <div class="text">{post.postText}</div>
-            <div class="actions">
+            <AddComment />
+            {/* <div class="actions">
               <a class="reply">Reply</a>
-            </div>
+            </div> */}
           </div>
           {post.comments.map((comment) => (
-            <div class="comments comment">
+            <div class="comments comment" key={`comment = ${comment._id}`}>
               <div class="comment">
                 <div class="content">
                   <a class="author">{comment.commentCreator}</a>
@@ -25,9 +27,10 @@ function GetPosts(props) {
                     <span class="date">{comment.createdAt}</span>
                   </div>
                   <div class="text">{comment.commentText}</div>
-                  <div class="actions">
+                  <AddComment />
+                  {/* <div class="actions">
                     <a class="reply">Reply</a>
-                  </div>
+                  </div> */}
                 </div>
               </div>
             </div>
