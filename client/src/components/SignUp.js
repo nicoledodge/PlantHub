@@ -1,7 +1,7 @@
 import React from 'react'
 import { Button, Form, Grid, Header, Image, Message, Segment } from 'semantic-ui-react'
 
-export default function SignUp() {
+export default function SignUp({handleSignUp, handleLoginModal}) {
     return (
         <Grid textAlign='center' style={{ height: '100vh' }} verticalAlign='middle'>
             <Grid.Column style={{ maxWidth: 450 }}>
@@ -25,7 +25,11 @@ export default function SignUp() {
                     </Segment>
                 </Form>
                 <Message>
-                    New to us? <a href='#'>Sign Up</a>
+                    Already a Member? <div onClick={() => {
+                    // alert('yumy');
+                    handleLoginModal();
+                    handleSignUp();
+                }}>Login</div>
                 </Message>
             </Grid.Column>
         </Grid>

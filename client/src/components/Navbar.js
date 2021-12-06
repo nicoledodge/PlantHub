@@ -198,7 +198,8 @@ const Nav = () => {
                 aria-labelledby="modal-modal-title"
                 aria-describedby="modal-modal-description"
             >
-                <SignUp/>
+                <SignUp handleLoginModal={handleLoginModal.bind(this)}
+                       handleSignUp={handleSignUpModal.bind(this)}/>
             </Modal>
         </>
     );
