@@ -10,20 +10,20 @@ export default function Team() {
   return (
       <>
       <br></br>
-      <h2>The People</h2>
+      <h2 style={{fontFamily:'Oswald, sans-serif'}}>The People</h2>
       <br></br>
       <div style={{ width: '100%' }}>
-      <Box sx={{ display: 'flex',flexWrap:'wrap', justifyContent: 'center', p: 1, m: 1, bgcolor: 'background.paper' }}>
-    <Card sx={{ maxWidth: 345, margin: 1 }}>
+      <Box sx={{ display: 'flex',flexWrap:'wrap', justifyContent: 'center', p: 1, m: 1, bgcolor: '#4f5902'}}>
+    <Card sx={{ maxWidth: 345, margin: 1, bgcolor:'#d9cba0'}}>
       <CardActionArea>
         <CardMedia
           component="img"
-          height="140"
+          height="300"
           image=""
           alt="green iguana"
         />
         <CardContent>
-          <Typography gutterBottom variant="h5" component="div" style={{ textAlign: 'center'}}>
+          <Typography gutterBottom variant="h5" component="div" style={{ textAlign: 'center' , fontFamily: 'Fuzzy Bubbles, cursive'}}>
         Christa Baccas
           </Typography>
           <Typography variant="body2" color="text.secondary">
@@ -33,16 +33,16 @@ export default function Team() {
         </CardContent>
       </CardActionArea>
     </Card>
-    <Card sx={{ maxWidth: 345, margin: 1  }}>
+    <Card sx={{ maxWidth: 345, margin: 1 ,bgcolor:'#d9cba0'}}>
       <CardActionArea>
         <CardMedia
           component="img"
           height="300"
-          image="./images/portfolio-pic.jpeg"
-          alt="green iguana"
+          image="./images/ismeny-profile-pic.jpg"
+          alt="ismeny"
         />
         <CardContent>
-          <Typography gutterBottom variant="h5" component="div" style={{ textAlign: 'center'}}>
+          <Typography gutterBottom variant="h5" component="div" style={{ textAlign: 'center', fontFamily: 'Fuzzy Bubbles, cursive'}}>
           Ismeny Castro
           </Typography>
           <Typography variant="body2" color="text.secondary">
@@ -52,7 +52,7 @@ export default function Team() {
         </CardContent>
       </CardActionArea>
     </Card>
-    <Card sx={{ maxWidth: 345, margin: 1  }}>
+    <Card sx={{ maxWidth: 345, margin: 1, bgcolor:'#d9cba0'}}>
       <CardActionArea>
         <CardMedia
           component="img"
@@ -61,7 +61,7 @@ export default function Team() {
           alt="green iguana"
         />
         <CardContent>
-          <Typography gutterBottom variant="h5" component="div" style={{ textAlign: 'center'}}>
+          <Typography gutterBottom variant="h5" component="div" style={{ textAlign: 'center', fontFamily: 'Fuzzy Bubbles, cursive'}}>
           Jayla Newton
           </Typography>
           <Typography variant="body2" color="text.secondary">
@@ -71,16 +71,16 @@ export default function Team() {
         </CardContent>
       </CardActionArea>
     </Card>
-    <Card sx={{ maxWidth: 345, margin: 1  }}>
+    <Card sx={{ maxWidth: 345, margin: 1, bgcolor:'#d9cba0'}}>
       <CardActionArea>
         <CardMedia
           component="img"
           height="300"
-          image="/static/images/cards/contemplative-reptile.jpg"
+          image="./images/alex-profile-pic2.jpg"
           alt="green iguana"
         />
         <CardContent>
-          <Typography gutterBottom variant="h5" component="div" style={{ textAlign: 'center'}}>
+          <Typography gutterBottom variant="h5" component="div" style={{ textAlign: 'center', fontFamily: 'Fuzzy Bubbles, cursive'}}>
             Alex Gonzalez
           </Typography>
           <Typography variant="body2" color="text.secondary">
@@ -90,7 +90,7 @@ export default function Team() {
         </CardContent>
       </CardActionArea>
     </Card>
-    <Card sx={{ maxWidth: 345 , margin: 1 }}>
+    <Card sx={{ maxWidth: 345 , margin: 1, bgcolor:'#d9cba0'}}>
       <CardActionArea>
         <CardMedia
           component="img"
@@ -99,7 +99,7 @@ export default function Team() {
           alt="nikki"
         />
         <CardContent>
-          <Typography gutterBottom variant="h5" component="div" style={{ textAlign: 'center'}}>
+          <Typography gutterBottom variant="h5" component="div" style={{ textAlign: 'center', fontFamily: 'Fuzzy Bubbles, cursive'}}>
            Nicole Dodge
           </Typography>
           <Typography variant="body2" color="text.secondary">
