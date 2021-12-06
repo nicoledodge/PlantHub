@@ -33,8 +33,8 @@ const resolvers = {
     user: async (parent, { username }) => {
       return User.findOne({ username }).populate('myPlants').populate('myPosts');
       // Test query to make sure it works
-      // query User($email: String!) {
-      //   user(email: $email) {
+      // query User($username: String!) {
+      //   user(username: $username) {
       //     _id
       //     firstName
       //     lastName
