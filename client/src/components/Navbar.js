@@ -94,7 +94,7 @@ const Nav = () => {
                         component="div"
                         sx={{ flexGrow: 1, color: 'white', display: { xs: 'flex', md: 'none' } }}
                     >
-                        BING BONG
+                        <img id="logo" src="./images/logo.png" alt="Planthub Logo"/>
                     </Typography>
                     <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex', justifyContent:"center", gap:"40px"} }}>
                         {pages.map((page) => (
