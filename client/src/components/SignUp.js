@@ -3,10 +3,10 @@ import { Button, Form, Grid, Header, Image, Message, Segment } from 'semantic-ui
 
 export default function SignUp({handleSignUp, handleLoginModal}) {
     return (
-        <Grid textAlign='center' style={{ height: '100vh' }} verticalAlign='middle'>
+        <Grid textAlign='center' style={{ height: '10vh', paddingTop: '200px' }} verticalAlign='middle'>
             <Grid.Column style={{ maxWidth: 450 }}>
                 <Header as='h2' color='teal' textAlign='center'>
-                    <Image src='/logo.png' /> Sign Up
+                    <Image src='./images/favicon.ico' /> Sign Up
                 </Header>
                 <Form size='large'>
                     <Segment stacked>
@@ -18,9 +18,13 @@ export default function SignUp({handleSignUp, handleLoginModal}) {
                             placeholder='Password'
                             type='password'
                         />
+                        <Form.Field label='An HTML <select>' control='select'>
+                            <option value='male'>Male</option>
+                            <option value='female'>Female</option>
+                        </Form.Field>
 
                         <Button color='teal' fluid size='large'>
-                            Login
+                            Sign Up
                         </Button>
                     </Segment>
                 </Form>

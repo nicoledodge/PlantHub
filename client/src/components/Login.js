@@ -98,10 +98,10 @@ import { Button, Form, Grid, Header, Image, Message, Segment } from 'semantic-ui
 import {Link} from "react-router-dom";
 
 const Login = ({handleSignUp, handleLoginModal}) => (
-    <Grid textAlign='center' style={{ height: '100vh' }} verticalAlign='middle'>
+    <Grid textAlign='center' style={{ height: '10vh', paddingTop: '200px' }} verticalAlign='middle'>
         <Grid.Column style={{ maxWidth: 450 }}>
             <Header as='h2' color='teal' textAlign='center'>
-                <Image src='/assets/favicon.ico' /> Log-in to your account
+                <Image src='./images/favicon.ico' /> Log-in to your account
             </Header>
             <Form size='large'>
                 <Segment stacked>
