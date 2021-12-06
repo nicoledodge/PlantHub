@@ -4,7 +4,7 @@ import { useMutation, useQuery } from "@apollo/client";
 import { QUERY_POST } from "../utils/queries";
 import { useParams } from 'react-router-dom';
 
-import ReplyTextarea from "./ReplyTextarea";
+import ReplyModal from "./ReplyModal";
 //import Auth from "../utils/auth";
 
 const ReplyComment = () => {
@@ -28,8 +28,8 @@ const ReplyComment = () => {
 
   return (
     <div class="actions">
-      <ReplyTextarea onClick={replyButton}
-      postId={post._id}>Reply</ReplyTextarea>
+      <ReplyModal onClick={replyButton}
+      postId={post._id}>Reply</ReplyModal>
     </div>
      
   );

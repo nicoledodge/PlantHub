@@ -3,7 +3,7 @@ import { useMutation } from "@apollo/client";
 import { ADD_COMMENT } from "../utils/mutations";
 import { Button, Header, Icon, Modal, Form } from "semantic-ui-react";
 
-const ReplyTextarea = ({postId}) => {
+const ReplyModal = ({postId}) => {
 
   const [open, setOpen] = useState(false);
   const [commentText, setCommentText] = useState('');
@@ -69,4 +69,4 @@ const ReplyTextarea = ({postId}) => {
   );
 };
 
-export default ReplyTextarea;
+export default ReplyModal;
