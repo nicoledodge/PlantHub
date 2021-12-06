@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import BlogForum from "../components/BlogForum";
-import AddPost from "../components/AddPost";
+import AddComment from "../components/AddComment";
 import { useQuery } from "@apollo/client";
 import { QUERY_POSTS } from "../utils/queries";
 
@@ -20,7 +20,7 @@ const Forum = () => {
   return (
     <main>
       <BlogForum allPost={allPost} />
-      <AddPost setAllPost={setAllPost} allPost={allPost} />
+      <AddComment setAllPost={setAllPost} allPost={allPost} />
     </main>
   );
 };
