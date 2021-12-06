@@ -76,16 +76,73 @@ const Nav = () => {
     };
 
     return (
-        <>
-            <AppBar position="static" style={{background: '#4F5902'}}>
-                <Container maxWidth="xl">
-                    <Toolbar disableGutters>
-                        <Link to="/">
-                            <Typography
-                                variant="h6"
-                                noWrap
-                                component="div"
-                                sx={{display: {xs: 'none', md: 'flex'}}}
+
+        <AppBar position="static" style={{ background: '#4F5902' }}>
+            <Container maxWidth="xl">
+                <Toolbar disableGutters>
+                    <Link to="/">
+                    <Typography
+                        variant="h6"
+                        noWrap
+                        component="div"
+                        sx={{  display: { xs: 'none', md: 'flex' } }}
+                    >
+                        <img id="logo" src="./images/logo.png" alt="Planthub Logo"/>
+                    </Typography>
+                    </Link>
+
+                    <Box sx={{ flexGrow: 1, display: { xs: 'flex', md: 'none' } }}>
+                        <IconButton
+                            size="large"
+                            aria-label="account of current user"
+                            aria-controls="menu-appbar"
+                            aria-haspopup="true"
+                            onClick={handleOpenNavMenu}
+                            color="inherit"
+                        >
+                            <MenuIcon />
+                        </IconButton>
+                        <Menu
+                            id="menu-appbar"
+                            anchorEl={anchorElNav}
+                            anchorOrigin={{
+                                vertical: 'bottom',
+                                horizontal: 'left',
+                            }}
+                            keepMounted
+                            transformOrigin={{
+                                vertical: 'top',
+                                horizontal: 'left',
+                            }}
+                            open={Boolean(anchorElNav)}
+                            onClose={handleCloseNavMenu}
+                            sx={{
+                                display: { xs: 'block', md: 'none' },
+                            }}
+                        >
+                            {pages.map((page) => (
+                                <MenuItem key={page} onClick={handleCloseNavMenu}>
+                                    <Typography textAlign="center">{page}</Typography>
+                                </MenuItem>
+                            ))}
+                        </Menu>
+                    </Box>
+                    <Typography
+                        variant="h6"
+                        noWrap
+                        component="div"
+                        sx={{ flexGrow: 1, color: 'white', display: { xs: 'flex', md: 'none' } }}
+                    >
+                        <img id="logo" src="./images/logo.png" alt="Planthub Logo"/>
+                    </Typography>
+                    <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex', justifyContent:"center", gap:"40px"} }}>
+                        {pages.map((page) => (
+                            <Button
+                                key={page}
+                                href={page}
+                                onClick={handleCloseNavMenu}
+                                sx={{ fontSize: "15px", my: 2, color: '#EBDBAE', display: 'block' }}
+
                             >
                                 <img id="logo" src="./images/logo.png" alt="Planthub Logo"/>
                             </Typography>
