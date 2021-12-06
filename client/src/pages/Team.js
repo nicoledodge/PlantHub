@@ -57,7 +57,7 @@ export default function Team() {
         <CardMedia
           component="img"
           height="300"
-          image=""
+          image="./images/jayla-profile.jpg"
           alt="green iguana"
         />
         <CardContent>
