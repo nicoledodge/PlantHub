@@ -1,46 +1,35 @@
 import React, { useEffect, useState } from "react";
 //import { Link } from "react-router-dom";
-import { useMutation } from "@apollo/client";
-import { ADD_COMMENT } from "../utils/mutations";
+import { useMutation, useQuery } from "@apollo/client";
+import { QUERY_POST } from "../utils/queries";
+import { useParams } from 'react-router-dom';
+
 import ReplyTextarea from "./ReplyTextarea";
 //import Auth from "../utils/auth";
 
-const ReplyComment = ({ postId }) => {
-  const [commentText, setCommentText] = useState("");
+const ReplyComment = () => {
 
-  const [addComment, { error }] = useMutation(ADD_COMMENT);
+  const { postId } = useParams();
+  const { loading, data } = useQuery(QUERY_POST, {
+    variables: { postId: postId },
+  });
 
-  // const handleReplySubmit = async (event) => {
-  //   event.preventDefault();
+  const post = data?.post || {};
+  console.log(post)
 
-  //   try {
-  //     const { data } = await addComment({
-  //       variables: {
-  //         postId:postId,
-  //         commentText: commentText,
-  //         commentAuthor:'james',
-  //       },
-  //     });
-
-  //     setCommentText('');
-  //   } catch (err) {
-  //     console.error(err);
-  //   }
-  // };
-  
   const [replyBox, setReplyBox] = useState(false);
-  console.log(replyBox);
+  //console.log(replyBox);
   // opens a reply box for user input
   const replyButton = async (e) => {
     e.preventDefault();
-    console.log('CLICKED');
+    //console.log('CLICKED');
     setReplyBox(true);
   }
 
   return (
     <div class="actions">
-      <ReplyTextarea onClick={replyButton}>Reply</ReplyTextarea>
-
+      <ReplyTextarea onClick={replyButton}
+      postId={post._id}>Reply</ReplyTextarea>
     </div>
      
   );

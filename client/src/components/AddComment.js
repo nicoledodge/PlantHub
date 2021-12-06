@@ -4,6 +4,7 @@ import { useMutation } from "@apollo/client";
 
 import { ADD_POST } from "../utils/mutations";
 import { QUERY_POSTS, QUERY_ME } from "../utils/queries";
+import { Form, Button } from 'semantic-ui-react'
 
 //import Auth from "../utils/auth";
 
@@ -35,7 +36,6 @@ const AddComment = (props) => {
     },
   });
 
-
   // on submit the addPost mutation is ran, using both of the required variables
   const handleFormSubmit = async (event) => {
     event.preventDefault();
@@ -55,7 +55,7 @@ const AddComment = (props) => {
     }
   };
 
-  // gets the value entered in the textarea 
+  // gets the value entered in the textarea
   const handleChange = (event) => {
     const { name, value } = event.target;
 
@@ -67,25 +67,14 @@ const AddComment = (props) => {
   return (
     <div>
       <h3>Add comments here!</h3>
-      <form
-        className="flex-row justify-center justify-space-between-md align-center"
-        onSubmit={handleFormSubmit}
-      >
-        <div className="col-12 col-lg-9">
-          <textarea
-            name="postText"
+      <Form reply onSubmit={handleFormSubmit}>
+        <Form.TextArea name="postText"
             placeholder="Enter comment..."
             value={postText}
             className="form-input w-100"
-            onChange={handleChange}
-          ></textarea>
-        </div>
-        <div className="col-12 col-lg-3">
-          <button className="btn btn-primary btn-block py-3" type="submit">
-            Add Comment
-          </button>
-        </div>
-      </form>
+            onChange={handleChange}/>
+        <Button content="Add Reply" labelPosition="left" icon="edit" primary type="submit"/>
+      </Form>
     </div>
   );
 };

@@ -7,13 +7,14 @@ import { QUERY_POSTS } from "../utils/queries";
 const Forum = () => {
   const { loading, data } = useQuery(QUERY_POSTS);
   const allPosts = data?.allPosts || [];
+
   const [allPost, setAllPost] = useState(allPosts);
 
   useEffect(() => {
     if (data) {
       setAllPost(data.allPosts);
     }
-    //console.log(data);
+    console.log(data);
   }, [data]);
 
   //console.log(allPosts);

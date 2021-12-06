@@ -61,10 +61,13 @@ const resolvers = {
       throw new AuthenticationError('You need to be logged in!');
     },
     // blog posts
+    // allPosts: async (parent, { username }) => {
+    //   const params = username ? { username } : {};
+    //   return Blog.find(params).sort({ createdAt: -1 });
+    // },
     allPosts: async () => {
       return Blog.find().sort({ createdAt: -1 });
     },
-
     post: async (parent, { postId }) => {
       return Blog.findOne({ _id: postId });
     },

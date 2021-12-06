@@ -99,8 +99,8 @@ export const REMOVE_POST = gql`
 `;
 
 export const ADD_COMMENT = gql`
-  mutation addComment($postId: ID!, $commentText: String! $commentCreator: String!) {
-    addComment(postId: $postId, commentText: $commentText, commentCreator: $commentCreator) {
+  mutation addComment($postId: ID!, $commentText: String!) {
+    addComment(postId: $postId, commentText: $commentText) {
       _id
       postText
       postCreator
@@ -114,6 +114,7 @@ export const ADD_COMMENT = gql`
     }
   }
 `;
+
 export const REMOVE_COMMENT = gql`
   mutation removeComment($postId: ID!, $commentId: ID!) {
     removeComment(postId: $postId, commentId: $commentId) {

@@ -1,36 +1,50 @@
 import ReplyComment from "../components/ReplyComment";
+import {  Comment, Header } from "semantic-ui-react";
 
 function GetPosts(props) {
-
   return (
-    <div class="ui minimal comments">
-      <h3 class="ui dividing header">Comments</h3>
+    <Comment.Group threaded size="large">
+      <Header as="h3" dividing>
+        Comments
+      </Header>
       {props.allPost.map((post) => (
-        <div class="comment" key={`post = ${post._id}`}>
-          <div class="content post">
-            <a class="author">{post.postCreator}</a>
-            <div class="metadata">
-              <span class="date">{post.createdAt}</span>
-            </div>
-            <div class="text">{post.postText}</div>
-            <ReplyComment />
-          </div>
-          {post.comments.map((comment) => (
-            <div class="comments comment" key={`comment = ${comment._id}`}>
-              <div class="comment">
-                <div class="content">
-                  <a class="author">{comment.commentCreator}</a>
-                  <div class="metadata">
-                    <span class="date">{comment.createdAt}</span>
-                  </div>
-                  <div class="text">{comment.commentText}</div>
-                </div>
-              </div>
-            </div>
-          ))}
-        </div>
+        <Comment key={`post = ${post._id}`}>
+          <Comment.Avatar as="a" src="/images/avatar/small/elliot.jpg" />
+          <Comment.Content>
+            <Comment.Author as="a">{post.postCreator}</Comment.Author>
+            <Comment.Metadata>
+              <span>{post.createdAt}</span>
+            </Comment.Metadata>
+            <Comment.Text>
+              <p>{post.postText}</p>
+            </Comment.Text>
+            <Comment.Actions>
+              <ReplyComment />
+            </Comment.Actions>
+          </Comment.Content>
+
+          <Comment.Group>
+            {post.comments.map((comment) => (
+              <Comment key={`comment = ${comment._id}`}>
+                <Comment.Avatar as="a" src="/images/avatar/small/jenny.jpg" />
+                <Comment.Content>
+                  <Comment.Author as="a">
+                    {comment.commentCreator}
+                  </Comment.Author>
+                  <Comment.Metadata>
+                    <span>{comment.createdAt}</span>
+                  </Comment.Metadata>
+                  <Comment.Text>{comment.commentText}</Comment.Text>
+                  <Comment.Actions>
+                    <ReplyComment />
+                  </Comment.Actions>
+                </Comment.Content>
+              </Comment>
+            ))}
+          </Comment.Group>
+        </Comment>
       ))}
-    </div>
+    </Comment.Group>
   );
 }
 
