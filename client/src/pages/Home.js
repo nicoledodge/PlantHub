@@ -50,7 +50,7 @@ const Home = () => (
                         </p>
                     </Grid.Column>
                     <Grid.Column floated='right' width={6}>
-                        <Image bordered rounded size='large' src='/images/wireframe/white-image.png' />
+                        <Image bordered rounded size='large' src='/images/dogwithplant.jpeg' />
                     </Grid.Column>
                 </Grid.Row>
                 <Grid.Row>
@@ -64,17 +64,17 @@ const Home = () => (
                 <Grid.Row textAlign='center'>
                     <Grid.Column style={{ paddingBottom: '5em', paddingTop: '5em' }}>
                         <Header as='h3' style={{ fontSize: '2em' }}>
-                            "What a Company"
+                            "We Love Plants"
                         </Header>
-                        <p style={{ fontSize: '1.33em' }}>That is what they all say about us</p>
+                        <p style={{ fontSize: '1.33em' }}>That is what they all say about plants</p>
                     </Grid.Column>
                     <Grid.Column style={{ paddingBottom: '5em', paddingTop: '5em' }}>
                         <Header as='h3' style={{ fontSize: '2em' }}>
-                            "I shouldn't have gone with their competitor."
+                            "Loved every minute of using PlantHub!"
                         </Header>
                         <p style={{ fontSize: '1.33em' }}>
-                            <Image avatar src='/images/avatar/large/nan.jpg' />
-                            <b>Nan</b> Chief Fun Officer Acme Toys
+                            <Image avatar src='./images/favicon.ico' />
+                            <b>Jen</b> Member since 2021
                         </p>
                     </Grid.Column>
                 </Grid.Row>
