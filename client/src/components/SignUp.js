@@ -28,6 +28,7 @@ export default function SignUp({ handleSignUp, handleLoginModal }) {
 
   const [addUser, { error, data }] = useMutation(ADD_USER);
 
+
   // handles change for input
   const handleChange = (event) => {
     const { name, value } = event.target;

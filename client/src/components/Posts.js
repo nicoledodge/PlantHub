@@ -1,5 +1,6 @@
 import React from 'react'
 import {Comment, Feed, Icon} from 'semantic-ui-react'
+import ReplyComment from "./ReplyComment";
 
 
 const FeedExampleBasic = (props) => (
@@ -40,6 +41,9 @@ const FeedExampleBasic = (props) => (
                     <Feed.Like>
                         <Icon name='like' />4 Likes
                     </Feed.Like>
+                    <Comment.Actions>
+                        <ReplyComment postId={post._id}/>
+                    </Comment.Actions>
                 </Feed.Meta>
             </Feed.Content>
         </Feed.Event>
