@@ -5,25 +5,9 @@ import CardMedia from '@mui/material/CardMedia';
 import Typography from '@mui/material/Typography';
 import { CardActionArea } from '@mui/material';
 import Box from '@mui/material/Box';
-import Button from '@mui/material/Button';
-import Modal from '@mui/material/Modal';
 
-const style = {
-  position: 'absolute',
-  top: '50%',
-  left: '50%',
-  transform: 'translate(-50%, -50%)',
-  width: 400,
-  bgcolor: 'background.paper',
-  border: '2px solid #000',
-  boxShadow: 24,
-  p: 4,
-};
-  
+
 export default function Team() {
-  const [open, setOpen] = React.useState(false);
-  const handleOpen = () => setOpen(true);
-  const handleClose = () => setOpen(false);
   return (
       <>
       <br></br>
@@ -38,7 +22,7 @@ export default function Team() {
           component="img"
           height="300"
           image=""
-          alt="green iguana"
+          alt="christa"
         />
         <CardContent>
           <Typography gutterBottom variant="h5" component="div" style={{ textAlign: 'center' , fontFamily: 'Fuzzy Bubbles, cursive'}}>
@@ -46,28 +30,13 @@ export default function Team() {
           </Typography>
           <Typography variant="body2" color="text.secondary">
             Lizards are a widespread group of squamate reptiles, with over 6,000
-            species, ranging across all continents except Antarctica
-            <div>
-      <Button onClick={handleOpen}>Contact Me </Button>
-      <Modal
-        open={open}
-        onClose={handleClose}
-        aria-labelledby="modal-modal-title"
-        aria-describedby="modal-modal-description"
-      >
-        <Box sx={style}>
-          <Typography id="modal-modal-title" variant="h6" component="h2">
-          Get in touch with me!
+            species, ranging across all continents except AntarcticA
           </Typography>
-          <Typography id="modal-modal-description" sx={{ mt: 2 }}>
-            Github:
-            Email:
-            Portfolio:
-          </Typography>
-        </Box>
-      </Modal>
-    </div>
-          </Typography>
+          <div style={{ textAlign:'center'}}>
+          <a href='https://www.linkedin.com/in/christa-baccas-77362a205/' target='_blank' rel='noreferrer'><i className="fab fa-linkedin footer-icons"></i></a>
+          <a href='https://github.com/christa-baccas' target='_blank' rel='norefferer'><i className="fab fa-github footer-icons"></i></a>
+          <a href='mailto:'><i className="fas fa-envelope footer-icons"></i></a> 
+          </div>
         </CardContent>
       </CardActionArea>
     </Card>
@@ -76,7 +45,7 @@ export default function Team() {
         <CardMedia
           component="img"
           height="300"
-          image="./images/ismeny-profile-pic.jpg"
+          image="./images/ismeny-profile-pic2.jpg"
           alt="ismeny"
         />
         <CardContent>
@@ -86,25 +55,12 @@ export default function Team() {
           <Typography variant="body2" color="text.secondary">
             Lizards are a widespread group of squamate reptiles, with over 6,000
             species, ranging across all continents except Antarctica
-            <div>
-      <Button onClick={handleOpen}>Contact Me</Button>
-      <Modal
-        open={open}
-        onClose={handleClose}
-        aria-labelledby="modal-modal-title"
-        aria-describedby="modal-modal-description"
-      >
-        <Box sx={style}>
-          <Typography id="modal-modal-title" variant="h6" component="h2" style={{textAlign: 'center'}}>
-            Text in a modal
           </Typography>
-          <Typography id="modal-modal-description" sx={{ mt: 2 }}>
-            Duis mollis, est non commodo luctus, nisi erat porttitor ligula.
-          </Typography>
-        </Box>
-      </Modal>
-    </div>
-          </Typography>
+          <div style={{ textAlign:'center'}}>
+          <a href='https://www.linkedin.com/in/ismeny-castro-b8b32821b/' target='_blank' rel='noreferrer'><i className="fab fa-linkedin footer-icons"></i></a>
+          <a href='https://github.com/Ismeny' target='_blank' rel='norefferer'><i className="fab fa-github footer-icons"></i></a>
+          <a href='mailto:menysag2@gmail.com'><i className="fas fa-envelope footer-icons"></i></a> 
+          </div>
         </CardContent>
       </CardActionArea>
     </Card>
@@ -114,7 +70,7 @@ export default function Team() {
           component="img"
           height="300"
           image="./images/jayla-profile.jpg"
-          alt="green iguana"
+          alt="jayla"
         />
         <CardContent>
           <Typography gutterBottom variant="h5" component="div" style={{ textAlign: 'center', fontFamily: 'Fuzzy Bubbles, cursive'}}>
@@ -123,25 +79,12 @@ export default function Team() {
           <Typography variant="body2" color="text.secondary">
             Lizards are a widespread group of squamate reptiles, with over 6,000
             species, ranging across all continents except Antarctica
-            <div>
-      <Button onClick={handleOpen}>Contact Me </Button>
-      <Modal
-        open={open}
-        onClose={handleClose}
-        aria-labelledby="modal-modal-title"
-        aria-describedby="modal-modal-description"
-      >
-        <Box sx={style}>
-          <Typography id="modal-modal-title" variant="h6" component="h2">
-          Get in touch with me!
           </Typography>
-          <Typography id="modal-modal-description" sx={{ mt: 2 }}>
-            Duis mollis, est non commodo luctus, nisi erat porttitor ligula.
-          </Typography>
-        </Box>
-      </Modal>
-    </div>
-          </Typography>
+          <div style={{ textAlign:'center'}}>
+          <a href='https://www.linkedin.com/in/jaylanewton/' target='_blank' rel='noreferrer'><i className="fab fa-linkedin footer-icons"></i></a>
+          <a href='https://github.com/jayladenae' target='_blank' rel='norefferer'><i className="fab fa-github footer-icons"></i></a>
+          <a href='mailto:jayladenaer@gmail.com'><i className="fas fa-envelope footer-icons"></i></a> 
+          </div>
         </CardContent>
       </CardActionArea>
     </Card>
@@ -151,7 +94,7 @@ export default function Team() {
           component="img"
           height="300"
           image="./images/alex-profile-pic2.jpg"
-          alt="green iguana"
+          alt="alex"
         />
         <CardContent>
           <Typography gutterBottom variant="h5" component="div" style={{ textAlign: 'center', fontFamily: 'Fuzzy Bubbles, cursive'}}>
@@ -160,25 +103,12 @@ export default function Team() {
           <Typography variant="body2" color="text.secondary">
             Lizards are a widespread group of squamate reptiles, with over 6,000
             species, ranging across all continents except Antarctica
-            <div>
-      <Button onClick={handleOpen}>Contact Me </Button>
-      <Modal
-        open={open}
-        onClose={handleClose}
-        aria-labelledby="modal-modal-title"
-        aria-describedby="modal-modal-description"
-      >
-        <Box sx={style}>
-          <Typography id="modal-modal-title" variant="h6" component="h2">
-          Get in touch with me!
           </Typography>
-          <Typography id="modal-modal-description" sx={{ mt: 2 }}>
-            Duis mollis, est non commodo luctus, nisi erat porttitor ligula.
-          </Typography>
-        </Box>
-      </Modal>
-    </div>
-          </Typography>
+          <div style={{ textAlign:'center'}}>
+          <a href='https://www.linkedin.com/in/alexis-gonzalez-07/' target='_blank' rel='noreferrer'><i className="fab fa-linkedin footer-icons"></i></a>
+          <a href='https://github.com/AlexisGonzalez07' target='_blank' rel='norefferer'><i className="fab fa-github footer-icons"></i></a>
+          <a href='mailto:'><i className="fas fa-envelope footer-icons"></i></a> 
+          </div>
         </CardContent>
       </CardActionArea>
     </Card>
@@ -197,25 +127,12 @@ export default function Team() {
           <Typography variant="body2" color="text.secondary">
             Hey I’m Nicole! (some people call me Nikki)
             I’m new to the world of web development but have been no stranger to technology. Expertised in DSLR camera processes and Adobe applications, my profession prior to computers involved Wedding & Festival Photography, as well as the team photographer for a Division I football team. I spend most of my time at festivals and traveling across different national parks and different countries!
-            <div>
-      <Button onClick={handleOpen}>Contact Me </Button>
-      <Modal
-        open={open}
-        onClose={handleClose}
-        aria-labelledby="modal-modal-title"
-        aria-describedby="modal-modal-description"
-      >
-        <Box sx={style}>
-          <Typography id="modal-modal-title" variant="h6" component="h2">
-          Get in touch with me!
           </Typography>
-          <Typography id="modal-modal-description" sx={{ mt: 2 }}>
-            Duis mollis, est non commodo luctus, nisi erat porttitor ligula.
-          </Typography>
-        </Box>
-      </Modal>
-    </div>
-          </Typography>
+          <div style={{ textAlign:'center'}}>
+          <a href='https://www.linkedin.com/in/nicole-dodge5/' target='_blank' rel='noreferrer'><i className="fab fa-linkedin footer-icons"></i></a>
+          <a href='https://github.com/nicoledodge' target='_blank' rel='norefferer'><i className="fab fa-github footer-icons"></i></a>
+          <a href='mailto:nicoledodge5@gmail.com'><i className="fas fa-envelope footer-icons"></i></a> 
+          </div>
         </CardContent>
       </CardActionArea>
     </Card>
