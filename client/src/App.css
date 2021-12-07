@@ -9,6 +9,38 @@ body {
     height: 100px;
     width: 180px;
 }
+#prof-icon-cont {
+    display: flex;
+    justify-content: center; 
+    background-color: #D9CBA0;
+}
+.pro-location {
+    text-decoration: underline;
+}
+#profile-cont-2 {
+    padding: 25px;
+    float: left;
+}
+
+#pro-bio-input {
+    resize: horizontal !important;
+}
+
+.profile-icon {
+    color:#2e260c;
+    padding: 50px;
+    float: left;
+    text-align: center;
+}
+#profile-cont {
+    align-items: center;
+    display: flex;
+    justify-content: center;
+}
+#profile-user {
+    float: left;
+}
+
 .Router {
     background-color: rgba(229, 255, 0, 0.404);
     padding: 1.5rem 2rem 35px 2rem;
@@ -46,3 +78,10 @@ Nav {
    min-width: 100vw;
     opacity: 0.7;
 }
+.team-container {
+    background-color: #4f5902;
+}
+#team-card:hover {
+    background-color:#cdd9a0;
+}
+

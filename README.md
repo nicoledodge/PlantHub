@@ -1,4 +1,4 @@
-# Plant-Buddy
+# PlantHub
 Full stack MERN application!
 
 ## Description

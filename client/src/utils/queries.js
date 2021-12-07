@@ -33,6 +33,39 @@ query {
   }
 }
 `;
+// export const QUERY_POST = gql`
+// query {
+//   post{
+//     _id
+//     postText
+//     postCreator
+//     createdAt
+//     comments{
+//       _id
+//       createdAt
+//       commentText
+//       commentCreator
+//     }
+//   }
+// }
+// `;
+
+export const QUERY_POST = gql`
+  query{
+    post(postId: $postId) {
+      _id
+      postText
+      postCreator
+      createdAt
+      comments{
+        _id
+        createdAt
+        commentText
+        commentCreator
+      }
+    }
+  }
+`;
 
 // export const QUERY_ALLUSERS= gql`
 // {

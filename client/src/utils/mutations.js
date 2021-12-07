@@ -114,6 +114,7 @@ export const ADD_COMMENT = gql`
     }
   }
 `;
+
 export const REMOVE_COMMENT = gql`
   mutation removeComment($postId: ID!, $commentId: ID!) {
     removeComment(postId: $postId, commentId: $commentId) {
