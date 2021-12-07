@@ -87,3 +87,17 @@ Nav {
 .about-img {
     min-width: 100vw;
  }
+
+ .about-container {
+    margin-left: 20px;
+    margin-right: 20px;
+    margin-top: 20px;
+     display: flex;
+    
+ }
+
+ .about-child {
+     margin-left: 10%;
+    margin-right: 10%; 
+    text-align: center; 
+ }
