@@ -11,14 +11,21 @@ export default function Profile() {
          <br/>
          jayladenae
          </i>
-         
      </div>
-      <div id="prog-cont">
+     <div id="profile-cont-2">
+     <i class="fas fa-map-marker-alt pro-location fa-2x">  Austin, TX</i>
+     <br/>
+     <br/>
      <ProfileStatus/>
-     </div>
-     <div id='prog-cont-2'>
+     <br/>
      <NumbofPlants/>
-     </div> 
+     </div>
+     <div id="prfile-cont-3">
+         <h3>
+             Bio:
+         </h3>
+        <input type="text" id="pro-bio-input" />
+     </div>
         </>
     )
 }
