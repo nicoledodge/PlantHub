@@ -40,11 +40,12 @@ const Nav = () => {
         {
             name: 'Profile',
             callback: null,
+            routeTo: '/Profile'
         },
-        {
-            name:'Account',
-            callback: null,
-        },
+        // {
+        //     name:'Account',
+        //     callback: null,
+        // },
         {
             name:'Dashboard',
             callback: null,
@@ -133,7 +134,7 @@ const Nav = () => {
                             component="div"
                             sx={{flexGrow: 1, color: 'white', display: {xs: 'flex', md: 'none'}}}
                         >
-                            BING BONG
+                            <img id="logo" src="./images/logo.png" alt="Planthub Logo"/>
                         </Typography>
                         <Box sx={{
                             flexGrow: 1,
@@ -174,9 +175,14 @@ const Nav = () => {
                                 onClose={handleCloseUserMenu}
                             >
                                 {settings.map((setting, key) => (
-                                    <MenuItem key={key} onClick={() => { handleCloseNavMenu(); setting.callback()}}>
+                                    <Link to={setting.routeTo || '#'}>
+                                    <MenuItem key={key} onClick={() => {
+                                        handleCloseNavMenu();
+                                        setting.callback && setting.callback()}
+                                    }>
                                         <Typography textAlign="center">{setting.name}</Typography>
                                     </MenuItem>
+                                    </Link>
                                 ))}
                             </Menu>
                         </Box>
