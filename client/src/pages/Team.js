@@ -10,9 +10,8 @@ import Box from '@mui/material/Box';
 export default function Team() {
   return (
       <>
-      <br></br>
       <div className="team-container">
-      <h2 style={{fontFamily:'Oswald, sans-serif', marginLeft:'20px'}}>The People</h2>
+      <h2 style={{fontFamily:'Oswald, sans-serif', marginLeft:'20px', marginTop:'20px'}}>The People</h2>
       <br></br>
       <div style={{ width: '100%' }}>
       <Box sx={{ display: 'flex',flexWrap:'wrap', justifyContent: 'center', p: 1, m: 1}}>
