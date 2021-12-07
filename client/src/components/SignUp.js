@@ -40,7 +40,7 @@ export default function SignUp({handleSignUp, handleLoginModal}) {
                             fluid
                             icon='lock'
                             iconPosition='left'
-                            placeholder='Retype Passwork'
+                            placeholder='Retype Password'
                             type='password'
                         />
                         <Form.Field>

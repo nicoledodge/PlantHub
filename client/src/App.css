@@ -9,38 +9,15 @@ body {
     height: 100px;
     width: 180px;
 }
-#prof-icon-cont {
-    display: flex;
-    justify-content: center; 
-    background-color: #D9CBA0;
-}
-.pro-location {
-    text-decoration: underline;
-}
-#profile-cont-2 {
+#proCardCont {
     padding: 25px;
+}
+#numOfPlants {
     float: left;
 }
-
-#pro-bio-input {
-    resize: horizontal !important;
-}
-
-.profile-icon {
-    color:#2e260c;
-    padding: 50px;
-    float: left;
-    text-align: center;
-}
-#profile-cont {
-    align-items: center;
-    display: flex;
-    justify-content: center;
-}
-#profile-user {
+#profileStatus {
     float: left;
 }
-
 .Router {
     background-color: rgba(229, 255, 0, 0.404);
     padding: 1.5rem 2rem 35px 2rem;
