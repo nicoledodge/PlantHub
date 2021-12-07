@@ -92,6 +92,7 @@ export const QUERY_POST = gql`
         firstName
         lastName
         username
+        location
         email
         myPlants {
           _id
