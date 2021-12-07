@@ -5,54 +5,110 @@ import CardMedia from '@mui/material/CardMedia';
 import Typography from '@mui/material/Typography';
 import { CardActionArea } from '@mui/material';
 import Box from '@mui/material/Box';
+import Button from '@mui/material/Button';
+import Modal from '@mui/material/Modal';
 
+const style = {
+  position: 'absolute',
+  top: '50%',
+  left: '50%',
+  transform: 'translate(-50%, -50%)',
+  width: 400,
+  bgcolor: 'background.paper',
+  border: '2px solid #000',
+  boxShadow: 24,
+  p: 4,
+};
+  
 export default function Team() {
+  const [open, setOpen] = React.useState(false);
+  const handleOpen = () => setOpen(true);
+  const handleClose = () => setOpen(false);
   return (
       <>
       <br></br>
-      <h2>The People</h2>
+      <div className="team-container">
+      <h2 style={{fontFamily:'Oswald, sans-serif'}}>The People</h2>
       <br></br>
       <div style={{ width: '100%' }}>
-      <Box sx={{ display: 'flex',flexWrap:'wrap', justifyContent: 'center', p: 1, m: 1, bgcolor: 'background.paper' }}>
-    <Card sx={{ maxWidth: 345, margin: 1 }}>
+      <Box sx={{ display: 'flex',flexWrap:'wrap', justifyContent: 'center', p: 1, m: 1}}>
+    <Card id='team-card' sx={{ maxWidth: 345, margin: 1, bgcolor:'#d9cba0'}}>
       <CardActionArea>
         <CardMedia
           component="img"
-          height="140"
+          height="300"
           image=""
           alt="green iguana"
         />
         <CardContent>
-          <Typography gutterBottom variant="h5" component="div" style={{ textAlign: 'center'}}>
+          <Typography gutterBottom variant="h5" component="div" style={{ textAlign: 'center' , fontFamily: 'Fuzzy Bubbles, cursive'}}>
         Christa Baccas
           </Typography>
           <Typography variant="body2" color="text.secondary">
             Lizards are a widespread group of squamate reptiles, with over 6,000
             species, ranging across all continents except Antarctica
+            <div>
+      <Button onClick={handleOpen}>Contact Me </Button>
+      <Modal
+        open={open}
+        onClose={handleClose}
+        aria-labelledby="modal-modal-title"
+        aria-describedby="modal-modal-description"
+      >
+        <Box sx={style}>
+          <Typography id="modal-modal-title" variant="h6" component="h2">
+          Get in touch with me!
+          </Typography>
+          <Typography id="modal-modal-description" sx={{ mt: 2 }}>
+            Github:
+            Email:
+            Portfolio:
+          </Typography>
+        </Box>
+      </Modal>
+    </div>
           </Typography>
         </CardContent>
       </CardActionArea>
     </Card>
-    <Card sx={{ maxWidth: 345, margin: 1  }}>
+    <Card id='team-card' sx={{ maxWidth: 345, margin: 1 ,bgcolor:'#d9cba0'}}>
       <CardActionArea>
         <CardMedia
           component="img"
           height="300"
-          image="./images/portfolio-pic.jpeg"
-          alt="green iguana"
+          image="./images/ismeny-profile-pic.jpg"
+          alt="ismeny"
         />
         <CardContent>
-          <Typography gutterBottom variant="h5" component="div" style={{ textAlign: 'center'}}>
+          <Typography gutterBottom variant="h5" component="div" style={{ textAlign: 'center', fontFamily: 'Fuzzy Bubbles, cursive'}}>
           Ismeny Castro
           </Typography>
           <Typography variant="body2" color="text.secondary">
             Lizards are a widespread group of squamate reptiles, with over 6,000
             species, ranging across all continents except Antarctica
+            <div>
+      <Button onClick={handleOpen}>Contact Me</Button>
+      <Modal
+        open={open}
+        onClose={handleClose}
+        aria-labelledby="modal-modal-title"
+        aria-describedby="modal-modal-description"
+      >
+        <Box sx={style}>
+          <Typography id="modal-modal-title" variant="h6" component="h2" style={{textAlign: 'center'}}>
+            Text in a modal
+          </Typography>
+          <Typography id="modal-modal-description" sx={{ mt: 2 }}>
+            Duis mollis, est non commodo luctus, nisi erat porttitor ligula.
+          </Typography>
+        </Box>
+      </Modal>
+    </div>
           </Typography>
         </CardContent>
       </CardActionArea>
     </Card>
-    <Card sx={{ maxWidth: 345, margin: 1  }}>
+    <Card id='team-card' sx={{ maxWidth: 345, margin: 1, bgcolor:'#d9cba0'}}>
       <CardActionArea>
         <CardMedia
           component="img"
@@ -61,36 +117,72 @@ export default function Team() {
           alt="green iguana"
         />
         <CardContent>
-          <Typography gutterBottom variant="h5" component="div" style={{ textAlign: 'center'}}>
+          <Typography gutterBottom variant="h5" component="div" style={{ textAlign: 'center', fontFamily: 'Fuzzy Bubbles, cursive'}}>
           Jayla Newton
           </Typography>
           <Typography variant="body2" color="text.secondary">
             Lizards are a widespread group of squamate reptiles, with over 6,000
             species, ranging across all continents except Antarctica
+            <div>
+      <Button onClick={handleOpen}>Contact Me </Button>
+      <Modal
+        open={open}
+        onClose={handleClose}
+        aria-labelledby="modal-modal-title"
+        aria-describedby="modal-modal-description"
+      >
+        <Box sx={style}>
+          <Typography id="modal-modal-title" variant="h6" component="h2">
+          Get in touch with me!
+          </Typography>
+          <Typography id="modal-modal-description" sx={{ mt: 2 }}>
+            Duis mollis, est non commodo luctus, nisi erat porttitor ligula.
+          </Typography>
+        </Box>
+      </Modal>
+    </div>
           </Typography>
         </CardContent>
       </CardActionArea>
     </Card>
-    <Card sx={{ maxWidth: 345, margin: 1  }}>
+    <Card id='team-card' sx={{ maxWidth: 345, margin: 1, bgcolor:'#d9cba0'}}>
       <CardActionArea>
         <CardMedia
           component="img"
           height="300"
-          image="/static/images/cards/contemplative-reptile.jpg"
+          image="./images/alex-profile-pic2.jpg"
           alt="green iguana"
         />
         <CardContent>
-          <Typography gutterBottom variant="h5" component="div" style={{ textAlign: 'center'}}>
+          <Typography gutterBottom variant="h5" component="div" style={{ textAlign: 'center', fontFamily: 'Fuzzy Bubbles, cursive'}}>
             Alex Gonzalez
           </Typography>
           <Typography variant="body2" color="text.secondary">
             Lizards are a widespread group of squamate reptiles, with over 6,000
             species, ranging across all continents except Antarctica
+            <div>
+      <Button onClick={handleOpen}>Contact Me </Button>
+      <Modal
+        open={open}
+        onClose={handleClose}
+        aria-labelledby="modal-modal-title"
+        aria-describedby="modal-modal-description"
+      >
+        <Box sx={style}>
+          <Typography id="modal-modal-title" variant="h6" component="h2">
+          Get in touch with me!
+          </Typography>
+          <Typography id="modal-modal-description" sx={{ mt: 2 }}>
+            Duis mollis, est non commodo luctus, nisi erat porttitor ligula.
+          </Typography>
+        </Box>
+      </Modal>
+    </div>
           </Typography>
         </CardContent>
       </CardActionArea>
     </Card>
-    <Card sx={{ maxWidth: 345 , margin: 1 }}>
+    <Card  id='team-card' sx={{ maxWidth: 345 , margin: 1, bgcolor:'#d9cba0'}}>
       <CardActionArea>
         <CardMedia
           component="img"
@@ -99,17 +191,36 @@ export default function Team() {
           alt="nikki"
         />
         <CardContent>
-          <Typography gutterBottom variant="h5" component="div" style={{ textAlign: 'center'}}>
+          <Typography gutterBottom variant="h5" component="div" style={{ textAlign: 'center', fontFamily: 'Fuzzy Bubbles, cursive'}}>
            Nicole Dodge
           </Typography>
           <Typography variant="body2" color="text.secondary">
             Hey I’m Nicole! (some people call me Nikki)
             I’m new to the world of web development but have been no stranger to technology. Expertised in DSLR camera processes and Adobe applications, my profession prior to computers involved Wedding & Festival Photography, as well as the team photographer for a Division I football team. I spend most of my time at festivals and traveling across different national parks and different countries!
+            <div>
+      <Button onClick={handleOpen}>Contact Me </Button>
+      <Modal
+        open={open}
+        onClose={handleClose}
+        aria-labelledby="modal-modal-title"
+        aria-describedby="modal-modal-description"
+      >
+        <Box sx={style}>
+          <Typography id="modal-modal-title" variant="h6" component="h2">
+          Get in touch with me!
+          </Typography>
+          <Typography id="modal-modal-description" sx={{ mt: 2 }}>
+            Duis mollis, est non commodo luctus, nisi erat porttitor ligula.
+          </Typography>
+        </Box>
+      </Modal>
+    </div>
           </Typography>
         </CardContent>
       </CardActionArea>
     </Card>
     </Box>
+    </div>
     </div>
     </>
   );
