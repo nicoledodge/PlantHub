@@ -82,15 +82,13 @@ const Home = () => (
 
             <Container text>
                 <Header as='h3' style={{ fontSize: '2em' }}>
-                    Breaking The Grid, Grabs Your Attention
+                    Did you Know?
                 </Header>
                 <p style={{ fontSize: '1.33em' }}>
-                    Instead of focusing on content creation and hard work, we have learned how to master the
-                    art of doing nothing by providing massive amounts of whitespace and generic content that
-                    can seem massive, monolithic and worth your attention.
+                    If your potted houseplants dry out too quickly after watering, try this simple trick for keeping the soil moist longer. When repotting, tuck a damp sponge into the bottom of the pot before filling with soil. It will act as a water reservoir and may help prevent a gusher if you accidentally overwater.
                 </p>
-                <Button as='a' size='large'>
-                    Read More
+                <Button href='/PlantCare' size='large'>
+                    Read More About Plant Care
                 </Button>
 
                 <Divider
@@ -99,16 +97,14 @@ const Home = () => (
                     horizontal
                     style={{ margin: '3em 0em', textTransform: 'uppercase' }}
                 >
-                    <a href='#'>Case Studies</a>
+                    <a href='#'>Recent Posts</a>
                 </Divider>
 
                 <Header as='h3' style={{ fontSize: '2em' }}>
-                    Did We Tell You About Our Bananas?
+                    Nikki Dodge
                 </Header>
                 <p style={{ fontSize: '1.33em' }}>
-                    Yes I know you probably disregarded the earlier boasts as non-sequitur filler content, but
-                    it's really true. It took years of gene splicing and combinatory DNA research, but our
-                    bananas can really dance.
+                    **dynamically render the most recent posts from the forum pgae??**
                 </p>
                 <Button as='a' size='large'>
                     I'm Still Quite Interested
