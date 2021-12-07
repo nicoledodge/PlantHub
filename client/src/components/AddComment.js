@@ -69,7 +69,7 @@ const AddComment = (props) => {
       <h1>Leave a Leaf &#127807;</h1>
       <Form reply onSubmit={handleFormSubmit}>
         <Form.TextArea name="postText"
-            placeholder="Enter comment..."
+            placeholder="Leaf a Thought..."
             value={postText}
             className="form-input w-100"
             onChange={handleChange}/>
