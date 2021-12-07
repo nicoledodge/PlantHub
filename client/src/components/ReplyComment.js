@@ -7,15 +7,7 @@ import { useParams } from 'react-router-dom';
 import ReplyModal from "./ReplyModal";
 //import Auth from "../utils/auth";
 
-const ReplyComment = () => {
-
-  const { postId } = useParams();
-  const { loading, data } = useQuery(QUERY_POST, {
-    variables: { postId: postId },
-  });
-
-  const post = data?.post || {};
-  console.log(post)
+const ReplyComment = (props) => {
 
   const [replyBox, setReplyBox] = useState(false);
   //console.log(replyBox);
@@ -28,8 +20,7 @@ const ReplyComment = () => {
 
   return (
     <div class="actions">
-      <ReplyModal onClick={replyButton}
-      postId={post._id}>Reply</ReplyModal>
+      <ReplyModal onClick={replyButton} postId={props.postId}>Reply</ReplyModal>
     </div>
      
   );

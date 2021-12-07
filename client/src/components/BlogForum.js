@@ -19,7 +19,7 @@ function GetPosts(props) {
               <p>{post.postText}</p>
             </Comment.Text>
             <Comment.Actions>
-              <ReplyComment />
+              <ReplyComment postId={post._id}/>
             </Comment.Actions>
           </Comment.Content>
 
@@ -36,7 +36,7 @@ function GetPosts(props) {
                   </Comment.Metadata>
                   <Comment.Text>{comment.commentText}</Comment.Text>
                   <Comment.Actions>
-                    <ReplyComment />
+                    {/* <ReplyComment commentId={comment._id} /> */}
                   </Comment.Actions>
                 </Comment.Content>
               </Comment>

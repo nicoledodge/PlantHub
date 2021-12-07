@@ -3,25 +3,28 @@ import { useMutation } from "@apollo/client";
 import { ADD_COMMENT } from "../utils/mutations";
 import { Button, Header, Icon, Modal, Form } from "semantic-ui-react";
 
-const ReplyModal = ({postId}) => {
+const ReplyModal = (props) => {
 
   const [open, setOpen] = useState(false);
   const [commentText, setCommentText] = useState('');
   const [addComment, { error }] = useMutation(ADD_COMMENT);
+  //pass down postId from the main container
+  console.log(props.postId);
 
   const handleReplySubmit = async (event) => {
     event.preventDefault();
-
+    
     try {
       const { data } = await addComment({
         variables: {
-          postId: postId,
+          postId: props.postId,
           commentText: commentText,
           commentAuthor: "james",
         },
       });
 
       setCommentText("");
+      setOpen(false)
     } catch (err) {
       console.error(err);
     }
