@@ -7,6 +7,8 @@ const typeDefs = gql`
     lastName: String!
     username: String!
     email: String!
+    location: String!
+    experience: String!
     password: String!
     myPlants: [Plant]
     myPosts: [Blog]
@@ -18,8 +20,6 @@ const typeDefs = gql`
     waterNeeded: Int
     waterAdded: Int
     createdAt: String
-    
-    
   }
 
   type Auth {
@@ -54,7 +54,7 @@ const typeDefs = gql`
   }
 
   type Mutation {
-    addUser(firstName: String!, lastName: String!, username: String! email: String!, password: String!): Auth
+    addUser(firstName: String!, lastName: String!, username: String! email: String!, password: String!, location: String!, experience: String!): Auth
     login(email: String!, password: String!): Auth
     
     addPlant(name: String!, waterNeeded: Int!): Plant

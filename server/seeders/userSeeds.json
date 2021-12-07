@@ -3,6 +3,8 @@
       "firstName": "Brian",
       "lastName": "Kernighan",
       "username": "BetaTester",
+      "location": "Austin",
+      "experience": "Newbie",
       "email": "bkernighan@techfriends.dev",
       "password": "password01"
     }
