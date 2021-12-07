@@ -109,11 +109,6 @@ export default function SignUp({ handleSignUp, handleLoginModal }) {
               value={formState.email}
               onChange={handleChange}
             />
-            {/* <Form.Field label="Gardening Experience" control="select" onSelect={handleSelect}>
-              <option value="newbie">Newbie</option>
-              <option value="intermediate">Intermediate</option>
-              <option value="expert">Expert</option>
-            </Form.Field>*/}
             <Form.Field> 
               <Form.Input
                 fluid
@@ -156,7 +151,6 @@ export default function SignUp({ handleSignUp, handleLoginModal }) {
           Already a Member?{" "}
           <div
             onClick={() => {
-              // alert('yumy');
               handleLoginModal();
               handleSignUp();
             }}
