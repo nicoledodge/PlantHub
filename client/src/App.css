@@ -84,4 +84,9 @@ Nav {
 #team-card:hover {
     background-color:#cdd9a0;
 }
+.garden-container {
+    background-color: #4f5902;
+    padding-top: 5px;
+}
+
 

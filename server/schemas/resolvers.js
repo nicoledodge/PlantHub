@@ -164,15 +164,18 @@ const resolvers = {
       }
       throw new AuthenticationError('You need to be logged in!');
     },
-    addWater: async (parent, { plantId, waterAdded }, context) => {
-      if (context.user) {
+    addWater: async (parent, { plantId}, context ) => {
+      if (context.user) 
+      {
         const plant = await Plant.findOne({_id: plantId})
+
+        console.log(plant)
 
         return Plant.findOneAndUpdate(
           { _id: plantId },
           {
             $set: {
-              waterAdded: plant.waterAdded + waterAdded,
+              waterAdded: plant.waterAdded + 1,
             },
           },
           {
@@ -191,7 +194,7 @@ const resolvers = {
 
         await User.findOneAndUpdate(
           { _id: context.user._id },
-          { $pull: { myPlants: plant._id } }
+          { $pull: { myPlants: plantId } }
         );
 
         return plant;
