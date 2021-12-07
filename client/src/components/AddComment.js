@@ -73,7 +73,7 @@ const AddComment = (props) => {
             value={postText}
             className="form-input w-100"
             onChange={handleChange}/>
-        <Button content="Post" labelPosition="left" icon="edit" primary type="submit"/>
+        <Button style={{marginBottom:'20px'}} content="Post" labelPosition="left" icon="edit" primary type="submit"/>
       </Form>
     </div>
   );
