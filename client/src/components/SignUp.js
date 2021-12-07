@@ -58,7 +58,7 @@ export default function SignUp({ handleSignUp, handleLoginModal }) {
   return (
     <Grid
       textAlign="center"
-      style={{ height: "10vh", paddingTop: "200px" }}
+      style={{ height: "10vh", paddingTop: "150px" }}
       verticalAlign="middle"
     >
       <Grid.Column style={{ maxWidth: 450 }}>
