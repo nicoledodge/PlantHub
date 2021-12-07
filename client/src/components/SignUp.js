@@ -1,44 +1,64 @@
 import React, { useState } from "react";
-import { Button, Form, Grid, Header, Image, Message, Segment, Checkbox } from "semantic-ui-react";
-import { ADD_USER } from '../utils/mutations';
-import { useMutation } from '@apollo/client';
-import Auth from '../utils/auth';
+import {
+  Button,
+  Form,
+  Grid,
+  Header,
+  Image,
+  Message,
+  Segment,
+  Checkbox,
+} from "semantic-ui-react";
+import { ADD_USER } from "../utils/mutations";
+import { useMutation } from "@apollo/client";
+import Auth from "../utils/auth";
 
 export default function SignUp({ handleSignUp, handleLoginModal }) {
+  const [formState, setFormState] = useState({
+    firstName: "",
+    lastName: "",
+    location: "",
+    experience: "",
+    username: "",
+    email: "",
+    password: "",
+  });
+  console.log(formState);
 
-        // const [formState, setFormState] = useState({
-        //   firstName: '',
-        //   lastName: '',
-        //   location: '',
-        //   username: '',
-        //   email: '',
-        //   password: '',
-        // });
-        // const [addUser, { error, data }] = useMutation(ADD_USER);
-      
-        // const handleChange = (event) => {
-        //   const { name, value } = event.target;
-      
-        //   setFormState({
-        //     ...formState,
-        //     [name]: value,
-        //   });
-        // };
-      
-        // const handleFormSubmit = async (event) => {
-        //   event.preventDefault();
-        //   console.log(formState);
-      
-        //   try {
-        //     const { data } = await addUser({
-        //       variables: { ...formState },
-        //     });
-      
-        //     Auth.login(data.addUser.token);
-        //   } catch (e) {
-        //     console.error(e);
-        //   }
-        // };
+  const [addUser, { error, data }] = useMutation(ADD_USER);
+
+  //handle change for selected values
+  const [selected,setSelected]=useState('');
+
+  const handleSelect=(event)=>{
+    setSelected(event)
+  }
+
+  // handles change for input
+  const handleChange = (event) => {
+    const { name, value } = event.target;
+
+    setFormState({
+      ...formState,
+      [name]: value,
+    });
+  };
+  //console.log(formState);
+
+  const handleFormSubmit = async (event) => {
+    event.preventDefault();
+    console.log(formState);
+
+    try {
+      const { data } = await addUser({
+        variables: { ...formState },
+      });
+
+      Auth.login(data.addUser.token);
+    } catch (e) {
+      console.error(e);
+    }
+  };
 
   return (
     <Grid
@@ -50,7 +70,7 @@ export default function SignUp({ handleSignUp, handleLoginModal }) {
         <Header as="h2" color="teal" textAlign="center">
           <Image src="./images/favicon.ico" /> Sign Up
         </Header>
-        <Form size="large">
+        <Form size="large" onSubmit={handleFormSubmit}>
           <Segment stacked>
             <Form.Field>
               <Form.Input
@@ -58,6 +78,9 @@ export default function SignUp({ handleSignUp, handleLoginModal }) {
                 icon="user"
                 iconPosition="left"
                 placeholder="First Name"
+                name="firstName"
+                value={formState.firstName}
+                onChange={handleChange}
               />
             </Form.Field>
             <Form.Field>
@@ -66,6 +89,9 @@ export default function SignUp({ handleSignUp, handleLoginModal }) {
                 icon="user"
                 iconPosition="left"
                 placeholder="Last Name"
+                name="lastName"
+                value={formState.lastName}
+                onChange={handleChange}
               />
             </Form.Field>
             <Form.Field>
@@ -74,6 +100,9 @@ export default function SignUp({ handleSignUp, handleLoginModal }) {
                 icon="user"
                 iconPosition="left"
                 placeholder="Username"
+                name="username"
+                value={formState.username}
+                onChange={handleChange}
               />
             </Form.Field>
             <Form.Input
@@ -81,9 +110,12 @@ export default function SignUp({ handleSignUp, handleLoginModal }) {
               icon="mail"
               iconPosition="left"
               placeholder="E-mail address"
+              name="email"
+              value={formState.email}
+              onChange={handleChange}
             />
 
-            <Form.Field label="Gardening Experience" control="select">
+            <Form.Field label="Gardening Experience" control="select" onSelect={handleSelect}>
               <option value="newbie">Newbie</option>
               <option value="intermediate">Intermediate</option>
               <option value="expert">Expert</option>
@@ -94,6 +126,9 @@ export default function SignUp({ handleSignUp, handleLoginModal }) {
                 icon="location arrow"
                 iconPosition="left"
                 placeholder="Austin, TX"
+                name="location"
+                value={formState.location}
+                onChange={handleChange}
               />
             </Form.Field>
 
@@ -103,6 +138,9 @@ export default function SignUp({ handleSignUp, handleLoginModal }) {
               iconPosition="left"
               placeholder="Password"
               type="password"
+              name="password"
+              value={formState.password}
+              onChange={handleChange}
             />
             <Form.Input
               fluid
@@ -115,7 +153,7 @@ export default function SignUp({ handleSignUp, handleLoginModal }) {
               <Checkbox label="I agree to the Terms and Conditions" />
             </Form.Field>
 
-            <Button color="teal" fluid size="large">
+            <Button color="teal" fluid size="large" type="submit">
               Sign Up
             </Button>
           </Segment>
