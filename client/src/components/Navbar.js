@@ -131,8 +131,8 @@ const Nav = () => {
                             open={Boolean(anchorElUser)}
                             onClose={handleCloseUserMenu}
                         >
-                            {settings.map((setting) => (
-                                <MenuItem key={setting} onClick={handleCloseNavMenu}>
+                        {settings.map((setting) => (
+                                <MenuItem key={setting[0]} onClick={handleCloseNavMenu}>
                                     <Typography textAlign="center">{setting}</Typography>
                                 </MenuItem>
                             ))}
