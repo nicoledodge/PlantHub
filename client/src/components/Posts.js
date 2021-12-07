@@ -1,6 +1,7 @@
 import React from 'react'
 import {Comment, Feed, Icon} from 'semantic-ui-react'
 
+
 const FeedExampleBasic = (props) => (
     <Feed>
         {props.allPost.map((post) => (

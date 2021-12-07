@@ -45,6 +45,7 @@
     ]
   },
   "devDependencies": {
+    "@ant-design/icons": "^4.7.0",
     "@mui/icons-material": "^5.2.0",
     "@mui/material": "^5.2.2",
     "@mui/system": "^5.2.2",

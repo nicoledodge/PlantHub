@@ -21,9 +21,9 @@ const Forum = () => {
   //console.log(allPosts);
   return (
     <main>
+        <AddComment setAllPost={setAllPost} allPost={allPost} />
       <Posts allPost={allPost}/>
-      <BlogForum allPost={allPost} />
-      <AddComment setAllPost={setAllPost} allPost={allPost} />
+      {/*<BlogForum allPost={allPost} />*/}
     </main>
   );
 };
