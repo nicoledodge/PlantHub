@@ -1,5 +1,5 @@
 import React from 'react'
-import { Button, Form, Grid, Header, Image, Message, Segment } from 'semantic-ui-react'
+import { Button, Form, Grid, Header, Image, Message, Segment, Checkbox } from 'semantic-ui-react'
 
 export default function SignUp({handleSignUp, handleLoginModal}) {
     return (
@@ -10,18 +10,42 @@ export default function SignUp({handleSignUp, handleLoginModal}) {
                 </Header>
                 <Form size='large'>
                     <Segment stacked>
-                        <Form.Input fluid icon='user' iconPosition='left' placeholder='E-mail address' />
-                        <Form.Input
+                    <Form.Field>
+      
+      <Form.Input fluid icon='user' iconPosition='left' placeholder='First Name' />
+    </Form.Field>
+    <Form.Field>
+      
+    <Form.Input fluid icon='user' iconPosition='left' placeholder='Last Name' />
+    </Form.Field>
+                        <Form.Input fluid icon='mail' iconPosition='left' placeholder='E-mail address' />
+                    
+                        <Form.Field label='Gardening Experience' control='select'>
+        <option value='newbie'>Newbie</option>
+        <option value='intermediate'>Intermediate</option>
+        <option value='expert'>Expert</option>        
+      </Form.Field>
+      <Form.Field>
+      <Form.Input fluid icon='location arrow' iconPosition='left'  placeholder='Austin, TX' />
+    </Form.Field>
+
+      <Form.Input
                             fluid
                             icon='lock'
                             iconPosition='left'
                             placeholder='Password'
                             type='password'
                         />
-                        <Form.Field label='An HTML <select>' control='select'>
-                            <option value='male'>Male</option>
-                            <option value='female'>Female</option>
-                        </Form.Field>
+                        <Form.Input
+                            fluid
+                            icon='lock'
+                            iconPosition='left'
+                            placeholder='Retype Passwork'
+                            type='password'
+                        />
+                        <Form.Field>
+                 <Checkbox label='I agree to the Terms and Conditions' />
+                  </Form.Field>
 
                         <Button color='teal' fluid size='large'>
                             Sign Up
