@@ -18,7 +18,7 @@ export default function SignUp({ handleSignUp, handleLoginModal }) {
     firstName: "",
     lastName: "",
     location: "",
-    experience: "",
+    //experience: "",
     username: "",
     email: "",
     password: "",
@@ -26,13 +26,6 @@ export default function SignUp({ handleSignUp, handleLoginModal }) {
   console.log(formState);
 
   const [addUser, { error, data }] = useMutation(ADD_USER);
-
-  //handle change for selected values
-  const [selected,setSelected]=useState('');
-
-  const handleSelect=(event)=>{
-    setSelected(event)
-  }
 
   // handles change for input
   const handleChange = (event) => {
@@ -43,7 +36,7 @@ export default function SignUp({ handleSignUp, handleLoginModal }) {
       [name]: value,
     });
   };
-  //console.log(formState);
+
 
   const handleFormSubmit = async (event) => {
     event.preventDefault();
@@ -114,13 +107,12 @@ export default function SignUp({ handleSignUp, handleLoginModal }) {
               value={formState.email}
               onChange={handleChange}
             />
-
-            <Form.Field label="Gardening Experience" control="select" onSelect={handleSelect}>
+            {/* <Form.Field label="Gardening Experience" control="select" onSelect={handleSelect}>
               <option value="newbie">Newbie</option>
               <option value="intermediate">Intermediate</option>
               <option value="expert">Expert</option>
-            </Form.Field>
-            <Form.Field>
+            </Form.Field>*/}
+            <Form.Field> 
               <Form.Input
                 fluid
                 icon="location arrow"

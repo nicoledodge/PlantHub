@@ -93,7 +93,6 @@ export const QUERY_POST = gql`
         lastName
         username
         location
-        experience
         email
         myPlants {
           _id
