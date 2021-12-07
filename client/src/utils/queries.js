@@ -12,6 +12,7 @@ export const QUERY_ME = gql`
         name
         waterNeeded
         waterAdded
+        createdAt
       }
     }
   }
@@ -90,12 +91,16 @@ export const QUERY_POST = gql`
         _id
         firstName
         lastName
+        username
         email
         myPlants {
           _id
           name
           waterAdded
           waterNeeded
+          createdAt
         }
       }
     }`
+
+
