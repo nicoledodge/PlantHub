@@ -25,7 +25,26 @@ export default function SignUp({ handleSignUp, handleLoginModal }) {
   });
   console.log(formState);
 
+
   const [addUser, { error, data }] = useMutation(ADD_USER);
+
+      <Form.Input
+                            fluid
+                            icon='lock'
+                            iconPosition='left'
+                            placeholder='Password'
+                            type='password'
+                        />
+                        <Form.Input
+                            fluid
+                            icon='lock'
+                            iconPosition='left'
+                            placeholder='Retype Password'
+                            type='password'
+                        />
+                        <Form.Field>
+                 <Checkbox label='I agree to the Terms and Conditions' />
+                  </Form.Field>
 
   // handles change for input
   const handleChange = (event) => {
