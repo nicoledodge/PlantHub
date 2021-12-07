@@ -28,24 +28,6 @@ export default function SignUp({ handleSignUp, handleLoginModal }) {
 
   const [addUser, { error, data }] = useMutation(ADD_USER);
 
-      <Form.Input
-                            fluid
-                            icon='lock'
-                            iconPosition='left'
-                            placeholder='Password'
-                            type='password'
-                        />
-                        <Form.Input
-                            fluid
-                            icon='lock'
-                            iconPosition='left'
-                            placeholder='Retype Password'
-                            type='password'
-                        />
-                        <Form.Field>
-                 <Checkbox label='I agree to the Terms and Conditions' />
-                  </Form.Field>
-
   // handles change for input
   const handleChange = (event) => {
     const { name, value } = event.target;
@@ -126,11 +108,6 @@ export default function SignUp({ handleSignUp, handleLoginModal }) {
               value={formState.email}
               onChange={handleChange}
             />
-            {/* <Form.Field label="Gardening Experience" control="select" onSelect={handleSelect}>
-              <option value="newbie">Newbie</option>
-              <option value="intermediate">Intermediate</option>
-              <option value="expert">Expert</option>
-            </Form.Field>*/}
             <Form.Field> 
               <Form.Input
                 fluid
@@ -173,7 +150,6 @@ export default function SignUp({ handleSignUp, handleLoginModal }) {
           Already a Member?{" "}
           <div
             onClick={() => {
-              // alert('yumy');
               handleLoginModal();
               handleSignUp();
             }}
