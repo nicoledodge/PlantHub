@@ -34,7 +34,7 @@ export default function Team() {
           <div style={{ textAlign:'center'}}>
           <a href='https://www.linkedin.com/in/christa-baccas-77362a205/' target='_blank' rel='noreferrer'><i className="fab fa-linkedin footer-icons"></i></a>
           <a href='https://github.com/christa-baccas' target='_blank' rel='norefferer'><i className="fab fa-github footer-icons"></i></a>
-          <a href='mailto:'><i className="fas fa-envelope footer-icons"></i></a> 
+          <a href='mailto:christa-baccas@gmail.com'><i className="fas fa-envelope footer-icons"></i></a> 
           </div>
         </CardContent>
       </CardActionArea>
@@ -106,7 +106,7 @@ export default function Team() {
           <div style={{ textAlign:'center'}}>
           <a href='https://www.linkedin.com/in/alexis-gonzalez-07/' target='_blank' rel='noreferrer'><i className="fab fa-linkedin footer-icons"></i></a>
           <a href='https://github.com/AlexisGonzalez07' target='_blank' rel='norefferer'><i className="fab fa-github footer-icons"></i></a>
-          <a href='mailto:'><i className="fas fa-envelope footer-icons"></i></a> 
+          <a href='mailto:alexis.gonzalez07@gmail.com'><i className="fas fa-envelope footer-icons"></i></a> 
           </div>
         </CardContent>
       </CardActionArea>
