@@ -36,7 +36,7 @@ export const ADD_PLANT = gql`
 
 export const REMOVE_PLANT = gql`
   mutation removePlant($plantId: ID!) {
-    addPlant(_id: $plantId, waterNeeded: $waterNeeded) {
+    removePlant(plantId: $plantId) {
       _id
       name
       waterNeeded
@@ -45,12 +45,13 @@ export const REMOVE_PLANT = gql`
 `;
 
 export const ADD_WATER = gql`
-  mutation addWater($plantId: ID!, $waterAdded: Int!) {
-    addWater(_id: $plantId, waterAdded: 1) {
+  mutation addWater($plantId: ID!) {
+    addWater(plantId: $plantId) {
       _id
       name
       waterNeeded
       waterAdded
+      createdAt
     }
   }
 `;
@@ -114,7 +115,6 @@ export const ADD_COMMENT = gql`
     }
   }
 `;
-
 export const REMOVE_COMMENT = gql`
   mutation removeComment($postId: ID!, $commentId: ID!) {
     removeComment(postId: $postId, commentId: $commentId) {

@@ -58,7 +58,7 @@ const typeDefs = gql`
     
     addPlant(name: String!, waterNeeded: Int!): Plant
     addPlantTest(name: String!, waterNeeded: Int): Plant
-    addWater(plantId: ID!, waterAdded: Int!): Plant
+    addWater(plantId: ID!): Plant
     addWaterTest(plantId: ID!, waterAdded: Int!): Plant
     removePlant(plantId: ID!): Plant
     removePlantTest(plantId: ID!): Plant
