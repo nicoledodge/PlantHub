@@ -133,6 +133,11 @@ const Nav = () => {
                             component="div"
                             sx={{flexGrow: 1, color: 'white', display: {xs: 'flex', md: 'none'}}}
                         >
+
+                        {settings.map((setting) => (
+                                <MenuItem key={setting[0]} onClick={handleCloseNavMenu}>
+                                    <Typography textAlign="center">{setting}</Typography>
+                                </MenuItem>
                             BING BONG
                         </Typography>
                         <Box sx={{
@@ -148,6 +153,7 @@ const Nav = () => {
                                 >
                                     {page}
                                 </Button>
+
                             ))}
                         </Box>
 
