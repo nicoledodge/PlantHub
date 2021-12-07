@@ -46,7 +46,7 @@ export const REMOVE_PLANT = gql`
 
 export const ADD_WATER = gql`
   mutation addWater($plantId: ID!, $waterAdded: Int!) {
-    addWater(_id: $plantId, waterAdded: $waterAdded) {
+    addWater(_id: $plantId, waterAdded: 1) {
       _id
       name
       waterNeeded
