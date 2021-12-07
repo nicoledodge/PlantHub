@@ -1,6 +1,8 @@
 import React from 'react'
 import {Comment, Feed, Icon} from 'semantic-ui-react'
 import ReplyComment from "./ReplyComment";
+import Likes from "./Likes"
+import {flexbox} from "@mui/system";
 
 
 const FeedExampleBasic = (props) => (
@@ -12,7 +14,7 @@ const FeedExampleBasic = (props) => (
             </Feed.Label>
             <Feed.Content>
                 <Feed.Summary>
-                    <Feed.User>{post.postCreator}</Feed.User>
+                    <Feed.User style={{color: 'rgba(79,89,2,0.93)'}}>{post.postCreator}</Feed.User>
                     <Feed.Date>{post.createdAt}</Feed.Date>
                 </Feed.Summary>
                 <Feed.Extra text>
@@ -37,13 +39,13 @@ const FeedExampleBasic = (props) => (
                         </Comment>
                     ))}
                 </Comment.Group>
-                <Feed.Meta>
-                    <Feed.Like>
-                        <Icon name='like' />4 Likes
+                <Feed.Meta style={{display: "flex", flexDirection: "row"}}>
+                    <Feed.Like >
+                        <Likes/>
                     </Feed.Like>
-                    <Comment.Actions>
+                    {/*<Comment.Actions>*/}
                         <ReplyComment postId={post._id}/>
-                    </Comment.Actions>
+                    {/*</Comment.Actions>*/}
                 </Feed.Meta>
             </Feed.Content>
         </Feed.Event>
