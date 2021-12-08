@@ -22,45 +22,21 @@ import Auth from '../utils/auth';
 
 const pages = ['MyGarden', 'Forum', 'PlantFacts'];
 
+// const pages = ["MyGarden", "Forum", "PlantFacts"];
 
 const Nav = () => {
-    const [anchorElNav, setAnchorElNav] = React.useState(null);
-    const [anchorElUser, setAnchorElUser] = React.useState(null);
-    const [loginToggle, setLoginToggle] = React.useState(false);
-    const [signUpToggle, setSignUpToggle] = React.useState(false);
+  const [anchorElNav, setAnchorElNav] = React.useState(null);
+  const [anchorElUser, setAnchorElUser] = React.useState(null);
+  const [loginToggle, setLoginToggle] = React.useState(false);
+  const [signUpToggle, setSignUpToggle] = React.useState(false);
 
+  const handleLoginModal = () => {
+    setLoginToggle(!loginToggle);
+  };
 
-    const handleLoginModal = () => {
-        setLoginToggle(!loginToggle);
-    };
-
-    const handleSignUpModal = () => {
-        setSignUpToggle(!signUpToggle);
-    };
-
-    const settings = [
-        {
-            name: 'Profile',
-            callback: null,
-            routeTo: '/Profile'
-        },
-        // {
-        //     name:'Account',
-        //     callback: null,
-        // },
-        {
-            name:'Dashboard',
-            callback: null,
-        },
-        {
-            name:'SignUp',
-            callback: handleSignUpModal,
-        },
-        {
-            name:'Login',
-            callback: handleLoginModal,
-        },
-    ];
+  const handleSignUpModal = () => {
+    setSignUpToggle(!signUpToggle);
+  };
 
     const handleOpenNavMenu = (event) => {
         setAnchorElNav(event.currentTarget);
@@ -73,13 +49,13 @@ const Nav = () => {
         Auth.logout();
     };
 
-    const handleCloseNavMenu = () => {
-        setAnchorElNav(null);
-    };
+  const handleCloseNavMenu = () => {
+    setAnchorElNav(null);
+  };
 
-    const handleCloseUserMenu = () => {
-        setAnchorElUser(null);
-    };
+  const handleCloseUserMenu = () => {
+    setAnchorElUser(null);
+  };
 
     return <>
         <AppBar position="static" style={{background: '#4F5902'}}>
@@ -176,7 +152,7 @@ const Nav = () => {
                             open={Boolean(anchorElUser)}
                             onClose={handleCloseUserMenu}
                         >
-                            {settings.map((setting, key) => <Link to={setting.routeTo || '#'}>
+                            {/* {settings.map((setting, key) => <Link to={setting.routeTo || '#'}>
                                 <MenuItem key={key} onClick={() => {
                                     handleCloseNavMenu();
                                     setting.callback && setting.callback()}
@@ -185,7 +161,7 @@ const Nav = () => {
 
                                 </MenuItem>
 
-                                </Link>)}
+                                </Link>)} */}
                             <button className="btn btn-lg btn-light m-2" onClick={logout}>
                                 Logout
                             </button>

@@ -18,16 +18,13 @@ export default function SignUp({ handleSignUp, handleLoginModal }) {
     firstName: "",
     lastName: "",
     location: "",
-    //experience: "",
     username: "",
     email: "",
     password: "",
   });
   console.log(formState);
 
-
   const [addUser, { error, data }] = useMutation(ADD_USER);
-
 
   // handles change for input
   const handleChange = (event) => {
@@ -38,7 +35,6 @@ export default function SignUp({ handleSignUp, handleLoginModal }) {
       [name]: value,
     });
   };
-
 
   const handleFormSubmit = async (event) => {
     event.preventDefault();
@@ -109,7 +105,7 @@ export default function SignUp({ handleSignUp, handleLoginModal }) {
               value={formState.email}
               onChange={handleChange}
             />
-            <Form.Field> 
+            <Form.Field>
               <Form.Input
                 fluid
                 icon="location arrow"

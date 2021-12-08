@@ -1,5 +1,5 @@
 import ReplyComment from "../components/ReplyComment";
-import {  Comment, Header } from "semantic-ui-react";
+import { Comment, Header } from "semantic-ui-react";
 
 function GetPosts(props) {
   return (
@@ -19,7 +19,7 @@ function GetPosts(props) {
               <p>{post.postText}</p>
             </Comment.Text>
             <Comment.Actions>
-              <ReplyComment postId={post._id}/>
+              <ReplyComment postId={post._id} />
             </Comment.Actions>
           </Comment.Content>
 
