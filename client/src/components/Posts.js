@@ -52,22 +52,48 @@ const FeedExampleBasic = (props) => (
             {/*</Comment.Actions>*/}
           </Feed.Meta>
           <Feed.Meta style={{ display: "flex", flexDirection: "row", justifyContent:'center' }}>
-            <Button
-                className="ml-3"
-                onClick={() => {
-                  generateRandomFact(facts);
-                  window.open(
-                      "https://twitter.com/intent/tweet/?text=" +
-                      encodeURIComponent(fact.fact)
-                  );
-                }}
-                type="submit"
-            >
-              <Button circular color='facebook' icon='facebook' />
-            </Button>
-            <Button circular color='twitter' icon='twitter' />
-            <Button circular color='linkedin' icon='linkedin' />
-            <Button circular color='google plus' icon='google plus' />
+
+              <Button circular color='facebook' icon='facebook'
+                      className="ml-3"
+                      onClick={() => {
+                        // generateRandomFact(facts);
+                        window.open(
+                            "http://www.facebook.com/sharer/sharer.php" +
+                            encodeURIComponent(post.postText)
+                        );
+                      }}
+                      type="submit"/>
+
+              <Button circular color='twitter' icon='twitter'
+                      className="ml-3"
+                      onClick={() => {
+                        // generateRandomFact(facts);
+                        window.open(
+                            "https://twitter.com/intent/tweet/?text=" +
+                            encodeURIComponent(post.postText)
+                        );
+                      }}
+                      type="submit"/>
+              <Button circular color='linkedin' icon='linkedin'
+                      className="ml-3"
+                      onClick={() => {
+                        // generateRandomFact(facts);
+                        window.open(
+                            "https://www.linkedin.com/shareArticle?" +
+                            encodeURIComponent(post.postText)
+                        );
+                      }}
+                      type="submit"/>
+              <Button circular color='google plus' icon='google plus'
+                      className="ml-3"
+                      onClick={() => {
+                        // generateRandomFact(facts);
+                        window.open(
+                            "https://twitter.com/intent/tweet/?text=" +
+                            encodeURIComponent(post.postText)
+                        );
+                      }}
+                      type="submit"/>
           </Feed.Meta>
         </Feed.Content>
       </Feed.Event>
