@@ -99,26 +99,26 @@ const Home = () => (
             </Grid>
 
 
-<Container>
-                <Divider
-                    as='h4'
-                    className='header'
-                    horizontal
-                    style={{ margin: '3em 0em', textTransform: 'uppercase' }}
-                >
-                    <a href='#'>Recent Posts</a>
-                </Divider>
+{/*<Container>*/}
+{/*                <Divider*/}
+{/*                    as='h4'*/}
+{/*                    className='header'*/}
+{/*                    horizontal*/}
+{/*                    style={{ margin: '3em 0em', textTransform: 'uppercase' }}*/}
+{/*                >*/}
+{/*                    <a href='#'>Recent Posts</a>*/}
+{/*                </Divider>*/}
 
-                <Header as='h3' style={{ fontSize: '2em' }}>
-                    Nikki Dodge
-                </Header>
-                <p style={{ fontSize: '1.33em' }}>
-                    **dynamically render the most recent posts from the forum pgae??**
-                </p>
-                <Button as='a' size='large'>
-                    I'm Still Quite Interested
-                </Button>
-            </Container>
+{/*                <Header as='h3' style={{ fontSize: '2em' }}>*/}
+{/*                    Nikki Dodge*/}
+{/*                </Header>*/}
+{/*                <p style={{ fontSize: '1.33em' }}>*/}
+{/*                    **dynamically render the most recent posts from the forum pgae??***/}
+{/*                </p>*/}
+{/*                <Button as='a' size='large'>*/}
+{/*                    I'm Still Quite Interested*/}
+{/*                </Button>*/}
+{/*            </Container>*/}
         </Segment>
 
 )
