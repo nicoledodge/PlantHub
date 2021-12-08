@@ -22,6 +22,7 @@ import Box from "@mui/material/Box";
 import { useQuery, useMutation } from "@apollo/client";
 import { QUERY_ME } from "../utils/queries";
 import { ADD_WATER, REMOVE_PLANT } from "../utils/mutations";
+// import Testimonials from "./Testimonials"
 import AddPlantForm from "../components/AddPlant";
 import Auth from '../utils/auth'
 const square = { width: 175, height: 175 }
@@ -495,6 +496,7 @@ export default function MyGarden() {
                 aria-labelledby="modal-modal-title"
                 aria-describedby="modal-modal-description"
             >
+               <AddPlantForm/>
                           </Modal>
             </>
             );
