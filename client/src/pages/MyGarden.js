@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from "react";
-// import {Card, Icon} from 'semantic-ui-react';
 import {
   Progress,
   Button,
@@ -7,9 +6,6 @@ import {
   Table,
   Segment,
   Grid,
-  Label,
-  Header,
-  Image,
   List,
   Modal
 } from "semantic-ui-react";
@@ -17,17 +13,14 @@ import Card from "@mui/material/Card";
 import CardContent from "@mui/material/CardContent";
 import CardMedia from "@mui/material/CardMedia";
 import Typography from "@mui/material/Typography";
-import { autocompleteClasses, CardActionArea } from "@mui/material";
+import { CardActionArea } from "@mui/material";
 import Box from "@mui/material/Box";
 import { useQuery, useMutation } from "@apollo/client";
 import { QUERY_ME } from "../utils/queries";
 import { ADD_WATER, REMOVE_PLANT } from "../utils/mutations";
-// import Testimonials from "./Testimonials"
 import AddPlantForm from "../components/AddPlant";
 import Auth from '../utils/auth'
-const square = { width: 175, height: 175 }
-//possibly make every card dynamic
-//also thinking about making mygarden a parent div so we can pass the cards through as components as well as the detailed view of each plant
+
 export default function MyGarden() {
   const { loading, data, refetch } = useQuery(QUERY_ME);
 
@@ -41,32 +34,21 @@ export default function MyGarden() {
     setPlantToggle(!plantToggle);
 };
 
-//   console.log(data)
-
   const plantData = data?.me.myPlants || [];
 
   const userData = data?.me || [];
-
-  // const [plantData, setPlantData] = useState(data?.user.myPlants|| [])
-
-  // console.log(plantData)
-
-  //console.log(loading? "loading" : plantData)
 
   const [percent, setPercent] = useState(0);
   const [plantCount, setPlantCount] = useState(0);
   const [username, setUsername] = useState("");
   const [plantForm, setPlantForm]= useState('')
-  // const [birthday, setBirthday] = useState('')
 
   const handleAddWater = async (plantId) => {
-    // get token
     const token = Auth.loggedIn() ? Auth.getToken() : null;
 
     if (!token) {
       return false;
     }
-    // const plantData = data?.user.myPlants || {};
 
     console.log("PlantID:" + plantId);
     try {
@@ -79,15 +61,12 @@ export default function MyGarden() {
   };
 
   const handleDeletePlant = async (plantId) => {
-    // get token
     const token = Auth.loggedIn() ? Auth.getToken() : null;
 
     if (!token) {
       return false;
     }
-    // const plantData = data?.user.myPlants || {};
 
-    console.log("PlantID:" + plantId);
     try {
       const { plantData } = await removePlant({
         variables: { plantId },
@@ -97,25 +76,14 @@ export default function MyGarden() {
     }
   };
   
-  // const handleFormRender= (e) => {
-  //   e.preventdefault()
-  // setPlantToggle(!plantToggle)
-  // }
 
   useEffect(() => {
     if (data) {
-      console.log(data)
-      // console.log(plantData.length)
-      console.log(plantData);
-      console.log(userData.username);
-      //console.log(parseInt(plantData[0].waterNeeded))
-      // document.plant = data
       let newPercent = plantData.map((plant, i) => {
         let x = plant.waterAdded;
         let y = plant.waterNeeded;
         return ((x / y) * 100).toFixed();
       });
-      //     console.log(newPercent)
       setPercent(newPercent);
       setPlantCount(plantData.length);
       setUsername(userData.username);
@@ -126,6 +94,7 @@ export default function MyGarden() {
     <>
       <div style={{ backgroundColor: "#EBDBAE" }}></div>
       <div className="garden-container">
+          {Auth.loggedIn() ? ( <>
         <br></br>
         <div style={{ width: "100%" }}>
           <Box
@@ -151,12 +120,6 @@ export default function MyGarden() {
                 >
                   Hello {username}, welcome to your garden
                 </Typography>
-                {/* <List link inverted>
-                            <List.Item as='a'>FAQs</List.Item>
-                            <List.Item as='a'>Privacy</List.Item>
-                            <List.Item as='a'>Careers</List.Item>
-                            <List.Item as='a'>Help Center</List.Item>
-                        </List> */}
               </Grid.Column>
               <Grid.Column
                 width={16}
@@ -301,10 +264,6 @@ export default function MyGarden() {
               </Grid.Column>
               </Grid>
               </Box>
-              {/* <Grid.Column 
-            width={16}
-            columns={2}
-            textAlign="center"> */}
             <Box
             sx={{
               display: "flex",
@@ -328,12 +287,6 @@ export default function MyGarden() {
                 >
                   Manage your Garden
                 </Typography>
-                {/* <List link inverted>
-                            <List.Item as='a'>FAQs</List.Item>
-                            <List.Item as='a'>Privacy</List.Item>
-                            <List.Item as='a'>Careers</List.Item>
-                            <List.Item as='a'>Help Center</List.Item>
-                        </List> */}
               </Grid.Column>
               <Grid.Column textAlign="center" width={16}>
                 {plantForm}
@@ -358,52 +311,7 @@ export default function MyGarden() {
                           </Button>
                         </div>
   </div>
-              {/* <Card
-                component='div'
-                justifyContent='center'
-                id="addplant-card"
-                sx={{ maxWidth: 345, margin: 1, bgcolor: "#d9cba1" }}
-                >
-                <CardActionArea>
-                <CardMedia
-                component="img"
-                height="319"
-                image="./images/moneytree.webp"
-                alt=""
-                />
-                <CardContent>
-                <br></br>
-                <br></br>
-                <div align="center" style={{ backgroundColor: "#4f5902" }}>
-                <Button
-                icon
-                labelPosition="left"
-                primary
-                style={{ backgroundColor: "#4f5902" }}
-                >
-                <Icon name="add circle" />
-                
-                <Typography
-                gutterBottom
-                variant="h5"
-                component="div"
-                style={{
-                    textAlign: "center",
-                    fontFamily: "Fuzzy Bubbles, cursive",
-                    color: "white",
-                }}
-                >
-                Add A Plant
-                </Typography>
-                </Button>
-                </div>
-                </CardContent>
-                </CardActionArea>
-            </Card> */}
             </Grid.Column>
-              {/* <Grid.Row width={12}> */}
-              {/* <Grid.Column textAlign="center" width={16}> */}
-              {/* <Grid align='center' inverted stackable columns={2}> */}
               {plantData.map((plant, i) => (
                   <Grid.Column textAlign='center' mobile={16} tablet={8} computer={4}>
                   <Card
@@ -480,15 +388,28 @@ export default function MyGarden() {
                     </CardActionArea>
                   </Card>
               </Grid.Column>
-                //   </div>
               ))}
-
             </Grid>
-              {/* </Grid.Column> */}
-              {/* </Grid.Row> */}
-            {/* </Grid> */}
             </Box>
             </div>
+            </>):(
+              <div className='content-container'><Grid stackable columns={1}>
+              <Grid.Column textAlign="center" width={16}>
+                <Typography
+                  gutterBottom
+                  variant="h4"
+                  component="div"
+                  style={{
+                    textAlign: "center",
+                    fontFamily: "Oswald, sans-serif",
+                    color: "#EBDBAE",
+                  }}
+                >
+                 You Must Make an Account to Manage your Garden
+                </Typography>
+              </Grid.Column>
+              </Grid></div>
+            )}
             </div>
             <Modal
                 open={plantToggle}
