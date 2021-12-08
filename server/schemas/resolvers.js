@@ -60,11 +60,6 @@ const resolvers = {
       }
       throw new AuthenticationError('You need to be logged in!');
     },
-    // blog posts
-    // allPosts: async (parent, { username }) => {
-    //   const params = username ? { username } : {};
-    //   return Blog.find(params).sort({ createdAt: -1 });
-    // },
     allPosts: async () => {
       return Blog.find().sort({ createdAt: -1 });
     },
@@ -268,8 +263,6 @@ const resolvers = {
       }
       throw new AuthenticationError('You need to be logged in!');
     },
-
-    //blog posts 
       addPost: async (parent, { postText }, context) => {
         if (context.user) {
           const post = await Blog.create({
@@ -286,44 +279,6 @@ const resolvers = {
         }
         throw new AuthenticationError('Please login to create a post.');
       },
-      // Test code for test route 
-//       addPostTest: async (parent, { postText, postCreator} ) => {
-//  {
-//           const post = await Blog.create({
-//             postText: postText,
-//             postCreator: postCreator
-//           });
-  
-//           await User.findOneAndUpdate(
-//             { username: "BetaTester"},
-//             { $addToSet: { myPosts: post._id } }
-//           );
-
-//           return post;
-//         }
-      //   throw new AuthenticationError('Please login to create a post.');
-      // },
-      
-      // addComment: async (parent, { postId, commentText }, context) => {
-      //   if (context.user) {
-      //     const comment = await Blog.findOne({_id: postId})
-      
-      //     return Blog.findOneAndUpdate(
-      //       { _id: postId },
-      //       { 
-      //         $addToSet: { 
-      //           comment: {commentText, commentCreator: context.user.username } 
-      //         } 
-      //       },
-      //       {
-      //         new: true,
-      //         runValidators: true,
-      //       }
-      //     );
-      //   }
-      //   throw new AuthenticationError('Please login to create a comment.');
-      // },
-
       addComment: async (parent, { postId, commentText }, context) => {
       if (context.user){
           return Blog.findOneAndUpdate(
