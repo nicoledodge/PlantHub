@@ -16,7 +16,6 @@ export default function Profile() {
   
   const userData = data?.me || [];
 
-  const ProfileStatus = () => <Progress percent={25} color='olive'  label='Level: Newbie' style={{width: '300px', display: 'flex', alignItems: 'center', }} />
   const NumbofPlants = () => ( <Progress progress='value' color='brown' value={plantCount} label='Number of Plants' style={{width: '300px', display: 'flex', alignItems: 'center', }}/>)
 
   useEffect(() => {
@@ -72,7 +71,6 @@ export default function Profile() {
   </Form>
     </Grid.Column>
     <Grid.Column width={3}>
-    <ProfileStatus id='profileStatus'/>
     <NumbofPlants id='numOfPlants'/>
 
     </Grid.Column>
