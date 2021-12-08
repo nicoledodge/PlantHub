@@ -60,25 +60,13 @@ const typeDefs = gql`
     addUser(firstName: String!, lastName: String!, username: String!, email: String!, password: String!, location: String!): Auth
     login(email: String!, password: String!): Auth 
     addPlant(name: String!, nickname: String, plantType: String!, plantSize: String!, waterNeeded: Int!): Plant
-    addPlantTest(name: String!, waterNeeded: Int): Plant
     addWater(plantId: ID!): Plant
-    addWaterTest(plantId: ID!, waterAdded: Int!): Plant
     removePlant(plantId: ID!): Plant
-    removePlantTest(plantId: ID!): Plant
     removeWater(plantId: ID!, waterAdded: Int!): Plant
-    removeWaterTest(plantId: ID!, waterAdded: Int!): Plant
-
     addPost(postText: String!, postCreator: String!): Blog
-    addPostTest(postText: String!, postCreator: String!): Blog  
-
     addComment(postId: ID!, commentText: String!): Blog
-    addCommentTest(postId: ID!, commentText: String!): Blog
-
     removePost(postId: ID!): Blog
-    removePostTest(postId: ID!): Blog
-
     removeComment(postId: ID!, commentId: ID!): Blog
-    removeCommentTest(postId: ID!, commentId: ID!): Blog
   }
 `;
 

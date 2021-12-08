@@ -6,47 +6,9 @@ const resolvers = {
   Query: {
     allUsers: async () => {
       return User.find().populate('myPlants').populate('myPosts');
-// Test query to make sure this works
-// query user{
-//   allUsers{
-//     _id
-//     username
-//     lastName
-//     firstName
-//     email
-//     myPlants{
-//       _id
-//       name
-//       waterNeeded
-//       waterAdded
-//     }
-//     myPosts{
-//       postText
-//       postCreator
-//       comments{
-//         commentText
-//       }
-//     }
-//     }
-//   }
     },
     user: async (parent, { username }) => {
       return User.findOne({ username }).populate('myPlants').populate('myPosts');
-      // Test query to make sure it works
-      // query User($username: String!) {
-      //   user(username: $username) {
-      //     _id
-      //     firstName
-      //     lastName
-      //     email
-      //     myPlants {
-      //       _id
-      //       name
-      //       waterAdded
-      //       waterNeeded
-      //     }
-      //   }
-      // }
     },
     plant: async (parent, { plantId }) => {
       return Plant.findOne({ _id: plantId });
@@ -92,29 +54,6 @@ const resolvers = {
 
       return { token, user };
     },
-    // test the route by specifying an ID, and not using context.user for verification
-    addPlantTest: async (parent, { name, waterNeeded },  ) => {
-    {
-      // hardcoded query
-      // mutation {
-      //   addPlantTest(name: "example2", waterNeeded: 2000){
-      //     _id
-      //     name
-      //     waterNeeded
-      // }
-      // }
-        const plant = await Plant.create({name,waterNeeded});
-        console.log(plant)
-
-        await User.findOneAndUpdate(
-          { _id: "61aa52e8b5e1155e144af12a"},
-          { $addToSet: { myPlants: plant._id}}
-        );
-
-        return plant;
-      }
-      throw new AuthenticationError('You need to be logged in!');
-    },
     addPlant: async (parent, { name, nickname, plantType, plantSize, waterNeeded }, context ) => {
       if (context.user) {
         const plant = await Plant.create({
@@ -131,35 +70,6 @@ const resolvers = {
         );
 
         return plant;
-      }
-      throw new AuthenticationError('You need to be logged in!');
-    },
-    // hardcoded addWater Test without Auth
-    addWaterTest: async (parent, { plantId, waterAdded }, ) => {
-      {
-        // find a plant and hardcode the id with query:
-        // mutation {
-        //   addWaterTest(plantId:"INSERT THE RIGHT ID HERE", waterAdded: 1){
-        //     _id
-        //     name
-        //     waterAdded
-        //     waterNeeded
-        // }
-        // }
-        const plant = await Plant.findOne({_id: plantId})
-        
-        return Plant.findOneAndUpdate(
-          { _id: plantId },
-          {
-            $set: {
-              waterAdded: plant.waterAdded + waterAdded,
-            },
-          },
-          {
-            new: true,
-            runValidators: true,
-          }
-        );
       }
       throw new AuthenticationError('You need to be logged in!');
     },
@@ -197,68 +107,21 @@ const resolvers = {
       }
       throw new AuthenticationError('You need to be logged in!');
     },
-    // Remove Plant Test route without context.user
-    removePlantTest: async (parent, { plantId }) => {
-    {
-      // mutation {
-      //   removePlantTest(plantId:"INSERT YOUR OWN ID HERE"){
-      //     _id
-      //     name
-      //     waterAdded
-      //     waterNeeded
-      // }
-      // }
-
-        const plant = await Plant.findOneAndDelete({
-          _id: plantId,
-        });
-
-        await User.findOneAndUpdate(
-          { _id: "61aa52e8b5e1155e144af12a"},
-          { $pull: { myPlants: plantId } }
-        );
-
-        return plant;
-      }
-      throw new AuthenticationError('You need to be logged in!');
-    },    
-    removeWater: async (parent, { plantId, lessWater }, context) => {
-      if (context.user) {
-        const plant = await Plant.findOne({_id: plantId})
-
-        return Plant.findOneAndUpdate(
-          { _id: thoughtId },
-          {
-            $set: {
-              waterAdded: plant.waterAdded - lessWater,
-            },
-          },
-          { new: true }
-        );
-      }
-      throw new AuthenticationError('You need to be logged in!');
-    },
-    removeWaterTest: async (parent, { plantId, waterAdded }) => {
-     {
-      // mutation {
-      //   removeWaterTest(plantId:"ENTER YOUR OWN PLANT ID", waterAdded:-1){
-      //     _id
-      //     name
-      //     waterAdded
-      //     waterNeeded
-      // }
-      // }
-
+    removeWater: async (parent, { plantId}, context ) => {
+      if (context.user){
         const plant = await Plant.findOne({_id: plantId})
 
         return Plant.findOneAndUpdate(
           { _id: plantId },
           {
             $set: {
-              waterAdded: plant.waterAdded + waterAdded,
+              waterAdded: plant.waterAdded - 1,
             },
           },
-          { new: true }
+          {
+            new: true,
+            runValidators: true,
+          }
         );
       }
       throw new AuthenticationError('You need to be logged in!');
@@ -294,8 +157,7 @@ const resolvers = {
           );
         }
         throw new AuthenticationError('Please login to create a comment.');
-      },
-      
+      }, 
       removePost: async (parent, { postId }, context) => {
         if (context.user) {
           const post = await Blog.findOneAndDelete({
@@ -312,22 +174,6 @@ const resolvers = {
       }
          throw new AuthenticationError('Please login to delete a post');
       },
-      removePostTest: async (parent, { postId }) => {
-        {
-          const post = await Blog.findOneAndDelete({
-            _id: postId,
-            postCreator: "BetaTester",
-          });
-  
-          await User.findOneAndUpdate(
-            { _id: "Enter Users ID" },
-            { $pull: { post: postId } }
-          );
-  
-          return post;
-        }
-        throw new AuthenticationError('Please login to delete a post.');
-      },
       removeComment: async (parent, { postId, commentId }, context) => {
         if (context.user) {
           return Blog.findOneAndUpdate(
@@ -337,23 +183,6 @@ const resolvers = {
                 comments: {
                   _id: commentId,
                   commentAuthor: context.user.username,
-                },
-              },
-            },
-            { new: true }
-          );
-        }
-        throw new AuthenticationError('Please login to delete a comment.');
-      },
-      removeCommentTest: async (parent, { postId, commentId }) => {
-        {
-          return Blog.findOneAndUpdate(
-            { _id: postId },
-            {
-              $pull: {
-                comments: {
-                  _id: commentId,
-                  commentCreator: "James",
                 },
               },
             },
