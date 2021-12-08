@@ -20,7 +20,7 @@ const Forum = () => {
 
   //console.log(allPosts);
   return (
-    <main style={{ padding: '0em 0em 5em' }}>
+    <main style={{margin:'40px', padding: '0em 0em 5em'}}>
         <AddComment setAllPost={setAllPost} allPost={allPost} />
       <Posts allPost={allPost}/>
       {/*<BlogForum allPost={allPost} />*/}

@@ -6,7 +6,7 @@ body {
 }
 
 #logo {
-    height: 100px;
+    height: 60px;
     width: 180px;
 }
 #proCardCont {
@@ -17,6 +17,18 @@ body {
 }
 #profileStatus {
     float: left;
+}
+#PlantFormCont {
+    max-width: fit-content;
+    margin: auto;
+    padding-top: 6vh;
+}
+#ContactPar {
+    font-size: 2.84em;
+    font-family: 'Oswald', sans-serif;
+}
+#ContactContainer {
+    padding: 10vh;
 }
 .Router {
     background-color: rgba(229, 255, 0, 0.404);
