@@ -39,79 +39,7 @@ query {
   }
 }
 `;
-// export const QUERY_POST = gql`
-// query {
-//   post{
-//     _id
-//     postText
-//     postCreator
-//     createdAt
-//     comments{
-//       _id
-//       createdAt
-//       commentText
-//       commentCreator
-//     }
-//   }
-// }
-// `;
-
-export const QUERY_POST = gql`
-  query{
-    post(postId: $postId) {
-      _id
-      postText
-      postCreator
-      createdAt
-      comments{
-        _id
-        createdAt
-        commentText
-        commentCreator
-      }
-    }
-  }
-`;
-
-// export const QUERY_ALLUSERS= gql`
-// {
-//   allUsers{
-//     _id
-//     username
-//     lastName
-//     firstName
-//     email
-//     myPlants{
-//       _id
-//       name
-//       waterNeeded
-//       waterAdded
-//     }
-//     }
-//   }`
 
 
-  export const QUERY_USER= gql`
-  query {
-        user(username: "BetaTester"){
-        _id
-        firstName
-        lastName
-        username
-        location
-        email
-        createdAt
-        myPlants {
-          _id
-          name
-          nickname
-          plantType
-          plantSize
-          waterAdded
-          waterNeeded
-          createdAt
-        }
-      }
-    }`
 
 
