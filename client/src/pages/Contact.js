@@ -1,7 +1,6 @@
-import { fontSize } from '@mui/system'
 import React from 'react'
-import { Header, Icon, Grid, Segment, Button, Form } from 'semantic-ui-react'
-// import contactImage from '';
+import { Header,  Grid, Segment, Button, Form } from 'semantic-ui-react'
+
 
 const HeaderExampleUsersIcon = () => (
     <>
