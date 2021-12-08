@@ -6,7 +6,7 @@ body {
 }
 
 #logo {
-    height: 100px;
+    height: 60px;
     width: 180px;
 }
 #proCardCont {
@@ -58,7 +58,6 @@ Nav {
 }
 .homeimg {
    min-width: 100vw;
-    opacity: 0.7;
 }
 .team-container {
     background-color: #4f5902;
@@ -66,4 +65,26 @@ Nav {
 #team-card:hover {
     background-color:#cdd9a0;
 }
+.garden-container {
+    background-color: #4f5902;
+    padding-top: 5px;
+}
 
+
+.about-img {
+    min-width: 100vw;
+ }
+
+  .about-container {
+    margin-left: 20px;
+    margin-right: 20px;
+    margin-top: 20px;
+     display: flex;
+ }
+
+ .about-child {
+     margin-left: 10%;
+    margin-right: 10%; 
+    text-align: center; 
+    font-size: 18px;
+ } 
