@@ -14,10 +14,11 @@ function SizeChartModal() {
       onClose={() => setOpen(false)}
       onOpen={() => setOpen(true)}
       open={open}
-      size="small"
-      trigger={<Button>Size Chart</Button>}
-    >
-      <Header>Size Chart</Header>
+      size='small'
+      trigger={<Button>Size Chart</Button>}    >
+      <Header>
+        Size Chart
+      </Header>
       <Modal.Content>
         <Grid columns="equal">
           <Grid.Column>

@@ -1,5 +1,7 @@
-import React from "react";
-import { Header, Grid, Segment, Button, Form } from "semantic-ui-react";
+
+import React from 'react'
+import { Header,  Grid, Segment, Button, Form } from 'semantic-ui-react'
+
 
 const HeaderExampleUsersIcon = () => (
   <>
