@@ -19,7 +19,9 @@ body {
     float: left;
 }
 #PlantFormCont {
-    padding: 100px;
+    max-width: fit-content;
+    margin: auto;
+    padding-top: 5vh;
 }
 .Router {
     background-color: rgba(229, 255, 0, 0.404);
