@@ -107,5 +107,6 @@ Nav {
  .removegardenbtn{
      background-color: #4f5902;
  }
-
- 
+ .addplantbtn{
+    background-color: #EBDBAE;
+}
