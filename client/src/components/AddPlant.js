@@ -8,10 +8,51 @@ import {
   Message,
   Segment,
   Checkbox,
+  Modal
 } from "semantic-ui-react";
 import { ADD_PLANT } from "../utils/mutations";
 import { useMutation } from "@apollo/client";
 import Auth from "../utils/auth";
+
+function SizeChartModal() {
+  const [open, setOpen] = React.useState(false)
+
+  return (
+    <Modal
+      basic
+      onClose={() => setOpen(false)}
+      onOpen={() => setOpen(true)}
+      open={open}
+      size='small'
+      trigger={<Button>Size Chart</Button>}
+    >
+      <Header>
+        Size Chart
+      </Header>
+      <Modal.Content>
+      <Grid columns='equal'>
+    <Grid.Column>
+      <h2>small</h2>
+      <p>These plants are suitable for use on a desk or on a shelf. Depending on the variety of plant you acquire, they are normally 5 to 15 inches tall.</p>
+    </Grid.Column>
+    <Grid.Column>
+      <h2>medium</h2>
+      <p>Medium plants are larger than those seen on a desk or shelf. They are usually 1-2 feet tall and have a larger presence.</p>
+    </Grid.Column>
+    <Grid.Column>
+      <h2>large</h2>
+      <p>Although some may fit on a desktop or perhaps a shelf, these are perfect  floor plants. Depending on the variety of plant you've chosen, they can grow to be anywhere from 3 to 7 feet tall.</p>
+    </Grid.Column>
+  </Grid>
+      </Modal.Content>
+      <Modal.Actions>
+        <Button color='green' inverted onClick={() => setOpen(false)}>
+          Cool
+        </Button>
+      </Modal.Actions>
+    </Modal>
+  )
+}
 
 export default function AddPlantForm({ handlePlantModal, handleLoginModal }) {
   const [plantState, setPlantState] = useState({
@@ -51,23 +92,18 @@ export default function AddPlantForm({ handlePlantModal, handleLoginModal }) {
   };
 
   return (
-    <Grid
-      textAlign="center"
-      style={{ height: "10vh", paddingTop: "150px" }}
-      verticalAlign="middle"
-    >
-      <Grid.Column style={{ maxWidth: 450 }}>
-        <Header as="h2" color="teal" textAlign="center">
-          <Image src="./images/favicon.ico" /> Sign Up
+    <Grid>
+      <Grid.Column >
+        <Header as="h2" textAlign="center" id='addPlantHead'>
+          Add a plant 
         </Header>
         <Form size="large" onSubmit={handleFormSubmit}>
           <Segment stacked>
             <Form.Field>
               <Form.Input
                 fluid
-                icon="user"
-                iconPosition="left"
-                placeholder="First Name"
+                label='Plant Name'
+                placeholder="Sunflower"
                 name="name"
                 value={plantState.name}
                 onChange={handleChange}
@@ -76,9 +112,8 @@ export default function AddPlantForm({ handlePlantModal, handleLoginModal }) {
             <Form.Field>
               <Form.Input
                 fluid
-                icon="user"
-                iconPosition="left"
-                placeholder="Last Name"
+                label='Nickname'
+                placeholder="Sunny"
                 name="nickname"
                 value={plantState.nickname}
                 onChange={handleChange}
@@ -87,54 +122,39 @@ export default function AddPlantForm({ handlePlantModal, handleLoginModal }) {
             <Form.Field>
               <Form.Input
                 fluid
-                icon="user"
-                iconPosition="left"
+                label='Plant type'
                 placeholder="Indoor or Outdoor"
                 name="plantType"
                 value={plantState.plantType}
                 onChange={handleChange}
               />
             </Form.Field>
+            <Form.Field >
             <Form.Input
               fluid
-              icon="mail"
-              iconPosition="left"
-              placeholder="S, M, or L"
+              label='Plant Size'
+              placeholder="'S' for small, 'M' for medium, 'L' for large"
               name="plantSize"
               value={plantState.plantSize}
               onChange={handleChange}
             />
-            <Form.Field>
+            <SizeChartModal />
+            </Form.Field>
+            <Form.Field> 
               <Form.Input
                 fluid
-                icon="location arrow"
-                iconPosition="left"
+               label='Water Needed'
                 placeholder="How many days per month should you water it?"
                 name="waterNeeded"
                 value={plantState.waterNeeded}
                 onChange={handleChange}
               />
             </Form.Field>
-            <Form.Field>
-              <Checkbox label="I have a new member of the family!" />
-            </Form.Field>
-
-            <Button color="teal" fluid size="large" type="submit">
+            <Button fluid size="large" type="submit">
               Add Plant
             </Button>
           </Segment>
         </Form>
-        <Message>
-          Already a Member?{" "}
-          <div
-            onClick={() => {
-              handlePlantModal();
-              handleLoginModal();
-            }}
-          >
-            Login
-          </div>
-        </Message>
       </Grid.Column>
     </Grid>
   );
