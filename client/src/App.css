@@ -108,15 +108,16 @@ Nav {
      background-color: #4f5902;
  }
 
-<<<<<<< HEAD
+ .addplantbtn{
+    background-color: #EBDBAE;
+}
+
 .contact-container{
     background-image: url(./pages/assets/best-aesthetic-plants.jpeg);
     padding-bottom: 50vh;
 }
-=======
- .content-container {
-    
+
+ .content-container {    
      background-image: url(./pages/assets/best-aesthetic-plants.jpeg);
  }
->>>>>>> main
- 
+
