@@ -57,30 +57,30 @@ const Home = () => (
                         <Image bordered rounded size='large' src='/images/dogwithplant.jpeg' />
                     </Grid.Column>
                 </Grid.Row>
-                <Grid.Row>
-                    <Grid.Column textAlign='center'>
-                        {/*<Button size='huge'>Check Them Out</Button>*/}
-                    </Grid.Column>
-                </Grid.Row>
+                {/*<Grid.Row>*/}
+                {/*    /!*<Grid.Column textAlign='center'>*!/*/}
+                {/*    /!*    /!*<Button size='huge'>Check Them Out</Button>*!/*!/*/}
+                {/*    /!*</Grid.Column>*!/*/}
+                {/*</Grid.Row>*/}
             </Grid>
-            <Container text>
-                <Header as='h3' style={{marginTop:'30px', fontSize: '2em' }}>
+            <Container text style={{marginBottom:'80px'}}>
+                <Header as='h3' style={{ fontSize: '2em' }}>
                     Did you Know?
                 </Header>
                 <p style={{ fontSize: '1.33em' }}>
                     If your potted houseplants dry out too quickly after watering, try this simple trick for keeping the soil moist longer. When repotting, tuck a damp sponge into the bottom of the pot before filling with soil. It will act as a water reservoir and may help prevent a gusher if you accidentally overwater.
                 </p>
                 <Button href='/PlantCare' size='large'>
-                    Read More About Plant Care
+                    Read More About Plant Facts!
                 </Button>
             </Container>
             <Grid celled='internally' columns='equal' stackable >
                 <Grid.Row textAlign='center'>
                     <Grid.Column style={{ paddingBottom: '5em', paddingTop: '5em' }}>
                         <Header as='h3' style={{ fontSize: '2em' }}>
-                            "We Love Plants"
+                            "We Love how all of our house plants are all in one location! Makes watering much easier!"
                         </Header>
-                        <p style={{ fontSize: '1.33em' }}>That is what they all say about plants</p>
+                        {/*<p style={{ fontSize: '1.33em' }}>That is what they all say about plants</p>*/}
                     </Grid.Column>
                     <Grid.Column style={{ paddingBottom: '5em', paddingTop: '5em' }}>
                         <Header as='h3' style={{ fontSize: '2em' }}>
@@ -93,8 +93,8 @@ const Home = () => (
                     </Grid.Column>
 
                 </Grid.Row>
-                <Grid.Column textAlign='center' style={{marginTop:'30px'}}>
-                    <Button size='huge'>Check Them Out</Button>
+                <Grid.Column textAlign='center' href='/MyGarden' style={{marginTop:'30px'}}>
+                    <Button size='huge'>Check Out Your Garden</Button>
                 </Grid.Column>
             </Grid>
 
