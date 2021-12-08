@@ -5,7 +5,7 @@ export default function RandomFacts(props) {
 
     const { fact, generateRandomFact } = props;
     return (
-        <div className="card" >
+        <div className="card" style={{marginLeft: '20px'}} >
 
             <div className="card-body">
                 <p className="card-text">{fact.fact}</p>

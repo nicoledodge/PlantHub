@@ -131,7 +131,7 @@ export default function MyGarden() {
                   component="div"
                   style={{
                     textAlign: "center",
-                    fontFamily: "Fuzzy Bubbles, cursive",
+                    fontFamily: "Oswald, sans-serif",
                     color: "#EBDBAE",
                   }}
                 >
@@ -308,7 +308,7 @@ export default function MyGarden() {
                   component="div"
                   style={{
                     textAlign: "center",
-                    fontFamily: "Fuzzy Bubbles, cursive",
+                    fontFamily: "Oswald, sans-serif",
                     color: "#EBDBAE",
                   }}
                 >
