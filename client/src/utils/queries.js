@@ -1,4 +1,4 @@
-import { gql } from '@apollo/client';
+import { gql } from "@apollo/client";
 
 export const QUERY_ME = gql`
   {
@@ -24,22 +24,18 @@ export const QUERY_ME = gql`
   }
 `;
 export const QUERY_POSTS = gql`
-query {
-  allPosts{
-    _id
-    postText
-    postCreator
-    createdAt
-    comments{
+  query {
+    allPosts {
       _id
+      postText
+      postCreator
       createdAt
-      commentText
-      commentCreator
+      comments {
+        _id
+        createdAt
+        commentText
+        commentCreator
+      }
     }
   }
-}
 `;
-
-
-
-
