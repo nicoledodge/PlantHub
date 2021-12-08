@@ -8,8 +8,9 @@ export default function RandomFacts(props) {
     return (
         <div className="card" style={{marginLeft: '20px'}} >
 
-            <div className="card-body" style{{display:'flex', justifyContent:'center'}}>
-                <p className="card-text">{fact.fact}</p>
+            <div className="card-body" >
+                <p className="card-text" style={{display:'flex', justifyContent:'center'}}>{fact.fact}</p>
+                <div style={{display:'flex', justifyContent:'center'}}>
                 <button
                     onClick={() => { generateRandomFact(facts) }}
                     type="submit">
@@ -21,6 +22,7 @@ export default function RandomFacts(props) {
                         window.open('https://twitter.com/intent/tweet/?text=' + encodeURIComponent(fact.fact))
                     }}
                     type="submit"><i class="fab fa-twitter"></i> Share Fact</button>
+                </div>
             </div>
         </div>
     )

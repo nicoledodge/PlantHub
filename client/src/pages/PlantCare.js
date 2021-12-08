@@ -42,7 +42,7 @@ export default class PlantCare extends Component {
         return (
             <Container>
             <div className="container">
-                <h1 className="text-center" style={{textAlign:'center', fontFamily:'Oswald, sans-serif', marginLeft:'20px', marginTop:'20px'}}>Random Plant Fact</h1>
+                <h1 className="text-center" style={{textAlign:'center', fontFamily:'Oswald, sans-serif', marginLeft:'20px', marginTop:'80px'}}>Random Plant Fact</h1>
                 <RandomFacts style={{marginLeft: '20px'}}
                     generateRandomFact={this.generateRandomFact}
                     fact={this.state}

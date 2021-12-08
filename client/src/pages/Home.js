@@ -35,18 +35,22 @@ const Home = () => (
                 <Grid.Row>
                     <Grid.Column width={8}>
                         <Header as='h3' style={{ fontSize: '2em' }}>
-                            We Help Companies and Companions
+                            Five Tip & Tricks for your house plants!
                         </Header>
                         <p style={{ fontSize: '1.33em' }}>
-                            We can give your company superpowers to do things that they never thought possible.
-                            Let us delight your customers and empower your needs... through pure data analytics.
+                            Spin your plants around so they grow evenly and not lopsided. Every week.
                         </p>
-                        <Header as='h3' style={{ fontSize: '2em' }}>
-                            We Make Bananas That Can Dance
-                        </Header>
                         <p style={{ fontSize: '1.33em' }}>
-                            Yes that's right, you thought it was the stuff of dreams, but even bananas can be
-                            bioengineered.
+                            Don’t fertilize in the winter. Only in the spring and summer.
+                        </p>
+                        <p style={{ fontSize: '1.33em' }}>
+                            Use pots with holes in them. Very helpful and necessary if you are a gardening newbie.
+                        </p>
+                        <p style={{ fontSize: '1.33em' }}>
+                            Try taking your houseplants outside for the summer and grow them in the shade. It is amazing how much they grow!
+                        </p>
+                        <p style={{ fontSize: '1.33em' }}>
+                            If you are prone to giving to watering too much, buy a moisture meter. It will help you learn how much water your plant needs.
                         </p>
                     </Grid.Column>
                     <Grid.Column floated='right' width={6}>
@@ -55,12 +59,12 @@ const Home = () => (
                 </Grid.Row>
                 <Grid.Row>
                     <Grid.Column textAlign='center'>
-                        <Button size='huge'>Check Them Out</Button>
+                        {/*<Button size='huge'>Check Them Out</Button>*/}
                     </Grid.Column>
                 </Grid.Row>
             </Grid>
 
-            <Grid celled='internally' columns='equal' stackable>
+            <Grid celled='internally' columns='equal' stackable >
                 <Grid.Row textAlign='center'>
                     <Grid.Column style={{ paddingBottom: '5em', paddingTop: '5em' }}>
                         <Header as='h3' style={{ fontSize: '2em' }}>
@@ -77,11 +81,15 @@ const Home = () => (
                             <b>Jen</b> Member since 2021
                         </p>
                     </Grid.Column>
+
                 </Grid.Row>
+                <Grid.Column textAlign='center' style={{marginTop:'30px'}}>
+                    <Button size='huge'>Check Them Out</Button>
+                </Grid.Column>
             </Grid>
 
             <Container text>
-                <Header as='h3' style={{ fontSize: '2em' }}>
+                <Header as='h3' style={{marginTop:'30px', fontSize: '2em' }}>
                     Did you Know?
                 </Header>
                 <p style={{ fontSize: '1.33em' }}>
