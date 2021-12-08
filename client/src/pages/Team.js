@@ -33,8 +33,8 @@ export default function Team() {
           </Typography>
           <div style={{ textAlign:'center'}}>
           <a href='https://www.linkedin.com/in/christa-baccas-77362a205/' target='_blank' rel='noreferrer'><i className="fab fa-linkedin footer-icons"></i></a>
-          <a href='https://github.com/christa-baccas' target='_blank' rel='norefferer'><i className="fab fa-github footer-icons"></i></a>
-          <a href='mailto:christa-baccas@gmail.com'><i className="fas fa-envelope footer-icons"></i></a> 
+          <a href='https://github.com/christa-baccas' target='_blank' rel='noreferrer'><i className="fab fa-github footer-icons"></i></a>
+          <a href='mailto:christa-baccas@gmail.com' rel='noreferrer'><i className="fas fa-envelope footer-icons"></i></a> 
           </div>
         </CardContent>
       </CardActionArea>
@@ -52,13 +52,15 @@ export default function Team() {
           Ismeny Castro
           </Typography>
           <Typography variant="body2" color="text.secondary">
-            Lizards are a widespread group of squamate reptiles, with over 6,000
-            species, ranging across all continents except Antarctica
+          Hello! 
+          My name is Ismeny Castro, I'm born and raised in Austin, Texas. 
+          I love doing outdoor activites like going to the Greenbelt, paddleboarding on Town Lake, and picnics at Zilker Park with my dogs and friends. 
+          I'm new to the tech field and excited to learn more about web development and pursue a career as a Full Stack MERN Developer.
           </Typography>
           <div style={{ textAlign:'center'}}>
           <a href='https://www.linkedin.com/in/ismeny-castro-b8b32821b/' target='_blank' rel='noreferrer'><i className="fab fa-linkedin footer-icons"></i></a>
-          <a href='https://github.com/Ismeny' target='_blank' rel='norefferer'><i className="fab fa-github footer-icons"></i></a>
-          <a href='mailto:menysag2@gmail.com'><i className="fas fa-envelope footer-icons"></i></a> 
+          <a href='https://github.com/Ismeny' target='_blank' rel="noreferrer"><i className="fab fa-github footer-icons"></i></a>
+          <a href='mailto:menysag2@gmail.com' rel="noreferrer"><i className="fas fa-envelope footer-icons"></i></a> 
           </div>
         </CardContent>
       </CardActionArea>
@@ -81,8 +83,8 @@ export default function Team() {
           </Typography>
           <div style={{ textAlign:'center'}}>
           <a href='https://www.linkedin.com/in/jaylanewton/' target='_blank' rel='noreferrer'><i className="fab fa-linkedin footer-icons"></i></a>
-          <a href='https://github.com/jayladenae' target='_blank' rel='norefferer'><i className="fab fa-github footer-icons"></i></a>
-          <a href='mailto:jayladenaer@gmail.com'><i className="fas fa-envelope footer-icons"></i></a> 
+          <a href='https://github.com/jayladenae' target='_blank' rel="noreferrer"><i className="fab fa-github footer-icons"></i></a>
+          <a href='mailto:jayladenaer@gmail.com'><i className="fas fa-envelope footer-icons" rel="noreferrer"></i></a> 
           </div>
         </CardContent>
       </CardActionArea>
@@ -105,8 +107,8 @@ export default function Team() {
           </Typography>
           <div style={{ textAlign:'center'}}>
           <a href='https://www.linkedin.com/in/alexis-gonzalez-07/' target='_blank' rel='noreferrer'><i className="fab fa-linkedin footer-icons"></i></a>
-          <a href='https://github.com/AlexisGonzalez07' target='_blank' rel='norefferer'><i className="fab fa-github footer-icons"></i></a>
-          <a href='mailto:alexis.gonzalez07@gmail.com'><i className="fas fa-envelope footer-icons"></i></a> 
+          <a href='https://github.com/AlexisGonzalez07' target='_blank' rel="noreferrer"><i className="fab fa-github footer-icons"></i></a>
+          <a href='mailto:alexis.gonzalez07@gmail.com'><i className="fas fa-envelope footer-icons" rel="noreferrer"></i></a> 
           </div>
         </CardContent>
       </CardActionArea>
@@ -129,8 +131,8 @@ export default function Team() {
           </Typography>
           <div style={{ textAlign:'center'}}>
           <a href='https://www.linkedin.com/in/nicole-dodge5/' target='_blank' rel='noreferrer'><i className="fab fa-linkedin footer-icons"></i></a>
-          <a href='https://github.com/nicoledodge' target='_blank' rel='norefferer'><i className="fab fa-github footer-icons"></i></a>
-          <a href='mailto:nicoledodge5@gmail.com'><i className="fas fa-envelope footer-icons"></i></a> 
+          <a href='https://github.com/nicoledodge' target='_blank' rel="noreferrer"><i className="fab fa-github footer-icons"></i></a>
+          <a href='mailto:nicoledodge5@gmail.com'><i className="fas fa-envelope footer-icons" rel="noreferrer"></i></a> 
           </div>
         </CardContent>
       </CardActionArea>

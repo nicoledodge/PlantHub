@@ -18,7 +18,7 @@ import Login from "./Login"
 import SignUp from "./SignUp"
 import {Modal} from "@mui/material";
 
-const pages = ['MyGarden', 'Forum', 'PlantCare'];
+const pages = ['MyGarden', 'Forum', 'PlantFacts'];
 
 
 const Nav = () => {
@@ -134,7 +134,9 @@ const Nav = () => {
                             component="div"
                             sx={{flexGrow: 1, color: 'white', display: {xs: 'flex', md: 'none'}}}
                         >
+                            <Link to="/" >
                             <img id="logo" src="./images/logo.png" alt="Planthub Logo"/>
+                            </Link>
                         </Typography>
                         <Box sx={{
                             flexGrow: 1,

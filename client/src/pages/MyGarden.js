@@ -11,19 +11,21 @@ import {
   Header,
   Image,
   List,
+  Modal
 } from "semantic-ui-react";
 import Card from "@mui/material/Card";
 import CardContent from "@mui/material/CardContent";
 import CardMedia from "@mui/material/CardMedia";
 import Typography from "@mui/material/Typography";
-import { CardActionArea } from "@mui/material";
+import { autocompleteClasses, CardActionArea } from "@mui/material";
 import Box from "@mui/material/Box";
 import { useQuery, useMutation } from "@apollo/client";
 import { QUERY_ME } from "../utils/queries";
 import { ADD_WATER, REMOVE_PLANT } from "../utils/mutations";
-
+// import Testimonials from "./Testimonials"
+import AddPlantForm from "../components/AddPlant";
 import Auth from '../utils/auth'
-
+const square = { width: 175, height: 175 }
 //possibly make every card dynamic
 //also thinking about making mygarden a parent div so we can pass the cards through as components as well as the detailed view of each plant
 export default function MyGarden() {
@@ -33,7 +35,13 @@ export default function MyGarden() {
 
   const [removePlant, { err }] = useMutation(REMOVE_PLANT);
 
-  console.log(data)
+  const [plantToggle, setPlantToggle] = React.useState(false);
+
+  const handlePlantModal = () => {
+    setPlantToggle(!plantToggle);
+};
+
+//   console.log(data)
 
   const plantData = data?.me.myPlants || [];
 
@@ -48,6 +56,7 @@ export default function MyGarden() {
   const [percent, setPercent] = useState(0);
   const [plantCount, setPlantCount] = useState(0);
   const [username, setUsername] = useState("");
+  const [plantForm, setPlantForm]= useState('')
   // const [birthday, setBirthday] = useState('')
 
   const handleAddWater = async (plantId) => {
@@ -87,6 +96,11 @@ export default function MyGarden() {
       console.error(err);
     }
   };
+  
+  // const handleFormRender= (e) => {
+  //   e.preventdefault()
+  // setPlantToggle(!plantToggle)
+  // }
 
   useEffect(() => {
     if (data) {
@@ -300,7 +314,7 @@ export default function MyGarden() {
               m: 1,
             }}
           >
-              <Grid stackable columns={1} width={12}>
+              <Grid stackable columns={1} width={16} justifyContent='center'>
               <Grid.Column textAlign="center" width={16}>
                 <Typography
                   gutterBottom
@@ -321,8 +335,32 @@ export default function MyGarden() {
                             <List.Item as='a'>Help Center</List.Item>
                         </List> */}
               </Grid.Column>
-              <Grid.Column mobile={16} tablet={8} computer={4}>
-              <Card
+              <Grid.Column textAlign="center" width={16}>
+                {plantForm}
+              </Grid.Column>
+              <Grid.Column textAlign="center" justifyContent='center' width={16}>
+              <div justifyContent='center' style={{margin: 0}}>
+    <div style={{ textAlign: "center" }}>
+                          <Button
+                            className="addplantbtn"
+                            icon
+                            labelPosition="left"
+                            primary
+                            size="small"
+                            style={{ backgroundColor: "#EBDBAE" }}
+                            onClick={(e) => {
+                                 handlePlantModal(e)
+                            }}                          >
+                            <Icon color="#4f5902" name="remove circle" />
+                            <Typography variant="body1" color="#4f5902">
+                              Add Plant To Garden
+                            </Typography>
+                          </Button>
+                        </div>
+  </div>
+              {/* <Card
+                component='div'
+                justifyContent='center'
                 id="addplant-card"
                 sx={{ maxWidth: 345, margin: 1, bgcolor: "#d9cba1" }}
                 >
@@ -339,7 +377,7 @@ export default function MyGarden() {
                 <div align="center" style={{ backgroundColor: "#4f5902" }}>
                 <Button
                 icon
-                labelPosition="center"
+                labelPosition="left"
                 primary
                 style={{ backgroundColor: "#4f5902" }}
                 >
@@ -361,7 +399,7 @@ export default function MyGarden() {
                 </div>
                 </CardContent>
                 </CardActionArea>
-            </Card>
+            </Card> */}
             </Grid.Column>
               {/* <Grid.Row width={12}> */}
               {/* <Grid.Column textAlign="center" width={16}> */}
@@ -423,9 +461,8 @@ export default function MyGarden() {
                         <div style={{ textAlign: "center" }}>
                           <Button
                             className="removegardenbtn"
-                            floated="center"
                             icon
-                            labelPosition="center"
+                            labelPosition="left"
                             primary
                             size="small"
                             style={{ backgroundColor: "#4f5902" }}
@@ -453,6 +490,14 @@ export default function MyGarden() {
             </Box>
             </div>
             </div>
+            <Modal
+                open={plantToggle}
+                onClose={handlePlantModal}
+                aria-labelledby="modal-modal-title"
+                aria-describedby="modal-modal-description"
+            >
+               <AddPlantForm/>
+                          </Modal>
             </>
             );
         }
