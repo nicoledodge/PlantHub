@@ -1,27 +1,29 @@
 import React, {useEffect, useState} from 'react'
 import { Card, Icon, Progress, Grid, Image, Form, Button } from 'semantic-ui-react'
 import { useQuery} from "@apollo/client";
-import { QUERY_USER } from "../utils/queries";
-const ProfileStatus = () => <Progress percent={25} color='olive'  label='Level: Newbie' style={{width: '300px', display: 'flex', alignItems: 'center', }} />
-const NumbofPlants = () => ( <Progress progress='value' color='brown' value={'10'} label='Number of Plants' style={{width: '300px', display: 'flex', alignItems: 'center', }}/>)
+import { QUERY_ME } from "../utils/queries";
+import Auth from '../utils/auth'
 
 export default function Profile() {
-  const { loading, data } = useQuery(QUERY_USER);
-
+  const { loading, data } = useQuery(QUERY_ME);
+  
   const [plantCount, setPlantCount] = useState(0);
-
+  
   const [username, setUsername] = useState("");
+  
+  
+  const plantData = data?.me.myPlants || [];
+  
+  const userData = data?.me || [];
 
-
-  const plantData = data?.user.myPlants || [];
-
-  const userData = data?.user || [];
+  const ProfileStatus = () => <Progress percent={25} color='olive'  label='Level: Newbie' style={{width: '300px', display: 'flex', alignItems: 'center', }} />
+  const NumbofPlants = () => ( <Progress progress='value' color='brown' value={plantCount} label='Number of Plants' style={{width: '300px', display: 'flex', alignItems: 'center', }}/>)
 
   useEffect(() => {
-    if (plantData) {
+    if (data) {
       // console.log(data.length)
       // console.log(plantData.length)
-      console.log(plantData);
+      console.log(data);
       console.log(userData.username);
       //console.log(parseInt(plantData[0].waterNeeded))
       // // document.plant = data
@@ -35,7 +37,7 @@ export default function Profile() {
       setPlantCount(plantData.length);
       setUsername(userData.username);
     }
-  }, [userData, plantData]);
+  }, [data, userData, plantData]);
 
 
      return (

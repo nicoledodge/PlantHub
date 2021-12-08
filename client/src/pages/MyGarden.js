@@ -19,23 +19,25 @@ import Typography from "@mui/material/Typography";
 import { CardActionArea } from "@mui/material";
 import Box from "@mui/material/Box";
 import { useQuery, useMutation } from "@apollo/client";
-import { QUERY_USER } from "../utils/queries";
+import { QUERY_ME } from "../utils/queries";
 import { ADD_WATER, REMOVE_PLANT } from "../utils/mutations";
 
-// import Auth from '../utils/auth'
+import Auth from '../utils/auth'
 
 //possibly make every card dynamic
 //also thinking about making mygarden a parent div so we can pass the cards through as components as well as the detailed view of each plant
 export default function MyGarden() {
-  const { loading, data, refetch } = useQuery(QUERY_USER);
+  const { loading, data, refetch } = useQuery(QUERY_ME);
 
   const [addWater, { error }] = useMutation(ADD_WATER);
 
   const [removePlant, { err }] = useMutation(REMOVE_PLANT);
 
-  const plantData = data?.user.myPlants || [];
+  console.log(data)
 
-  const userData = data?.user || [];
+  const plantData = data?.me.myPlants || [];
+
+  const userData = data?.me || [];
 
   // const [plantData, setPlantData] = useState(data?.user.myPlants|| [])
 
@@ -50,11 +52,11 @@ export default function MyGarden() {
 
   const handleAddWater = async (plantId) => {
     // get token
-    // const token = Auth.loggedIn() ? Auth.getToken() : null;
+    const token = Auth.loggedIn() ? Auth.getToken() : null;
 
-    // if (!token) {
-    //   return false;
-    // }
+    if (!token) {
+      return false;
+    }
     // const plantData = data?.user.myPlants || {};
 
     console.log("PlantID:" + plantId);
@@ -69,11 +71,11 @@ export default function MyGarden() {
 
   const handleDeletePlant = async (plantId) => {
     // get token
-    // const token = Auth.loggedIn() ? Auth.getToken() : null;
+    const token = Auth.loggedIn() ? Auth.getToken() : null;
 
-    // if (!token) {
-    //   return false;
-    // }
+    if (!token) {
+      return false;
+    }
     // const plantData = data?.user.myPlants || {};
 
     console.log("PlantID:" + plantId);
@@ -87,8 +89,8 @@ export default function MyGarden() {
   };
 
   useEffect(() => {
-    if (plantData) {
-      // console.log(data.length)
+    if (data) {
+      console.log(data)
       // console.log(plantData.length)
       console.log(plantData);
       console.log(userData.username);

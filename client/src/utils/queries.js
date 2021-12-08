@@ -8,8 +8,10 @@ export const QUERY_ME = gql`
       firstName
       lastName
       email
+      location
       createdAt
       myPlants {
+        _id
         name
         nickname
         plantType
