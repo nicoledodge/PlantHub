@@ -7,7 +7,9 @@ import {
   Table,
   Segment,
   Grid,
+  Label,
   Header,
+  Image,
   List,
 } from "semantic-ui-react";
 import Card from "@mui/material/Card";
@@ -17,22 +19,25 @@ import Typography from "@mui/material/Typography";
 import { CardActionArea } from "@mui/material";
 import Box from "@mui/material/Box";
 import { useQuery, useMutation } from "@apollo/client";
-import { QUERY_USER } from "../utils/queries";
+import { QUERY_ME } from "../utils/queries";
 import { ADD_WATER, REMOVE_PLANT } from "../utils/mutations";
-// import Auth from '../utils/auth'
+
+import Auth from '../utils/auth'
 
 //possibly make every card dynamic
 //also thinking about making mygarden a parent div so we can pass the cards through as components as well as the detailed view of each plant
 export default function MyGarden() {
-  const { loading, data } = useQuery(QUERY_USER);
+  const { loading, data, refetch } = useQuery(QUERY_ME);
 
   const [addWater, { error }] = useMutation(ADD_WATER);
 
   const [removePlant, { err }] = useMutation(REMOVE_PLANT);
 
-  const plantData = data?.user.myPlants || [];
+  console.log(data)
 
-  const userData = data?.user || [];
+  const plantData = data?.me.myPlants || [];
+
+  const userData = data?.me || [];
 
   // const [plantData, setPlantData] = useState(data?.user.myPlants|| [])
 
@@ -47,11 +52,11 @@ export default function MyGarden() {
 
   const handleAddWater = async (plantId) => {
     // get token
-    // const token = Auth.loggedIn() ? Auth.getToken() : null;
+    const token = Auth.loggedIn() ? Auth.getToken() : null;
 
-    // if (!token) {
-    //   return false;
-    // }
+    if (!token) {
+      return false;
+    }
     // const plantData = data?.user.myPlants || {};
 
     console.log("PlantID:" + plantId);
@@ -66,11 +71,11 @@ export default function MyGarden() {
 
   const handleDeletePlant = async (plantId) => {
     // get token
-    // const token = Auth.loggedIn() ? Auth.getToken() : null;
+    const token = Auth.loggedIn() ? Auth.getToken() : null;
 
-    // if (!token) {
-    //   return false;
-    // }
+    if (!token) {
+      return false;
+    }
     // const plantData = data?.user.myPlants || {};
 
     console.log("PlantID:" + plantId);
@@ -84,8 +89,8 @@ export default function MyGarden() {
   };
 
   useEffect(() => {
-    if (plantData) {
-      // console.log(data.length)
+    if (data) {
+      console.log(data)
       // console.log(plantData.length)
       console.log(plantData);
       console.log(userData.username);
@@ -94,18 +99,18 @@ export default function MyGarden() {
       let newPercent = plantData.map((plant, i) => {
         let x = plant.waterAdded;
         let y = plant.waterNeeded;
-        return (x / y) * 100;
+        return ((x / y) * 100).toFixed();
       });
       //     console.log(newPercent)
       setPercent(newPercent);
       setPlantCount(plantData.length);
       setUsername(userData.username);
     }
-  }, [data, plantData]);
+  }, [data, plantData, userData]);
 
   return (
     <>
-      <br></br>
+      <div style={{ backgroundColor: "#EBDBAE" }}></div>
       <div className="garden-container">
         <br></br>
         <div style={{ width: "100%" }}>
@@ -114,15 +119,24 @@ export default function MyGarden() {
               display: "flex",
               flexWrap: "wrap",
               justifyContent: "center",
-              p: 1,
+              p: 2,
               m: 1,
             }}
           >
-            <Grid divided inverted stackable>
-              <Grid.Column width={14}>
-                <Header inverted as="h4">
-                  Hello {username}, welcome to your garden!
-                </Header>
+            <Grid stackable columns={1}>
+              <Grid.Column textAlign="center" width={16}>
+                <Typography
+                  gutterBottom
+                  variant="h4"
+                  component="div"
+                  style={{
+                    textAlign: "center",
+                    fontFamily: "Fuzzy Bubbles, cursive",
+                    color: "#EBDBAE",
+                  }}
+                >
+                  Hello {username}, welcome to your garden
+                </Typography>
                 {/* <List link inverted>
                             <List.Item as='a'>FAQs</List.Item>
                             <List.Item as='a'>Privacy</List.Item>
@@ -130,7 +144,12 @@ export default function MyGarden() {
                             <List.Item as='a'>Help Center</List.Item>
                         </List> */}
               </Grid.Column>
-              <Grid.Column width={16} textAlign="center">
+              <Grid.Column
+                width={16}
+                textAlign="center"
+                className="plantTable"
+                style={{ backgroundColor: "#EBDBAE" }}
+              >
                 <Table compact celled>
                   <Table.Header>
                     <Table.Row>
@@ -142,6 +161,7 @@ export default function MyGarden() {
                           style={{
                             textAlign: "center",
                             fontFamily: "Fuzzy Bubbles, cursive",
+                            color: "#4f5902",
                           }}
                         >
                           Plant
@@ -155,6 +175,7 @@ export default function MyGarden() {
                           style={{
                             textAlign: "center",
                             fontFamily: "Fuzzy Bubbles, cursive",
+                            color: "#4f5902",
                           }}
                         >
                           Nickname
@@ -168,24 +189,26 @@ export default function MyGarden() {
                           style={{
                             textAlign: "center",
                             fontFamily: "Fuzzy Bubbles, cursive",
+                            color: "#4f5902",
                           }}
                         >
                           Hydration Status
                         </Typography>
                       </Table.HeaderCell>
-                        <Table.HeaderCell>
-                          <Typography
-                            gutterBottom
-                            variant="h5"
-                            component="div"
-                            style={{
-                              textAlign: "center",
-                              fontFamily: "Fuzzy Bubbles, cursive",
-                            }}
-                          >
-                            Water
-                          </Typography>
-                        </Table.HeaderCell>
+                      <Table.HeaderCell>
+                        <Typography
+                          gutterBottom
+                          variant="h5"
+                          component="div"
+                          style={{
+                            textAlign: "center",
+                            fontFamily: "Fuzzy Bubbles, cursive",
+                            color: "#4f5902",
+                          }}
+                        >
+                          Water
+                        </Typography>
+                      </Table.HeaderCell>
                     </Table.Row>
                   </Table.Header>
 
@@ -194,38 +217,55 @@ export default function MyGarden() {
                       <Table.Row>
                         <Table.Cell>
                           {" "}
-                          <Typography variant="body2" color="text.secondary">
+                          <Typography
+                            variant="body2"
+                            color="#4f5902"
+                            align="center"
+                          >
                             {plant.name}
                           </Typography>
                         </Table.Cell>
                         <Table.Cell>
                           {" "}
-                          <Typography variant="body2" color="text.secondary">
-                            {plant.name}
+                          <Typography
+                            variant="body2"
+                            color="#4f5902"
+                            align="center"
+                          >
+                            {plant.nickname}
                           </Typography>
                         </Table.Cell>
                         <Table.Cell>
                           <Progress percent={percent[i]} color="blue" active>
-                            <Typography variant="body2" color="text.secondary">
-                              {percent[i]}% watered this week
+                            <Typography variant="body2" color="#4f5902">
+                              {percent[i]}% watered this month
                             </Typography>
                           </Progress>
                         </Table.Cell>
                         <Table.Cell>
-                          <Button
-                            id={plant.name}
-                            floated="right"
-                            icon
-                            labelPosition="right"
-                            primary
-                            size="small"
-                            onClick={() => handleAddWater(plant._id)}
-                          >
-                            <Icon name="tint" />
-                            <Typography variant="body2" color="text.secondary">
-                              Add Water
-                            </Typography>
-                          </Button>
+                          <div align="center">
+                            <Button
+                              compact
+                              id={plant.name}
+                              icon
+                              labelPosition="right"
+                              primary
+                              size="small"
+                              onClick={async () => {
+                                  await handleAddWater(plant._id)
+                                  await refetch()
+                              }}
+                            >
+                              <Icon name="tint" />
+                              <Typography
+                                align="center"
+                                variant="body2"
+                                color="white"
+                              >
+                                Add Water
+                              </Typography>
+                            </Button>
+                          </div>
                         </Table.Cell>
                       </Table.Row>
                     ))}
@@ -236,7 +276,7 @@ export default function MyGarden() {
                       <Table.HeaderCell />
                       <Table.HeaderCell colSpan="8">
                         <Segment textAlign="right">
-                          <Typography variant="body2" color="text.secondary">
+                          <Typography variant="body1" color="#4f5902">
                             You have {plantCount} plants in your garden{" "}
                           </Typography>
                         </Segment>
@@ -245,87 +285,175 @@ export default function MyGarden() {
                   </Table.Footer>
                 </Table>
               </Grid.Column>
-              <Grid.Column width={3}></Grid.Column>
-            </Grid>
-          </Box>
-
-          <Box
+              </Grid>
+              </Box>
+              {/* <Grid.Column 
+            width={16}
+            columns={2}
+            textAlign="center"> */}
+            <Box
             sx={{
               display: "flex",
               flexWrap: "wrap",
               justifyContent: "center",
-              p: 1,
+              p: 2,
               m: 1,
             }}
           >
-            {plantData.map((plant, i) => (
+              <Grid stackable columns={1} width={12}>
+              <Grid.Column textAlign="center" width={16}>
+                <Typography
+                  gutterBottom
+                  variant="h4"
+                  component="div"
+                  style={{
+                    textAlign: "center",
+                    fontFamily: "Fuzzy Bubbles, cursive",
+                    color: "#EBDBAE",
+                  }}
+                >
+                  Manage your Garden
+                </Typography>
+                {/* <List link inverted>
+                            <List.Item as='a'>FAQs</List.Item>
+                            <List.Item as='a'>Privacy</List.Item>
+                            <List.Item as='a'>Careers</List.Item>
+                            <List.Item as='a'>Help Center</List.Item>
+                        </List> */}
+              </Grid.Column>
+              <Grid.Column mobile={16} tablet={8} computer={4}>
               <Card
-                id="team-card"
+                id="addplant-card"
                 sx={{ maxWidth: 345, margin: 1, bgcolor: "#d9cba1" }}
-              >
+                >
                 <CardActionArea>
-                  <CardMedia
-                    component="img"
-                    height="200"
-                    image="./images/nikki-profile-pic.jpg"
-                    alt={plant.name}
-                  />
-                  <CardContent>
-                    <Typography
-                      gutterBottom
-                      variant="h5"
-                      component="div"
-                      style={{
-                        textAlign: "center",
-                        fontFamily: "Fuzzy Bubbles, cursive",
-                      }}
-                    >
-                      {plant.name}
-                    </Typography>
-                    <List>
-                      <List.Item>
-                        {" "}
-                        <Typography variant="body2" color="text.secondary">
-                          Plant Birthday: {plant.createdAt}
-                        </Typography>
-                      </List.Item>
-                      <List.Item>
-                        {" "}
-                        <Typography variant="body2" color="text.secondary">
-                          Plant Birthday: {plant.createdAt}
-                        </Typography>
-                      </List.Item>
-                      <List.Item>
-                        {" "}
-                        <Typography variant="body2" color="text.secondary">
-                          Plant Birthday: {plant.createdAt}
-                        </Typography>
-                      </List.Item>
-                    </List>
-
-                    <div style={{ textAlign: "center" }}>
-                      <Button
-                        id={plant.name}
-                        floated="center"
-                        icon
-                        labelPosition="center"
-                        primary
-                        size="small"
-                        onClick={() => handleDeletePlant(plant._id)}
-                      >
-                        <Icon name="tint" />
-                        <Typography variant="body2" color="text.secondary">
-                          Remove from Garden
-                        </Typography>
-                      </Button>
-                    </div>
-                  </CardContent>
+                <CardMedia
+                component="img"
+                height="319"
+                image="./images/moneytree.webp"
+                alt=""
+                />
+                <CardContent>
+                <br></br>
+                <br></br>
+                <div align="center" style={{ backgroundColor: "#4f5902" }}>
+                <Button
+                icon
+                labelPosition="center"
+                primary
+                style={{ backgroundColor: "#4f5902" }}
+                >
+                <Icon name="add circle" />
+                
+                <Typography
+                gutterBottom
+                variant="h5"
+                component="div"
+                style={{
+                    textAlign: "center",
+                    fontFamily: "Fuzzy Bubbles, cursive",
+                    color: "white",
+                }}
+                >
+                Add A Plant
+                </Typography>
+                </Button>
+                </div>
+                </CardContent>
                 </CardActionArea>
-              </Card>
-            ))}
-          </Box>
-        </div>
-      </div>
-    </>
-  );
-}
+            </Card>
+            </Grid.Column>
+              {/* <Grid.Row width={12}> */}
+              {/* <Grid.Column textAlign="center" width={16}> */}
+              {/* <Grid align='center' inverted stackable columns={2}> */}
+              {plantData.map((plant, i) => (
+                  <Grid.Column textAlign='center' mobile={16} tablet={8} computer={4}>
+                  <Card
+                    id="plant-card"
+                    sx={{ maxWidth: 345, margin: 1, bgcolor: "#EBDBAE" }}
+                  >
+                    <CardActionArea>
+                      <CardMedia
+                        component="img"
+                        height="200"
+                        image="./images/nikki-profile-pic.jpg"
+                        alt={plant.name}
+                        style={{ backgroundColor: "#4f5902" }}
+                      />
+                      <CardContent>
+                        <Typography
+                          gutterBottom
+                          variant="h4"
+                          component="div"
+                          style={{
+                            textAlign: "center",
+                            fontFamily: "Fuzzy Bubbles, cursive",
+                            color: "4f5902",
+                          }}
+                        >
+                          {plant.nickname}
+                        </Typography>
+                        <List>
+                          <List.Item>
+                            {" "}
+                            <Typography variant="body1" color="4f5902">
+                              Type: {plant.plantType}
+                            </Typography>
+                          </List.Item>
+                          <List.Item>
+                            {" "}
+                            <Typography variant="body1" color="4f5902">
+                              Birthday: {plant.createdAt}
+                            </Typography>
+                          </List.Item>
+                          <List.Item>
+                            {" "}
+                            <Typography variant="body1" color="4f5902">
+                              Size: {plant.plantSize}
+                            </Typography>
+                          </List.Item>
+                          <List.Item>
+                            {" "}
+                            <Typography variant="body1" color="4f5902">
+                              Days watered this month: {plant.waterAdded}
+                            </Typography>
+                          </List.Item>
+                        </List>
+
+                        <div style={{ textAlign: "center" }}>
+                          <Button
+                            className="removegardenbtn"
+                            floated="center"
+                            icon
+                            labelPosition="center"
+                            primary
+                            size="small"
+                            style={{ backgroundColor: "#4f5902" }}
+                            onClick={async () => {
+                                await handleDeletePlant(plant._id)
+                                await refetch()
+                            }}                          >
+                            <Icon name="remove circle" />
+                            <Typography variant="body1" color="white">
+                              Remove from Garden
+                            </Typography>
+                          </Button>
+                        </div>
+                      </CardContent>
+                    </CardActionArea>
+                  </Card>
+              </Grid.Column>
+                //   </div>
+              ))}
+
+            </Grid>
+              {/* </Grid.Column> */}
+              {/* </Grid.Row> */}
+            {/* </Grid> */}
+            </Box>
+            </div>
+            </div>
+            </>
+            );
+        }
+        

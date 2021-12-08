@@ -6,6 +6,7 @@ export const LOGIN_USER = gql`
       token
       user {
         _id
+        email
         username
       }
     }
@@ -25,10 +26,13 @@ export const ADD_USER = gql`
 `;
 
 export const ADD_PLANT = gql`
-  mutation addPlant($name: String!, $waterNeeded: Int!) {
-    addPlant(name: $name, waterNeeded: $waterNeeded) {
+  mutation addPlant($name: String!, $nickname: String, $plantType: String!, $plantSize: String!, $waterNeeded: Int!) {
+    addPlant(name: $name, nickname: $nickname, plantType: $plantType, plantSize: $plantSize, waterNeeded: $waterNeeded) {
       _id
       name
+      nickname
+      plantType
+      plantSize
       waterNeeded
     }
   }
