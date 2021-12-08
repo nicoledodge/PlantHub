@@ -23,6 +23,10 @@ body {
     margin: auto;
     padding-top: 6vh;
 }
+#addPlantHead {
+    font-size: 2em;
+    padding-top: 10px;
+}
 #ContactPar {
     font-size: 2.84em;
     font-family: 'Oswald', sans-serif;
