@@ -15,8 +15,7 @@ function SizeChartModal() {
       onOpen={() => setOpen(true)}
       open={open}
       size='small'
-      trigger={<Button>Size Chart</Button>}
-    >
+      trigger={<Button>Size Chart</Button>}    >
       <Header>
         Size Chart
       </Header>
