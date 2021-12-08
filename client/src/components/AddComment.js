@@ -57,26 +57,26 @@ const AddComment = (props) => {
       </h1>
       {Auth.loggedIn() ? (
         <>
-        <Form reply onSubmit={handleFormSubmit}>
-          <Form.TextArea
-            name="postText"
-            placeholder="Leaf a Thought..."
-            value={postText}
-            className="form-input w-100"
-            onChange={handleChange}
-          />
-          <Button
-            style={{
-              marginBottom: "20px",
-              backgroundColor: "rgba(79,89,2,0.93)",
-            }}
-            content="Post"
-            labelPosition="left"
-            icon="edit"
-            primary
-            type="submit"
-          />
-        </Form>
+          <Form reply onSubmit={handleFormSubmit}>
+            <Form.TextArea
+              name="postText"
+              placeholder="Leaf a Thought..."
+              value={postText}
+              className="form-input w-100"
+              onChange={handleChange}
+            />
+            <Button
+              style={{
+                marginBottom: "20px",
+                backgroundColor: "rgba(79,89,2,0.93)",
+              }}
+              content="Post"
+              labelPosition="left"
+              icon="edit"
+              primary
+              type="submit"
+            />
+          </Form>
         </>
       ) : (
         <p>You need to be logged in to add a comment</p>

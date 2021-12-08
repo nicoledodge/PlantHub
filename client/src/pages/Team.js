@@ -1,15 +1,14 @@
 import React from "react";
-import Card from '@mui/material/Card';
-import CardContent from '@mui/material/CardContent';
-import CardMedia from '@mui/material/CardMedia';
-import Typography from '@mui/material/Typography';
-import { CardActionArea } from '@mui/material';
-import Box from '@mui/material/Box';
-
+import Card from "@mui/material/Card";
+import CardContent from "@mui/material/CardContent";
+import CardMedia from "@mui/material/CardMedia";
+import Typography from "@mui/material/Typography";
+import { CardActionArea } from "@mui/material";
+import Box from "@mui/material/Box";
 
 export default function Team() {
   return (
-      <>
+    <>
       <div className="team-container">
       <h2 style={{fontFamily:'Oswald, sans-serif', marginLeft:'20px', color: '#d9cba0'}}>The People</h2>
       <br></br>
@@ -148,7 +147,3 @@ export default function Team() {
     </>
   );
 }
-
-
-
-
