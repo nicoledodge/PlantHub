@@ -16,16 +16,28 @@
           "commentCreator": "GreenMan39"
         },
         {"commentText": "check the pot - may be overwatering or the plant needs to be repotted.",
-          "commentCreator": "Johnny"
+          "commentCreator": "Jenny"
         }
       ]
     },
     {
       "postText": "Hello all. My rubber tree is in need of a little trimming. Several of the branches are getting extremely long and the plant is looking somewhat lopsided. If I trim a few of the branches, can I root and directly plant the branch in new soil? Will a new tree start growing? Thanks for the advice!",
-      "postCreator": "Jenny",
+      "postCreator": "Johnny",
       "comments":[
         {"commentText": "I've rooted F. elastica cuttings in soil. Sticking them right into the pot with the main plant works sometimes for me but I have the best success putting them in smaller pots and making sure they maintain higher humidity, keep the soil moist but not wet, and give them bright light. Make sure you have some of the stem and not just the leaf petiole. ",
           "commentCreator": "PurpleRainbow"
+        }
+      ]
+    },
+    {
+      "postText": "What are some plants that are non-toxic to cats and dog?",
+      "postCreator": "JosephAltuzarra",
+      "comments":[
+        {"commentText": "Rattlesnake plants are pet friendly! They thrive when placed away from direct light, in an ideal temperature range of 70–80 degrees F. They’ll need watering when the top of the soil feels dry to the touch; they also enjoy a spritz if their leaves are looking dry. ",
+          "commentCreator": "Allen"
+        },
+        {"commentText": "Here check out this link that provides a list of pet friendly plants.https://www.architecturaldigest.com/story/pet-friendly-houseplants",
+          "commentCreator": "Parker"
         }
       ]
     }
