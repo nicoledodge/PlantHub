@@ -1,7 +1,8 @@
 import React from "react";
-import { Comment, Feed } from "semantic-ui-react";
+import { Comment, Feed, Button, Icon } from "semantic-ui-react";
 import ReplyComment from "./ReplyComment";
 import Likes from "./Likes";
+import facts from "../pages/FactsDB";
 
 const FeedExampleBasic = (props) => (
   <Feed>
@@ -42,13 +43,31 @@ const FeedExampleBasic = (props) => (
               </Comment>
             ))}
           </Comment.Group>
-          <Feed.Meta style={{ display: "flex", flexDirection: "row" }}>
+          <Feed.Meta style={{ display: "flex", flexDirection: "row", float: 'left' }}>
             <Feed.Like>
               <Likes />
             </Feed.Like>
             {/*<Comment.Actions>*/}
             <ReplyComment postId={post._id} />
             {/*</Comment.Actions>*/}
+          </Feed.Meta>
+          <Feed.Meta style={{ display: "flex", flexDirection: "row", justifyContent:'center' }}>
+            <Button
+                className="ml-3"
+                onClick={() => {
+                  generateRandomFact(facts);
+                  window.open(
+                      "https://twitter.com/intent/tweet/?text=" +
+                      encodeURIComponent(fact.fact)
+                  );
+                }}
+                type="submit"
+            >
+              <Button circular color='facebook' icon='facebook' />
+            </Button>
+            <Button circular color='twitter' icon='twitter' />
+            <Button circular color='linkedin' icon='linkedin' />
+            <Button circular color='google plus' icon='google plus' />
           </Feed.Meta>
         </Feed.Content>
       </Feed.Event>
