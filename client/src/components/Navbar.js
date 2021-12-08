@@ -18,7 +18,7 @@ import Login from "./Login"
 import SignUp from "./SignUp"
 import {Modal} from "@mui/material";
 
-const pages = ['MyGarden', 'Forum', 'PlantCare'];
+const pages = ['MyGarden', 'Forum', 'PlantFacts'];
 
 
 const Nav = () => {

@@ -70,7 +70,7 @@ const Home = () => (
                 <p style={{ fontSize: '1.33em' }}>
                     If your potted houseplants dry out too quickly after watering, try this simple trick for keeping the soil moist longer. When repotting, tuck a damp sponge into the bottom of the pot before filling with soil. It will act as a water reservoir and may help prevent a gusher if you accidentally overwater.
                 </p>
-                <Button href='/PlantCare' size='large'>
+                <Button href='/PlantFacts' size='large'>
                     Read More About Plant Facts!
                 </Button>
             </Container>
