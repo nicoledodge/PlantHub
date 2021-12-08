@@ -7,7 +7,7 @@ const HeaderExampleUsersIcon = () => (
     <>
     <div className='contact-container'>
     <Header as='h2' icon textAlign='center'>
-    <Header.Content style={{fontFamily:'Oswald, sans-serif', color: '#d9cba0', fontSize: '40px',}}>Contact Us</Header.Content>
+    <Header.Content style={{fontFamily:'Oswald, sans-serif', color: 'white', fontSize: '40px', paddingTop: '20px'}}>Contact Us</Header.Content>
   </Header>
   <div id="ContactContainer">
     <Grid stackable columns={2}>
