@@ -1,10 +1,58 @@
 [
-    {
-      "name": "Cactus",
-      "waterNeeded": 1
-    },
-    {
-        "name": "Tree",
-        "waterNeeded": "10"
-    }
-  ]
+  {
+    "name": "Cactus",
+    "nickname": "Betty",
+    "plantType": "Outdoor",
+    "plantSize": "M",
+    "waterNeeded": 2
+  },
+  {
+    "name": "Fiddle Leaf Fig",
+    "nickname": "Letty",
+    "plantType": "Indoor",
+    "plantSize": "S",
+    "waterNeeded": 14
+  },
+  {
+    "name": "Peace Lily",
+    "nickname": "Lilyyy",
+    "plantType": "Indoor",
+    "plantSize": "S",
+    "waterNeeded": 20
+  },
+  {
+    "name": "Aloe Vera",
+    "nickname": "Mrs. Wang",
+    "plantType": "Indoor",
+    "plantSize": "S",
+    "waterNeeded": 5
+  },
+  {
+    "name": "Lucky Bamboo",
+    "nickname": "Bambi",
+    "plantType": "Indoor",
+    "plantSize": "L",
+    "waterNeeded": 20
+  },
+  {
+    "name": "Croton",
+    "nickname": "Sunset",
+    "plantType": "Outdoor",
+    "plantSize": "M",
+    "waterNeeded": 14
+  },
+  {
+    "name": "Hibiscus",
+    "nickname": "Bloomer",
+    "plantType": "Outdoor",
+    "plantSize": "M",
+    "waterNeeded": 20
+  },
+  {
+    "name": "Boxwood",
+    "nickname": "Shrubbers",
+    "plantType": "Outdoor",
+    "plantSize": "M",
+    "waterNeeded": 14
+  }
+]

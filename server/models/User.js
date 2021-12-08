@@ -2,7 +2,7 @@ const mongoose = require('mongoose');
 
 const { Schema } = mongoose;
 const bcrypt = require('bcrypt');
-
+const dateFormat = require('../utils/dateFormat');
 
 const userSchema = new Schema({
   firstName: {
@@ -33,6 +33,11 @@ const userSchema = new Schema({
     type: String,
     required: true,
     minlength: 5
+  },
+  createdAt: {
+    type: Date,
+    default: Date.now,
+    get: (timestamp) => dateFormat(timestamp),
   },
   myPlants: [
     {

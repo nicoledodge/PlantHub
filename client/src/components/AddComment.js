@@ -66,7 +66,7 @@ const AddComment = (props) => {
 
   return (
     <div>
-      <h1>Leave a Leaf &#127807;</h1>
+      <h1 style={{fontFamily:'Oswald, sans-serif'}}>Leaf a Thought &#127807;</h1>
       <Form reply onSubmit={handleFormSubmit}>
         <Form.TextArea name="postText"
             placeholder="Leaf a Thought..."

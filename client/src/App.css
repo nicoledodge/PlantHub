@@ -18,6 +18,18 @@ body {
 #profileStatus {
     float: left;
 }
+#PlantFormCont {
+    max-width: fit-content;
+    margin: auto;
+    padding-top: 6vh;
+}
+#ContactPar {
+    font-size: 2.84em;
+    font-family: 'Oswald', sans-serif;
+}
+#ContactContainer {
+    padding: 10vh;
+}
 .Router {
     background-color: rgba(229, 255, 0, 0.404);
     padding: 1.5rem 2rem 35px 2rem;
@@ -41,6 +53,7 @@ body {
 }
 .content-container {
     min-height: calc(100vh - 20px) !important;
+    
 }
 .header {
     color: #647f4d !important;
@@ -57,12 +70,15 @@ Nav {
 .team-container {
     background-color: #4f5902;
 }
+#plant-card {
+    background-color: #EBDBAE
+}
+
 #team-card:hover {
     background-color:#cdd9a0;
 }
 .garden-container {
     background-color: #4f5902;
-    padding-top: 5px;
 }
 
 
@@ -83,3 +99,13 @@ Nav {
     text-align: center; 
     font-size: 18px;
  } 
+
+ .plantTable {
+     background-color: #EBDBAE;
+ }
+
+ .removegardenbtn{
+     background-color: #4f5902;
+ }
+
+ 
