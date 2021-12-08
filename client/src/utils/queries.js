@@ -10,6 +10,9 @@ export const QUERY_ME = gql`
       email
       myPlants {
         name
+        nickname
+        plantType
+        plantSize
         waterNeeded
         waterAdded
         createdAt
@@ -97,6 +100,9 @@ export const QUERY_POST = gql`
         myPlants {
           _id
           name
+          nickname
+          plantType
+          plantSize
           waterAdded
           waterNeeded
           createdAt

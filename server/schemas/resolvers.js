@@ -120,10 +120,13 @@ const resolvers = {
       }
       throw new AuthenticationError('You need to be logged in!');
     },
-    addPlant: async (parent, { name, waterNeeded }, context ) => {
+    addPlant: async (parent, { name, nickname, plantType, plantSize, waterNeeded }, context ) => {
       if (context.user) {
         const plant = await Plant.create({
           name: name,
+          nickname: nickname,
+          plantType: plantType,
+          plantSize: plantSize,
           waterNeeded: waterNeeded
         });
 
@@ -166,11 +169,8 @@ const resolvers = {
       throw new AuthenticationError('You need to be logged in!');
     },
     addWater: async (parent, { plantId}, context ) => {
-      if (context.user) 
-      {
+      if (context.user){
         const plant = await Plant.findOne({_id: plantId})
-
-        console.log(plant)
 
         return Plant.findOneAndUpdate(
           { _id: plantId },
@@ -373,7 +373,7 @@ const resolvers = {
         }
         throw new AuthenticationError('Please login to delete a post.');
       },
-      removeComment: async (parent, { postId, commentId }) => {
+      removeComment: async (parent, { postId, commentId }, context) => {
         if (context.user) {
           return Blog.findOneAndUpdate(
             { _id: postId },

@@ -16,6 +16,9 @@ const typeDefs = gql`
   type Plant {
     _id: ID
     name: String!
+    nickname: String
+    plantType: String!
+    plantSize: String!
     waterNeeded: Int
     waterAdded: Int
     createdAt: String
@@ -54,9 +57,8 @@ const typeDefs = gql`
 
   type Mutation {
     addUser(firstName: String!, lastName: String!, username: String!, email: String!, password: String!, location: String!): Auth
-    login(email: String!, password: String!): Auth
-    
-    addPlant(name: String!, waterNeeded: Int!): Plant
+    login(email: String!, password: String!): Auth 
+    addPlant(name: String!, nickname: String, plantType: String!, plantSize: String!, waterNeeded: Int!): Plant
     addPlantTest(name: String!, waterNeeded: Int): Plant
     addWater(plantId: ID!): Plant
     addWaterTest(plantId: ID!, waterAdded: Int!): Plant
