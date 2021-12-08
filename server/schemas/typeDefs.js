@@ -8,6 +8,7 @@ const typeDefs = gql`
     username: String!
     email: String!
     location: String!
+    createdAt: String
     password: String!
     myPlants: [Plant]
     myPosts: [Blog]

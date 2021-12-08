@@ -27,7 +27,7 @@ import { ADD_WATER, REMOVE_PLANT } from "../utils/mutations";
 //possibly make every card dynamic
 //also thinking about making mygarden a parent div so we can pass the cards through as components as well as the detailed view of each plant
 export default function MyGarden() {
-  const { loading, data } = useQuery(QUERY_USER);
+  const { loading, data, refetch } = useQuery(QUERY_USER);
 
   const [addWater, { error }] = useMutation(ADD_WATER);
 
@@ -97,14 +97,14 @@ export default function MyGarden() {
       let newPercent = plantData.map((plant, i) => {
         let x = plant.waterAdded;
         let y = plant.waterNeeded;
-        return (x / y) * 100;
+        return ((x / y) * 100).toFixed();
       });
       //     console.log(newPercent)
       setPercent(newPercent);
       setPlantCount(plantData.length);
       setUsername(userData.username);
     }
-  }, [data, plantData]);
+  }, [data, plantData, userData]);
 
   return (
     <>
@@ -249,7 +249,10 @@ export default function MyGarden() {
                               labelPosition="right"
                               primary
                               size="small"
-                              onClick={() => handleAddWater(plant._id)}
+                              onClick={async () => {
+                                  await handleAddWater(plant._id)
+                                  await refetch()
+                              }}
                             >
                               <Icon name="tint" />
                               <Typography
@@ -424,8 +427,10 @@ export default function MyGarden() {
                             primary
                             size="small"
                             style={{ backgroundColor: "#4f5902" }}
-                            onClick={() => handleDeletePlant(plant._id)}
-                          >
+                            onClick={async () => {
+                                await handleDeletePlant(plant._id)
+                                await refetch()
+                            }}                          >
                             <Icon name="remove circle" />
                             <Typography variant="body1" color="white">
                               Remove from Garden

@@ -8,6 +8,7 @@ export const QUERY_ME = gql`
       firstName
       lastName
       email
+      createdAt
       myPlants {
         name
         nickname
@@ -97,6 +98,7 @@ export const QUERY_POST = gql`
         username
         location
         email
+        createdAt
         myPlants {
           _id
           name

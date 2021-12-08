@@ -20,7 +20,7 @@ export default function Team() {
         <CardMedia
           component="img"
           height="300"
-          image=""
+          image="./images/christa_portfolio_pic.png"
           alt="christa"
         />
         <CardContent>
