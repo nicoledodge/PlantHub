@@ -6,7 +6,7 @@ const blogSchema = new Schema({
     type: String,
     required: 'Please enter a post.',
     minlength: 1,
-    maxlength: 280,
+    maxlength: 500,
     trim: true,
   },
   postCreator: {
@@ -26,7 +26,7 @@ const blogSchema = new Schema({
         type: String,
         required: true,
         minlength: 1,
-        maxlength: 280,
+        maxlength: 500,
       },
       commentCreator: {
         type: String,
