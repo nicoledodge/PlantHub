@@ -53,7 +53,7 @@ export default function Team() {
           </Typography>
           <Typography variant="body2" color="text.secondary">
           Hello! 
-          My name is Ismeny Castro, I live in Austin, Texas. 
+          My name is Ismeny Castro, I'm born and raised in Austin, Texas. 
           I love doing outdoor activites like going to the Greenbelt, paddleboarding on Town Lake, and picnics at Zilker Park with my dogs and friends. 
           I'm new to the tech field and excited to learn more about web development and pursue a career as a Full Stack MERN Developer.
           </Typography>
