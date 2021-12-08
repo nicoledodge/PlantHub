@@ -45,9 +45,11 @@
     ]
   },
   "devDependencies": {
+    "@ant-design/icons": "^4.7.0",
     "@mui/icons-material": "^5.2.0",
     "@mui/material": "^5.2.2",
     "@mui/system": "^5.2.2",
+    "react-time-format": "^0.0.5",
     "semantic-ui-react": "^2.0.4",
     "styled-components": "^5.3.3"
   }

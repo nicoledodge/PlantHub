@@ -35,9 +35,6 @@ function GetPosts(props) {
                     <span>{comment.createdAt}</span>
                   </Comment.Metadata>
                   <Comment.Text>{comment.commentText}</Comment.Text>
-                  <Comment.Actions>
-                    {/* <ReplyComment commentId={comment._id} /> */}
-                  </Comment.Actions>
                 </Comment.Content>
               </Comment>
             ))}

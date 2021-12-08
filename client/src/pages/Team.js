@@ -10,9 +10,8 @@ import Box from '@mui/material/Box';
 export default function Team() {
   return (
       <>
-      <br></br>
       <div className="team-container">
-      <h2 style={{fontFamily:'Oswald, sans-serif'}}>The People</h2>
+      <h2 style={{fontFamily:'Oswald, sans-serif', marginLeft:'20px', marginTop:'20px'}}>The People</h2>
       <br></br>
       <div style={{ width: '100%' }}>
       <Box sx={{ display: 'flex',flexWrap:'wrap', justifyContent: 'center', p: 1, m: 1}}>
@@ -21,7 +20,7 @@ export default function Team() {
         <CardMedia
           component="img"
           height="300"
-          image=""
+          image="./images/christa_portfolio_pic.png"
           alt="christa"
         />
         <CardContent>
@@ -35,7 +34,7 @@ export default function Team() {
           <div style={{ textAlign:'center'}}>
           <a href='https://www.linkedin.com/in/christa-baccas-77362a205/' target='_blank' rel='noreferrer'><i className="fab fa-linkedin footer-icons"></i></a>
           <a href='https://github.com/christa-baccas' target='_blank' rel='norefferer'><i className="fab fa-github footer-icons"></i></a>
-          <a href='mailto:'><i className="fas fa-envelope footer-icons"></i></a> 
+          <a href='mailto:christa-baccas@gmail.com'><i className="fas fa-envelope footer-icons"></i></a> 
           </div>
         </CardContent>
       </CardActionArea>
@@ -107,7 +106,7 @@ export default function Team() {
           <div style={{ textAlign:'center'}}>
           <a href='https://www.linkedin.com/in/alexis-gonzalez-07/' target='_blank' rel='noreferrer'><i className="fab fa-linkedin footer-icons"></i></a>
           <a href='https://github.com/AlexisGonzalez07' target='_blank' rel='norefferer'><i className="fab fa-github footer-icons"></i></a>
-          <a href='mailto:'><i className="fas fa-envelope footer-icons"></i></a> 
+          <a href='mailto:alexis.gonzalez07@gmail.com'><i className="fas fa-envelope footer-icons"></i></a> 
           </div>
         </CardContent>
       </CardActionArea>

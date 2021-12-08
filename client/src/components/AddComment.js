@@ -66,14 +66,14 @@ const AddComment = (props) => {
 
   return (
     <div>
-      <h3>Add comments here!</h3>
+      <h1>Leave a Leaf &#127807;</h1>
       <Form reply onSubmit={handleFormSubmit}>
         <Form.TextArea name="postText"
-            placeholder="Enter comment..."
+            placeholder="Leaf a Thought..."
             value={postText}
             className="form-input w-100"
             onChange={handleChange}/>
-        <Button content="Add Reply" labelPosition="left" icon="edit" primary type="submit"/>
+        <Button style={{marginBottom:'20px', backgroundColor: 'rgba(79,89,2,0.93)'}} content="Post" labelPosition="left" icon="edit" primary type="submit"/>
       </Form>
     </div>
   );
