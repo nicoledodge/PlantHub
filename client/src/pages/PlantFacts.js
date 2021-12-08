@@ -1,6 +1,6 @@
 // import React from "react";
 //
-// export default function PlantCare() {
+// export default function PlantFacts() {
 //     return (
 //         <>
 //             <h2 style={{fontFamily:'Oswald, sans-serif', marginLeft:'20px', marginTop:'20px'}}>PLANT CARE PAGE</h2>
@@ -11,8 +11,9 @@
 import React, { Component } from 'react'
 import RandomFacts from '../components/RandomFacts';
 import facts from './FactsDB';
+import { Container } from 'semantic-ui-react'
 
-export default class PlantCare extends Component {
+export default class PlantFacts extends Component {
 
     state = {
         fact: facts[0].fact,
@@ -39,13 +40,15 @@ export default class PlantCare extends Component {
 
     render() {
         return (
+            <Container>
             <div className="container">
-                <h1 className="text-center" style={{fontFamily:'Oswald, sans-serif', marginLeft:'20px', marginTop:'20px'}}>Random Plant Fact</h1>
+                <h1 className="text-center" style={{textAlign:'center', fontFamily:'Oswald, sans-serif', marginLeft:'20px', marginTop:'80px'}}>Random Plant Fact</h1>
                 <RandomFacts style={{marginLeft: '20px'}}
                     generateRandomFact={this.generateRandomFact}
                     fact={this.state}
                 />
             </div>
+            </Container>
         )
     }
 }
