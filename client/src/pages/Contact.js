@@ -1,10 +1,17 @@
+import { fontSize } from '@mui/system'
 import React from 'react'
 import { Header, Icon, Grid, Segment, Button, Form } from 'semantic-ui-react'
+// import contactImage from '';
 
 const HeaderExampleUsersIcon = () => (
     <>
+    <div className='contact-container'>
     <Header as='h2' icon textAlign='center'>
-    <Header.Content>Contact Us</Header.Content>
+<<<<<<< HEAD
+    <Header.Content style={{fontFamily:'Oswald, sans-serif', color: 'white', fontSize: '40px', paddingTop: '20px'}}>Contact Us</Header.Content>
+=======
+    <Header.Content style={{fontFamily:'Oswald, sans-serif'}}>Contact Us</Header.Content>
+>>>>>>> main
   </Header>
   <div id="ContactContainer">
     <Grid stackable columns={2}>
@@ -30,6 +37,7 @@ const HeaderExampleUsersIcon = () => (
       </Segment>
     </Grid.Column>
   </Grid>
+  </div>
   </div>
   </>
 )

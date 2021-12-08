@@ -20,7 +20,7 @@ import Contact from './pages/Contact';
 import Team from './pages/Team';
 import Forum from './pages/Forum';
 import Profile from './pages/Profile';
-import PlantCare from './pages/PlantCare'
+import PlantFacts from './pages/PlantFacts'
 
 
 const httpLink = createHttpLink({
@@ -58,7 +58,7 @@ function App() {
          <Route exact path="/testimonials"><Testimonials/></Route>
          <Route exact path="/mygarden"><MyGarden/></Route>
          {/*future development pages*/}
-         <Route exact path="/PlantCare"><PlantCare/></Route>
+         <Route exact path="/PlantFacts"><PlantFacts/></Route>
          {/*<Route exact path="/shop"><Shop/></Route>*/}
          <Route exact path="/forum"><Forum/></Route>
          <Route exact path="/team"><Team/></Route>

@@ -11,7 +11,7 @@ export default function Team() {
   return (
       <>
       <div className="team-container">
-      <h2 style={{fontFamily:'Oswald, sans-serif', marginLeft:'20px', marginTop:'20px'}}>The People</h2>
+      <h2 style={{fontFamily:'Oswald, sans-serif', marginLeft:'20px', color: '#d9cba0'}}>The People</h2>
       <br></br>
       <div style={{ width: '100%' }}>
       <Box sx={{ display: 'flex',flexWrap:'wrap', justifyContent: 'center', p: 1, m: 1}}>
@@ -52,8 +52,10 @@ export default function Team() {
           Ismeny Castro
           </Typography>
           <Typography variant="body2" color="text.secondary">
-            Lizards are a widespread group of squamate reptiles, with over 6,000
-            species, ranging across all continents except Antarctica
+          Hello! 
+          My name is Ismeny Castro, I'm born and raised in Austin, Texas. 
+          I love doing outdoor activites like going to the Greenbelt, paddleboarding on Town Lake, and picnics at Zilker Park with my dogs and friends. 
+          I'm new to the tech field and excited to learn more about web development and pursue a career as a Full Stack MERN Developer.
           </Typography>
           <div style={{ textAlign:'center'}}>
           <a href='https://www.linkedin.com/in/ismeny-castro-b8b32821b/' target='_blank' rel='noreferrer'><i className="fab fa-linkedin footer-icons"></i></a>
