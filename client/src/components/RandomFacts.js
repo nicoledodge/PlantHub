@@ -1,5 +1,6 @@
 import React from 'react'
 import facts from '../pages/FactsDB'
+import {flexbox} from "@mui/system";
 
 export default function RandomFacts(props) {
 
@@ -7,7 +8,7 @@ export default function RandomFacts(props) {
     return (
         <div className="card" style={{marginLeft: '20px'}} >
 
-            <div className="card-body">
+            <div className="card-body" style{{display:'flex', justifyContent:'center'}}>
                 <p className="card-text">{fact.fact}</p>
                 <button
                     onClick={() => { generateRandomFact(facts) }}
