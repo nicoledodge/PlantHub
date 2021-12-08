@@ -28,7 +28,7 @@ import {
 
 const Home = () => (
 
-        <Segment style={{ padding: '0em 0em' }} vertical>
+        <Segment style={{ padding: '0em 0em 5em' }} vertical>
             <img className="homeimg" src={homeImage} alt={'hanging flower pots'} />
 
             <Grid container stackable verticalAlign='middle' style={{ padding: '6em 0em' }}>

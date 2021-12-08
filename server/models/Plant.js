@@ -5,6 +5,21 @@ const plantSchema = new Schema({
   name: {
     type: String,
     trim: true,
+    required: true,
+  },
+  nickname: {
+    type: String,
+    trim: true, 
+  },
+  plantType: {
+    type: String,
+    required: true,
+    trim: true
+  },
+  plantSize: {
+    type: String,
+    required: true,
+    trim: true
   },
   waterNeeded: {
     type: Number,
