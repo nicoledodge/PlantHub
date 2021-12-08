@@ -1,116 +1,114 @@
 body {
-    overflow-x: initial !important;
-    display: inline-block;
-    min-width: 100% !important;
-    height: 100% !important;
+  overflow-x: initial !important;
+  display: inline-block;
+  min-width: 100% !important;
+  height: 100% !important;
 }
 
 #logo {
-    height: 60px;
-    width: 180px;
+  height: 60px;
+  width: 180px;
 }
 #proCardCont {
-    padding: 25px;
+  padding: 25px;
 }
 #numOfPlants {
-    float: left;
+  float: left;
 }
 #profileStatus {
-    float: left;
+  float: left;
 }
 #PlantFormCont {
-    max-width: fit-content;
-    margin: auto;
-    padding-top: 6vh;
+  max-width: fit-content;
+  margin: auto;
+  padding-top: 6vh;
 }
 #addPlantHead {
     font-size: 2em;
     padding-top: 10px;
 }
 #ContactPar {
-    font-size: 2.84em;
-    font-family: 'Oswald', sans-serif;
+  font-size: 2.84em;
+  font-family: "Oswald", sans-serif;
 }
 #ContactContainer {
-    padding: 10vh;
+  padding: 10vh;
 }
 .Router {
-    background-color: rgba(229, 255, 0, 0.404);
-    padding: 1.5rem 2rem 35px 2rem;
-    min-height: 100%;
+  background-color: rgba(229, 255, 0, 0.404);
+  padding: 1.5rem 2rem 35px 2rem;
+  min-height: 100%;
 }
 
 .footer--pin {
-    position: relative;
-    left: 0;
-    bottom: 0;
+  position: relative;
+  left: 0;
+  bottom: 0;
 }
 
 .footer-icons {
-    color: #949596;
-    transition: all 0.3s;
-    padding: 10px;
+  color: #949596;
+  transition: all 0.3s;
+  padding: 10px;
 }
 
 .footer-icons:hover {
-    color: white;
+  color: white;
 }
 .content-container {
-    min-height: calc(100vh - 20px) !important;
-    
+  min-height: calc(100vh - 20px) !important;
 }
 .header {
-    color: #647f4d !important;
+  color: #647f4d !important;
 }
 Nav {
-    background-color: rebeccapurple !important;
+  background-color: rebeccapurple !important;
 }
-.cards{
-    padding-top: 25px;
+.cards {
+  padding-top: 25px;
 }
 .homeimg {
-   min-width: 100vw;
+  min-width: 100vw;
 }
 .team-container {
-    background-color: #4f5902;
+  background-color: #4f5902;
 }
 #plant-card {
-    background-color: #EBDBAE
+  background-color: #ebdbae;
 }
 
 #team-card:hover {
-    background-color:#cdd9a0;
+  background-color: #cdd9a0;
 }
 .garden-container {
-    background-color: #4f5902;
+  background-color: #4f5902;
 }
 
-
 .about-img {
-    min-width: 100vw;
- }
+  min-width: 100vw;
+}
 
-  .about-container {
-    margin-left: 20px;
-    margin-right: 20px;
-    margin-top: 20px;
-     display: flex;
- }
+.about-container {
+  margin-left: 20px;
+  margin-right: 20px;
+  margin-top: 20px;
+  display: flex;
+}
 
- .about-child {
-     margin-left: 10%;
-    margin-right: 10%; 
-    text-align: center; 
-    font-size: 18px;
- } 
+.about-child {
+  margin-left: 10%;
+  margin-right: 10%;
+  text-align: center;
+  font-size: 18px;
+}
 
- .plantTable {
-     background-color: #EBDBAE;
- }
+.plantTable {
+  background-color: #ebdbae;
+}
 
- .removegardenbtn{
-     background-color: #4f5902;
- }
+.removegardenbtn {
+  background-color: #4f5902;
+}
 
 .contact-container{
     background-image: url(./pages/assets/best-aesthetic-plants.jpeg);
@@ -120,6 +118,4 @@ Nav {
     background-color: #EBDBAE;
 }
 
-
- 
 

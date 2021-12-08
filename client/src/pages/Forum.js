@@ -14,14 +14,12 @@ const Forum = () => {
     if (data) {
       setAllPost(data.allPosts);
     }
-    console.log(data);
   }, [data]);
 
-  //console.log(allPosts);
   return (
-<main style={{margin:'40px', padding: '0em 0em 5em'}}>
+    <main style={{ margin: "40px", padding: "0em 0em 5em" }}>
       <AddComment setAllPost={setAllPost} allPost={allPost} />
-      <Posts allPost={allPost}/>
+      <Posts allPost={allPost} />
     </main>
   );
 };

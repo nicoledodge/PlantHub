@@ -1,15 +1,14 @@
 import React from "react";
-import Card from '@mui/material/Card';
-import CardContent from '@mui/material/CardContent';
-import CardMedia from '@mui/material/CardMedia';
-import Typography from '@mui/material/Typography';
-import { CardActionArea } from '@mui/material';
-import Box from '@mui/material/Box';
-
+import Card from "@mui/material/Card";
+import CardContent from "@mui/material/CardContent";
+import CardMedia from "@mui/material/CardMedia";
+import Typography from "@mui/material/Typography";
+import { CardActionArea } from "@mui/material";
+import Box from "@mui/material/Box";
 
 export default function Team() {
   return (
-      <>
+    <>
       <div className="team-container">
       <h2 style={{fontFamily:'Oswald, sans-serif', marginLeft:'20px', color: '#d9cba0'}}>The People</h2>
       <br></br>
@@ -102,8 +101,13 @@ export default function Team() {
             Alex Gonzalez
           </Typography>
           <Typography variant="body2" color="text.secondary">
-            Lizards are a widespread group of squamate reptiles, with over 6,000
-            species, ranging across all continents except Antarctica
+          🔭 I’m currently working on finding employment as an entry-level junior developer
+
+🌱 I’m currently learning how to create and deploy a full-stack application using the MERN stack
+👯 I’m looking to collaborate on exciting applications meant to meet real world needs
+💬 Ask me about why I started investing in crypto and where I see myself in 10 years
+😄 Pronouns: He/him
+⚡ Fun fact: I love soccer, basketball, and competitive Call of Duty.
           </Typography>
           <div style={{ textAlign:'center'}}>
           <a href='https://www.linkedin.com/in/alexis-gonzalez-07/' target='_blank' rel='noreferrer'><i className="fab fa-linkedin footer-icons"></i></a>
@@ -143,7 +147,3 @@ export default function Team() {
     </>
   );
 }
-
-
-
-

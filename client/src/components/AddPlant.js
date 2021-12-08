@@ -64,9 +64,7 @@ export default function AddPlantForm({ handlePlantModal, handleLoginModal }) {
   });
   console.log(plantState);
 
-
   const [addPlant, { error, data }] = useMutation(ADD_PLANT);
-
 
   // handles change for input
   const handleChange = (event) => {
@@ -77,7 +75,6 @@ export default function AddPlantForm({ handlePlantModal, handleLoginModal }) {
       [name]: value,
     });
   };
-
 
   const handleFormSubmit = async (event) => {
     event.preventDefault();
@@ -139,7 +136,7 @@ export default function AddPlantForm({ handlePlantModal, handleLoginModal }) {
               placeholder="'S' for small, 'M' for medium, 'L' for large"
               name="plantSize"
               value={plantState.plantSize}
-            onChange={handleChange}
+              onChange={handleChange}
             />
             <SizeChartModal />
             </Form.Field>
