@@ -1,10 +1,11 @@
 import React from 'react'
 import { Header, Icon, Grid, Segment, Button, Form } from 'semantic-ui-react'
+// import contactImage from '';
 
 const HeaderExampleUsersIcon = () => (
     <>
     <Header as='h2' icon textAlign='center'>
-    <Header.Content style={{fontFamily:'Oswald, sans-serif', marginTop: '20px'}}>Contact Us</Header.Content>
+    <Header.Content style={{fontFamily:'Oswald, sans-serif'}}>Contact Us</Header.Content>
   </Header>
   <div id="ContactContainer">
     <Grid stackable columns={2}>
