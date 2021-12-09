@@ -44,7 +44,7 @@ export default function Team() {
         <CardMedia
           component="img"
           height="300"
-          image="./images/ismeny-profile-pic.jpg"
+          image="./images/ismeny-profile-chicago.jpg"
           alt="ismeny"
         />
         <CardContent>
