@@ -61,10 +61,8 @@ export default function AddPlantForm({ handlePlantModal, handleLoginModal }) {
     nickname: "",
     plantType: "",
     plantSize: "",
-    waterNeeded: 12,
-  });
-
-//  const handlePlantModal  
+    waterNeeded: 15,
+  });  
 
   const [addPlant, { error, data }] = useMutation(ADD_PLANT);
 
@@ -151,7 +149,7 @@ export default function AddPlantForm({ handlePlantModal, handleLoginModal }) {
                 onChange={handleChange}
               />
             </Form.Field>
-            <Button fluid size="large" type="submit" >
+            <Button fluid size="large" type="submit">
               Add Plant
             </Button>
           </Segment>
