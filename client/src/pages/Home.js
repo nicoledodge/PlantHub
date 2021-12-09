@@ -12,7 +12,7 @@ import {
 
 const Home = () => (
   <Segment style={{ padding: "0em 0em 5em" }} vertical>
-    <img className="homeimg" src={homeImage} alt={"hanging flower pots"} />
+    <Image className="homeimg" src={homeImage} alt={"hanging flower pots"} />
 
     <Grid
       container
