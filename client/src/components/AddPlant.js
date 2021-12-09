@@ -17,6 +17,7 @@ import Auth from "../utils/auth";
 function SizeChartModal() {
   const [open, setOpen] = React.useState(false)
 
+
   return (
     <Modal
       basic
@@ -60,9 +61,8 @@ export default function AddPlantForm({ handlePlantModal, handleLoginModal }) {
     nickname: "",
     plantType: "",
     plantSize: "",
-    waterNeeded: "",
-  });
-  console.log(plantState);
+    waterNeeded: 15,
+  });  
 
   const [addPlant, { error, data }] = useMutation(ADD_PLANT);
 
@@ -78,7 +78,7 @@ export default function AddPlantForm({ handlePlantModal, handleLoginModal }) {
 
   const handleFormSubmit = async (event) => {
     event.preventDefault();
-    console.log(plantState);
+   
 
     try {
       const { data } = await addPlant({
@@ -87,7 +87,6 @@ export default function AddPlantForm({ handlePlantModal, handleLoginModal }) {
 
       // Auth.login(data.addUser.token);
     } catch (e) {
-      console.error(e);
     }
   };
 
@@ -143,7 +142,7 @@ export default function AddPlantForm({ handlePlantModal, handleLoginModal }) {
             <Form.Field> 
               <Form.Input
                 fluid
-               label='Water Needed'
+               label='Enter, in digits, how many days per month your plant requires water. Every other day by default.'
                 placeholder="How many days per month should you water it?"
                 name="waterNeeded"
                 value={plantState.waterNeeded}
