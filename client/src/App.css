@@ -86,6 +86,7 @@ Nav {
 
 .about-img {
   min-width: 100vw;
+  max-height: 40vw;
 }
 
 .about-container {
@@ -99,7 +100,7 @@ Nav {
   margin-left: 10%;
   margin-right: 10%;
   text-align: center;
-  font-size: 18px;
+  font-size: 20px;
 }
 
 .plantTable {

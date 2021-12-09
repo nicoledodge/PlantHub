@@ -6,7 +6,7 @@ export default function About() {
     <>
       <img className="about-img" src={aboutImage} alt={"vines"} />
       <div className="about-container " style={{ display: "flex" }}>
-        <h2 style={{ fontFamily: "Oswald, sans-serif" }}>ABOUT US</h2>
+        <h2 style={{ fontFamily: "Oswald, sans-serif", fontSize: '3em'}}>ABOUT US</h2>
         <p
           className="about-child"
           style={{ display: "flex", flexWrap: "wrap", marginBottom: "20px" }}
