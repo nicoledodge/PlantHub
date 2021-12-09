@@ -17,5 +17,10 @@
   "license": "ISC",
   "devDependencies": {
     "concurrently": "^5.1.0"
+  },
+  "dependencies": {
+    "dotenv": "^10.0.0",
+    "env": "^0.0.2",
+    "semantic-ui-react": "^2.0.4"
   }
 }
