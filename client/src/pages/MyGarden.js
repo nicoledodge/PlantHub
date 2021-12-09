@@ -331,7 +331,7 @@ export default function MyGarden() {
                     >
                       <Card
                         id="plant-card"
-                        sx={{ maxWidth: 345, margin: 1, bgcolor: "#EBDBAE" }}
+                        sx={{ maxWidth: 345, minWidth: 232, margin: 1, bgcolor: "#EBDBAE" }}
                       >
                         <CardActionArea>
                           <CardMedia

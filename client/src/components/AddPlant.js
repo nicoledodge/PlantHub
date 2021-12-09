@@ -17,6 +17,7 @@ import Auth from "../utils/auth";
 function SizeChartModal() {
   const [open, setOpen] = React.useState(false)
 
+
   return (
     <Modal
       basic
@@ -62,7 +63,8 @@ export default function AddPlantForm({ handlePlantModal, handleLoginModal }) {
     plantSize: "",
     waterNeeded: 12,
   });
-  console.log(plantState);
+
+//  const handlePlantModal  
 
   const [addPlant, { error, data }] = useMutation(ADD_PLANT);
 
@@ -78,7 +80,7 @@ export default function AddPlantForm({ handlePlantModal, handleLoginModal }) {
 
   const handleFormSubmit = async (event) => {
     event.preventDefault();
-    console.log(plantState);
+   
 
     try {
       const { data } = await addPlant({
@@ -87,7 +89,6 @@ export default function AddPlantForm({ handlePlantModal, handleLoginModal }) {
 
       // Auth.login(data.addUser.token);
     } catch (e) {
-      console.error(e);
     }
   };
 
@@ -150,7 +151,7 @@ export default function AddPlantForm({ handlePlantModal, handleLoginModal }) {
                 onChange={handleChange}
               />
             </Form.Field>
-            <Button fluid size="large" type="submit">
+            <Button fluid size="large" type="submit" >
               Add Plant
             </Button>
           </Segment>
