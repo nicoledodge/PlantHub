@@ -38,10 +38,14 @@ export default class PlantFacts extends Component {
                  backgroundPosition: 'center',
                  backgroundSize: 'cover',
                  backgroundRepeat: 'no-repeat',
+                 display:'flex',
+                 alignItems:'center',
+                 justifyContent:'center',
                  minWidth: '100vw',
                  minHeight: '100vh',
 
              }}>
+            <div style={{backgroundColor: 'white'}}>
           <h1
             className="text-center"
             style={{
@@ -56,10 +60,11 @@ export default class PlantFacts extends Component {
             Random Plant Fact
           </h1>
           <RandomFacts
-            style={{ marginLeft: "20px" }}
+            style={{ marginLeft: "20px", backgroundColor: 'white' }}
             generateRandomFact={this.generateRandomFact}
             fact={this.state}
           />
+            </div>
         </div>
       </Container>
     );
