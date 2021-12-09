@@ -69,6 +69,7 @@ Nav {
 }
 .homeimg {
   min-width: 100vw;
+  min-height: 100vw;
 }
 .team-container {
   background-color: #4f5902;

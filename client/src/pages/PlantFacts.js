@@ -2,6 +2,9 @@ import React, { Component } from "react";
 import RandomFacts from "../components/RandomFacts";
 import facts from "./FactsDB";
 import { Container } from "semantic-ui-react";
+import homeImage from "./assets/hangingpots.jpeg";
+import "../App.css";
+
 
 export default class PlantFacts extends Component {
   state = {
@@ -28,15 +31,26 @@ export default class PlantFacts extends Component {
 
   render() {
     return (
-      <Container>
-        <div className="container">
+      <Container fluid>
+        <div className="container"
+             style={{
+                 backgroundImage: `url(${homeImage})`,
+                 backgroundPosition: 'center',
+                 backgroundSize: 'cover',
+                 backgroundRepeat: 'no-repeat',
+                 minWidth: '100vw',
+                 minHeight: '100vh',
+
+             }}>
           <h1
             className="text-center"
             style={{
               textAlign: "center",
+                alignContent: "center",
               fontFamily: "Oswald, sans-serif",
               marginLeft: "20px",
-              marginTop: "80px",
+              // marginTop: "80px",
+
             }}
           >
             Random Plant Fact
