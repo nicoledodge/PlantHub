@@ -17,7 +17,7 @@ const Forum = () => {
   }, [data]);
 
   return (
-    <main style={{ margin: "40px", padding: "0em 0em 5em" }}>
+    <main style={{ margin: "40px", padding: "0em 0em 5em"}}>
       <AddComment setAllPost={setAllPost} allPost={allPost} />
       <Posts allPost={allPost} />
     </main>
