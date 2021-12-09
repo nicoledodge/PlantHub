@@ -5,6 +5,7 @@ import CardMedia from "@mui/material/CardMedia";
 import Typography from "@mui/material/Typography";
 import { CardActionArea } from "@mui/material";
 import Box from "@mui/material/Box";
+import { display } from "@mui/system";
 
 export default function Team() {
   return (
@@ -76,11 +77,11 @@ export default function Team() {
           <Typography gutterBottom variant="h5" component="div" style={{ textAlign: 'center', fontFamily: 'Fuzzy Bubbles, cursive'}}>
           Jayla Newton
           </Typography>
-          <Typography variant="body2" color="text.secondary">
-            Lizards are a widespread group of squamate reptiles, with over 6,000
-            species, ranging across all continents except Antarctica
+          <Typography variant="body2" color="text.secondary" >
+            Hi, i'm Jayla!
+          I'm a Full Stack MERN Developer and new to the tech industry. I'm eager to learn more about front-end development and how to create amazing user experiences. My projects on my portfolio demonstrate my skills. Check out my Github and feel free to contact me, let’s build something great!
           </Typography>
-          <div style={{ textAlign:'center'}}>
+          <div style={{ textAlign:'center' }}>
           <a href='https://www.linkedin.com/in/jaylanewton/' target='_blank' rel='noreferrer'><i className="fab fa-linkedin footer-icons"></i></a>
           <a href='https://github.com/jayladenae' target='_blank' rel="noreferrer"><i className="fab fa-github footer-icons"></i></a>
           <a href='mailto:jayladenaer@gmail.com'><i className="fas fa-envelope footer-icons" rel="noreferrer"></i></a> 
