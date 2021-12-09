@@ -32,6 +32,7 @@ export default function MyGarden() {
 
   const handlePlantModal = () => {
     setPlantToggle(!plantToggle);
+    refetch()
   };
 
   const plantData = data?.me.myPlants || [];
@@ -336,7 +337,7 @@ export default function MyGarden() {
                           <CardMedia
                             component="img"
                             height="200"
-                            image="./images/nikki-profile-pic.jpg"
+                            image="./images/money-tree.webp"
                             alt={plant.name}
                             style={{ backgroundColor: "#4f5902" }}
                           />

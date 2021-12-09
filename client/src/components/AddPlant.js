@@ -60,7 +60,7 @@ export default function AddPlantForm({ handlePlantModal, handleLoginModal }) {
     nickname: "",
     plantType: "",
     plantSize: "",
-    waterNeeded: "",
+    waterNeeded: 12,
   });
   console.log(plantState);
 
@@ -143,7 +143,7 @@ export default function AddPlantForm({ handlePlantModal, handleLoginModal }) {
             <Form.Field> 
               <Form.Input
                 fluid
-               label='Water Needed'
+               label='Enter, in digits, how many days per month your plant requires water. Every other day by default.'
                 placeholder="How many days per month should you water it?"
                 name="waterNeeded"
                 value={plantState.waterNeeded}
