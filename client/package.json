@@ -19,7 +19,17 @@
     "react-scripts": "4.0.3",
     "semantic-ui-css": "^2.4.1",
     "semantic-ui-react": "^2.0.4",
-    "web-vitals": "^1.1.2"
+    "web-vitals": "^1.1.2",
+    "@ant-design/icons": "^4.7.0",
+    "@mui/icons-material": "^5.2.0",
+    "@mui/material": "^5.2.2",
+    "@mui/system": "^5.2.2",
+    "axios": "^0.24.0",
+    "form-data": "^4.0.0",
+    "react-parallax": "^3.3.0",
+    "react-scroll-parallax": "^2.4.0",
+    "react-time-format": "^0.0.5",
+    "styled-components": "^5.3.3"
   },
   "scripts": {
     "start": "react-scripts start",
@@ -44,18 +54,5 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
-  },
-  "devDependencies": {
-    "@ant-design/icons": "^4.7.0",
-    "@mui/icons-material": "^5.2.0",
-    "@mui/material": "^5.2.2",
-    "@mui/system": "^5.2.2",
-    "axios": "^0.24.0",
-    "form-data": "^4.0.0",
-    "react-parallax": "^3.3.0",
-    "react-scroll-parallax": "^2.4.0",
-    "react-time-format": "^0.0.5",
-    "semantic-ui-react": "^2.0.4",
-    "styled-components": "^5.3.3"
   }
 }
