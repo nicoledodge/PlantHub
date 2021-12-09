@@ -28,8 +28,8 @@ export default function Team() {
         Christa Baccas
           </Typography>
           <Typography variant="body2" color="text.secondary">
-            Lizards are a widespread group of squamate reptiles, with over 6,000
-            species, ranging across all continents except AntarcticA
+               Hello, 
+                My name is Christa Baccas, I'm 28 years old living in Austin, TX. With 3 years of experience in the technology field, I began the journey of becoming a web/software developer. Well versed in HTML, CSS/BootStrap, JavaScript, Databases, Node.js, and React. I have a passion for problem-solving and learning new things.
           </Typography>
           <div style={{ textAlign:'center'}}>
           <a href='https://www.linkedin.com/in/christa-baccas-77362a205/' target='_blank' rel='noreferrer'><i className="fab fa-linkedin footer-icons"></i></a>
