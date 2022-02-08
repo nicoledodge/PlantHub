@@ -1,5 +1,5 @@
 # PlantHub
-Full Stack MERN application!
+A social platform for plant lovers that allows users to write blog posts and upkeep plant health built on the MERN stack
 
 ## Description
 PlantHub is an application designed to help you keep track of all your plants. 
