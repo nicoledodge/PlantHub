@@ -1,27 +1,27 @@
 const facts = [
   {
-    fact: "Latest scientific studies suggest that juice extracted from the purple-colored type of grape known as Concord, can prevent development of breast cancer.",
+    fact: "One metric ton of electronic scrap from personal computers contains more gold than that recovered from 17 tons of gold ore.",
   },
   {
-    fact: "Extract of witch hazel twigs combined with alcohol, known under the trade name hamamelis water, originates from the 19th century. This product is still used in treatment of skin disorders and varicose veins.",
+    fact: "In the U.S., enough stainless steel is recycled each year to build nearly 1,500 Gateway Arches.",
   },
   {
-    fact: "Buckwheat is an annual plant which means that it completes its life cycle in one year.",
+    fact: "For example, over a ton of natural resources are conserved for every ton of glass recycled, including 1,300 pounds of sand, 410 pounds of soda ash, 380 pounds of limestone, and 160 pounds of feldspar.",
   },
   {
-    fact: "Sweet flag blooms from May to July. Flowers contains both types of reproductive organs. They attract insects, responsible for the pollination of this plant.",
+    fact: "Recycling one aluminum can saves enough energy to run a 55-inch HDTV to watch your favorite movie.",
   },
   {
-    fact: "Animals such as birds, insects and butterflies consume nectar or seed of dandelion.",
+    fact: "Recycling helps save energy. If you recycle one glass bottle, it saves enough energy to light a 100-watt bulb for four hours, power a computer for 30 minutes, or a television for 20 minutes.",
   },
   {
-    fact: "Due to high specialization of pollination, extinction of insect means extinction of orchid (there is no one else who can pollinate it in the wild).",
+    fact: "More than 52 million tons of paper products were recycled in 2018. That is roughly the same weight as almost 350,000 blue whales.",
   },
   {
-    fact: "Giant hogweed is perennial plant that can survive from 5 to 7 years in the wild.",
+    fact: "The United States annually recycles enough iron and steel scrap metals (known as ferrous scrap), by weight, to build more than 900 Golden Gate Bridges — a bridge stretching nearly 9,000 feet.",
   },
   {
-    fact: "Allspice grows in the form of large shrub or small tree that can reach 32 to 60 feet in height. ",
+    fact: "Cardboard boxes can be recycled at least seven times and can be used to make new packaging boxes and even furniture.",
   },
 ];
 
