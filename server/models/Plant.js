@@ -19,7 +19,8 @@ const plantSchema = new Schema({
   plantSize: {
     type: String,
     required: true,
-    trim: true
+    trim: true,
+    enum: ["L", "M", "S"]
   },
   waterNeeded: {
     type: Number,
