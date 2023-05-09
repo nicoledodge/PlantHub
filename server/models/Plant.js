@@ -9,7 +9,10 @@ const plantSchema = new Schema({
   },
   nickname: {
     type: String,
-    trim: true, 
+    trim: true,
+    default: function(){
+      return this.name
+    }
   },
   plantType: {
     type: String,
@@ -19,7 +22,9 @@ const plantSchema = new Schema({
   plantSize: {
     type: String,
     required: true,
-    trim: true
+    trim: true,
+    enum: {values: ["L", "M", "S"],
+  message: "You must enter a valid plant size!"}
   },
   waterNeeded: {
     type: Number,
