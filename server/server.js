@@ -1,7 +1,6 @@
 const express = require('express');
 const { ApolloServer } = require('apollo-server-express');
 const path = require('path');
-const routes = require('./routes');
 const { typeDefs, resolvers } = require('./schemas');
 const { authMiddleware } = require('./utils/auth');
 const db = require('./config/connection');
@@ -28,8 +27,6 @@ server.applyMiddleware({ app });
 app.use(express.urlencoded({ extended: false }));
 
 app.use(express.json());
-
-app.use(routes);
 
 // noinspection JSUnresolvedFunction
 db.once('open', () => {
