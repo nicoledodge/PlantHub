@@ -9,17 +9,15 @@ import {
   Segment,
 } from "semantic-ui-react";
 import { useMutation } from "@apollo/client";
-import { LOGIN_USER } from "../utils/mutations";
+import { LOGIN_USER } from "../../utils/mutations";
+import Auth from "../../utils/auth";
 
-import Auth from "../utils/auth";
-
-export default function Login({ handleSignUp, handleLoginModal }) {
+const LoginModal = ({ handleSignUp, handleLoginModal }) => {
   const [formState, setFormState] = useState({ email: "", password: "" });
   const [login, { error, data }] = useMutation(LOGIN_USER);
 
   const handleChange = (event) => {
     const { name, value } = event.target;
-
     setFormState({
       ...formState,
       [name]: value,
@@ -28,7 +26,6 @@ export default function Login({ handleSignUp, handleLoginModal }) {
 
   const handleFormSubmit = async (event) => {
     event.preventDefault();
-    console.log(formState);
     try {
       const { data } = await login({
         variables: { ...formState },
@@ -38,7 +35,6 @@ export default function Login({ handleSignUp, handleLoginModal }) {
     } catch (e) {
       console.error(e);
     }
-
     setFormState({
       email: "",
       password: "",
@@ -95,3 +91,5 @@ export default function Login({ handleSignUp, handleLoginModal }) {
     </Grid>
   );
 }
+
+export default LoginModal

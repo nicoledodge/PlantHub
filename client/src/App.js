@@ -10,7 +10,7 @@ import { setContext } from '@apollo/client/link/context';
 
 import './App.css';
 
-import Navbar from './components/Navbar';
+import Navbar from './components/NavBar/index.js';
 import Footer from './components/Footer';
 import About from './pages/About';
 import MyGarden from './pages/MyGarden';

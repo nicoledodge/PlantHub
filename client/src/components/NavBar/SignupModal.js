@@ -9,11 +9,11 @@ import {
   Segment,
   Checkbox,
 } from "semantic-ui-react";
-import { ADD_USER } from "../utils/mutations";
+import { ADD_USER } from "../../utils/mutations";
 import { useMutation } from "@apollo/client";
-import Auth from "../utils/auth";
+import Auth from "../../utils/auth";
 
-export default function SignUp({ handleSignUp, handleLoginModal }) {
+const SignUpModal = ({ handleSignUp, handleLoginModal }) => {
   const [formState, setFormState] = useState({
     firstName: "",
     lastName: "",
@@ -38,8 +38,6 @@ export default function SignUp({ handleSignUp, handleLoginModal }) {
 
   const handleFormSubmit = async (event) => {
     event.preventDefault();
-    console.log(formState);
-
     try {
       const { data } = await addUser({
         variables: { ...formState },
@@ -158,3 +156,5 @@ export default function SignUp({ handleSignUp, handleLoginModal }) {
     </Grid>
   );
 }
+
+export default SignUpModal

@@ -1,87 +1,33 @@
-import * as React from 'react';
-import { useState } from 'react';
-import AppBar from '@mui/material/AppBar';
-import Box from '@mui/material/Box';
-import Toolbar from '@mui/material/Toolbar';
-import IconButton from '@mui/material/IconButton';
-import Typography from '@mui/material/Typography';
-import Menu from '@mui/material/Menu';
-import MenuIcon from '@mui/icons-material/Menu';
-import Container from '@mui/material/Container';
-import Avatar from '@mui/material/Avatar';
-import Button from '@mui/material/Button';
-import "../App.css"
-import Tooltip from '@mui/material/Tooltip';
-import MenuItem from '@mui/material/MenuItem';
+import React, { useState } from "react";
 import {Link} from "react-router-dom"
-import profilePic from "../pages/assets/profilepic.jpeg";
-import Login from "./Login"
-import SignUp from "./SignUp"
+import getSettings from "./settings";
+import Auth from "../../utils/auth";
+import {AppBar, Box, Toolbar, IconButton, Typography, Menu, Container, Avatar, Button, Tooltip, MenuItem} from '@mui/material'
+import MenuIcon from '@mui/icons-material/Menu';
+import "../../App.css"
+import profilePic from "../../pages/assets/profilepic.jpeg";
 import {Modal} from "@mui/material";
-import Auth from '../utils/auth';
-
-const pages = ['MyGarden', 'Forum', 'PlantFacts'];
-
-
+import LoginModal from "./LoginModal"
+import SignUpModal from "./SignupModal";
 const Nav = () => {
-    const [anchorElNav, setAnchorElNav] = React.useState(null);
-    const [anchorElUser, setAnchorElUser] = React.useState(null);
-    const [loginToggle, setLoginToggle] = React.useState(false);
-    const [signUpToggle, setSignUpToggle] = React.useState(false);
+  const [anchorElNav, setAnchorElNav] = useState(null);
+  const [anchorElUser, setAnchorElUser] = useState(null);
+  const [loginToggle, setLoginToggle] = useState(false);
+  const [signUpToggle, setSignUpToggle] = useState(false);
+  const handleLoginModal = () => setLoginToggle(!loginToggle);
+  const handleSignUpModal = () => setSignUpToggle(!signUpToggle);
+  const logout = () => {
+    Auth.logout();
+    document.location.replace("/")
+  };
+  const settings = getSettings(handleSignUpModal, handleLoginModal, logout);
+  const pages = ['MyGarden', 'Forum', 'PlantFacts'];
+  const handleOpenNavMenu = (event) => setAnchorElNav(event.currentTarget);
+  const handleOpenUserMenu = (event) => setAnchorElUser(event.currentTarget);
+  const handleCloseNavMenu = () => setAnchorElNav(null);
 
-
-    const handleLoginModal = () => {
-        setLoginToggle(!loginToggle);
-    };
-
-    const handleSignUpModal = () => {
-        setSignUpToggle(!signUpToggle);
-    };
-
-    const settings = [
-        {
-            name: 'Profile',
-            callback: null,
-            routeTo: '/Profile'
-        },
-        // {
-        //     name:'Account',
-        //     callback: null,
-        // },
-        {
-            name:'Dashboard',
-            callback: null,
-        },
-        {
-            name:'SignUp',
-            callback: handleSignUpModal,
-        },
-        {
-            name:'Login',
-            callback: handleLoginModal,
-        },
-    ];
-
-    const handleOpenNavMenu = (event) => {
-        setAnchorElNav(event.currentTarget);
-    };
-    const handleOpenUserMenu = (event) => {
-        setAnchorElUser(event.currentTarget);
-    };
-    const logout = (event) => {
-        event.preventDefault();
-        Auth.logout();
-    };
-
-    const handleCloseNavMenu = () => {
-        setAnchorElNav(null);
-    };
-
-    const handleCloseUserMenu = () => {
-        setAnchorElUser(null);
-    };
-
-    return <>
+  const handleCloseUserMenu = () => setAnchorElUser(null);
+  return <>
         <AppBar position="static" style={{background: '#4F5902'}}>
             <Container maxWidth="xl">
                 <Toolbar disableGutters>
@@ -186,10 +132,6 @@ const Nav = () => {
                                 </MenuItem>
 
                                 </Link>)}
-
-                            <button className="btn btn-lg btn-light m-2" onClick={logout}>
-                                Logout
-                            </button>
                               </Menu>
                     </Box>
                 </Toolbar>
@@ -201,7 +143,7 @@ const Nav = () => {
             aria-labelledby="modal-modal-title"
             aria-describedby="modal-modal-description"
         >
-            <Login handleLoginModal={handleLoginModal.bind(this)}
+            <LoginModal handleLoginModal={handleLoginModal.bind(this)}
                    handleSignUp={handleSignUpModal.bind(this)}/>
         </Modal>
         <Modal
@@ -210,8 +152,9 @@ const Nav = () => {
             aria-labelledby="modal-modal-title"
             aria-describedby="modal-modal-description"
         >
-            <SignUp/>
+            <SignUpModal/>
         </Modal>
     </>;
 };
+
 export default Nav;
