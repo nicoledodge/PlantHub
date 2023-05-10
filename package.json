@@ -9,8 +9,7 @@
     "develop": "concurrently \"cd server && npm run watch\" \"cd client && npm start\"",
     "install": "cd server && npm i && cd ../client && npm i",
     "seed": "cd server && npm run seed",
-    "build": "cd client && npm run build",
-    "heroku-postbuild": "cd client && npm run build"
+    "build": "cd client && npm run build"
   },
   "keywords": [],
   "author": "",
@@ -20,7 +19,6 @@
   },
   "dependencies": {
     "dotenv": "^10.0.0",
-    "env": "^0.0.2",
-    "semantic-ui-react": "^2.0.4"
+    "env": "^0.0.2"
   }
 }
