@@ -8,7 +8,7 @@ import {
   Message,
   Segment,
   Checkbox,
-  Modal
+  Modal, Dropdown
 } from "semantic-ui-react";
 import { ADD_PLANT } from "../utils/mutations";
 import { useMutation } from "@apollo/client";
@@ -16,8 +16,6 @@ import Auth from "../utils/auth";
 
 function SizeChartModal() {
   const [open, setOpen] = React.useState(false)
-
-
   return (
     <Modal
       basic
@@ -55,7 +53,7 @@ function SizeChartModal() {
   )
 }
 
-export default function AddPlantForm({ handlePlantModal, handleLoginModal }) {
+export default function AddPlantForm({handlePlantModal}) {
   const [plantState, setPlantState] = useState({
     name: "",
     nickname: "",
@@ -65,36 +63,57 @@ export default function AddPlantForm({ handlePlantModal, handleLoginModal }) {
   });  
 
   const [addPlant, { error, data }] = useMutation(ADD_PLANT);
-
+  console.log(plantState )
   // handles change for input
-  const handleChange = (event) => {
-    const { name, value } = event.target;
-
+  const handleChange = (event, dropdownName) => {
+    console.log(event)
+    console.log(dropdownName)
+    if(typeof dropdownName !== "string"){
+      const { name, value } = event.target;
+      if(name !== "waterNeeded"){
+        setPlantState({
+          ...plantState,
+          [name]: value,
+        });
+        return
+      }
+      setPlantState({
+        ...plantState,
+        [name]: Number(value),
+      });
+      return
+    }
+    //It's a dropdown Option and must be treated differently
+    console.log("it's either plantType or PlantSize")
+    const {innerText} = event.target
+    console.log(innerText)
     setPlantState({
       ...plantState,
-      [name]: value,
+      [dropdownName]: innerText,
     });
   };
 
   const handleFormSubmit = async (event) => {
     event.preventDefault();
-   
-
     try {
       const { data } = await addPlant({
-        variables: { ...plantState },
+        variables: { ...plantState,
+        waterNeeded: Number(plantState.waterNeeded) },
       });
-
-      // Auth.login(data.addUser.token);
+      handlePlantModal()
     } catch (e) {
+      console.log(e)
     }
   };
 
   return (
     <Grid>
       <Grid.Column >
-        <Header as="h2" textAlign="center" id='addPlantHead'>
+        <Header as="div" id='addPlantHead'>
           Add a plant 
+          <Button style={{position: 'absolute', right: '5'}} color='red' onClick={handlePlantModal}>
+          Cancel
+        </Button>
         </Header>
         <Form size="large" onSubmit={handleFormSubmit}>
           <Segment stacked>
@@ -119,24 +138,41 @@ export default function AddPlantForm({ handlePlantModal, handleLoginModal }) {
               />
             </Form.Field>
             <Form.Field>
-              <Form.Input
-                fluid
-                label='Plant type'
-                placeholder="Indoor or Outdoor"
-                name="plantType"
-                value={plantState.plantType}
-                onChange={handleChange}
-              />
+              <Form.Dropdown
+          placeholder='Select an option'
+          fluid
+          selection
+          name="plantType"
+          label='Plant type'
+          options={[{
+            key: "Indoor",
+            text: 'Indoor', value: 'Indoor'
+          }, {
+            key: "Outdoor",
+            text: 'Outdoor', value: 'Outdoor'
+          }]}
+          onChange={(e)=> handleChange(e, "plantType")}
+        />
             </Form.Field>
             <Form.Field >
-            <Form.Input
-              fluid
-              label='Plant Size'
-              placeholder="'S' for small, 'M' for medium, 'L' for large"
-              name="plantSize"
-              value={plantState.plantSize}
-              onChange={handleChange}
-            />
+            <Form.Dropdown
+          placeholder='Select an option'
+          fluid
+          selection
+          name="plantSize"
+          label='Plant Size'
+          options={[{
+            key: "S",
+            text: 'S', value: 'S'
+          }, {
+            key: "M",
+            text: 'M', value: 'M'
+          },{
+            key: "L",
+            text: 'L', value: 'L'
+          }]}
+          onChange={(e)=> handleChange(e, "plantSize")}
+        />
             <SizeChartModal />
             </Form.Field>
             <Form.Field> 
@@ -147,6 +183,14 @@ export default function AddPlantForm({ handlePlantModal, handleLoginModal }) {
                 name="waterNeeded"
                 value={plantState.waterNeeded}
                 onChange={handleChange}
+                onKeyPress={(event) => {
+                  const keyCode = event.keyCode || event.which;
+                  const keyValue = String.fromCharCode(keyCode);
+                  // Check if the entered value is not a number
+                  if (!/^\d$/.test(keyValue)) {
+                    event.preventDefault();
+                  }
+                }}
               />
             </Form.Field>
             <Button fluid size="large" type="submit">

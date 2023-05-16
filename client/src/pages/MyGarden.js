@@ -28,10 +28,10 @@ export default function MyGarden() {
 
   const [removePlant, { err }] = useMutation(REMOVE_PLANT);
 
-  const [plantToggle, setPlantToggle] = React.useState(false);
+  const [plantToggle, setPlantToggle] = useState(false);
 
   const handlePlantModal = () => {
-    setPlantToggle(!plantToggle);
+    setPlantToggle(false);
     refetch()
   };
 
@@ -311,7 +311,7 @@ export default function MyGarden() {
                           size="small"
                           style={{ backgroundColor: "#EBDBAE" }}
                           onClick={(e) => {
-                            handlePlantModal(e);
+                           setPlantToggle(true)
                           }}
                         >
                           <Icon color="#4f5902" name="remove circle" />
@@ -436,7 +436,7 @@ export default function MyGarden() {
         aria-labelledby="modal-modal-title"
         aria-describedby="modal-modal-description"
       >
-        <AddPlantForm />
+        <AddPlantForm handlePlantModal={handlePlantModal}  />
       </Modal>
     </>
   );

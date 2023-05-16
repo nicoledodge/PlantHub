@@ -26,6 +26,8 @@ body {
 #addPlantHead {
     font-size: 2em;
     padding-top: 10px;
+    text-align: center;
+    position: relative
 }
 #ContactPar {
   font-size: 2.84em;
