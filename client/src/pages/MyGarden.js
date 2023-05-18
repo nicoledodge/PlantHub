@@ -20,6 +20,7 @@ import { QUERY_ME } from "../utils/queries";
 import { ADD_WATER, REMOVE_PLANT } from "../utils/mutations";
 import AddPlantForm from "../components/AddPlant";
 import Auth from "../utils/auth";
+import PlantTable from "./MyGarden/Components/Table";
 
 export default function MyGarden() {
   const { loading, data, refetch } = useQuery(QUERY_ME);
@@ -32,7 +33,7 @@ export default function MyGarden() {
 
   const handlePlantModal = () => {
     setPlantToggle(false);
-    refetch()
+    refetch();
   };
 
   const plantData = data?.me.myPlants || [];
@@ -128,144 +129,8 @@ export default function MyGarden() {
                     className="plantTable"
                     style={{ backgroundColor: "#EBDBAE" }}
                   >
-                    <Table compact celled>
-                      <Table.Header>
-                        <Table.Row>
-                          <Table.HeaderCell>
-                            <Typography
-                              gutterBottom
-                              variant="h5"
-                              component="div"
-                              style={{
-                                textAlign: "center",
-                                fontFamily: "Fuzzy Bubbles, cursive",
-                                color: "#4f5902",
-                              }}
-                            >
-                              Plant
-                            </Typography>
-                          </Table.HeaderCell>
-                          <Table.HeaderCell>
-                            <Typography
-                              gutterBottom
-                              variant="h5"
-                              component="div"
-                              style={{
-                                textAlign: "center",
-                                fontFamily: "Fuzzy Bubbles, cursive",
-                                color: "#4f5902",
-                              }}
-                            >
-                              Nickname
-                            </Typography>
-                          </Table.HeaderCell>
-                          <Table.HeaderCell>
-                            <Typography
-                              gutterBottom
-                              variant="h5"
-                              component="div"
-                              style={{
-                                textAlign: "center",
-                                fontFamily: "Fuzzy Bubbles, cursive",
-                                color: "#4f5902",
-                              }}
-                            >
-                              Hydration Status
-                            </Typography>
-                          </Table.HeaderCell>
-                          <Table.HeaderCell>
-                            <Typography
-                              gutterBottom
-                              variant="h5"
-                              component="div"
-                              style={{
-                                textAlign: "center",
-                                fontFamily: "Fuzzy Bubbles, cursive",
-                                color: "#4f5902",
-                              }}
-                            >
-                              Water
-                            </Typography>
-                          </Table.HeaderCell>
-                        </Table.Row>
-                      </Table.Header>
+                      <PlantTable plantData={plantData} handleAddWater={handleAddWater}/>
 
-                      <Table.Body>
-                        {plantData.map((plant, i) => (
-                          <Table.Row>
-                            <Table.Cell>
-                              {" "}
-                              <Typography
-                                variant="body2"
-                                color="#4f5902"
-                                align="center"
-                              >
-                                {plant.name}
-                              </Typography>
-                            </Table.Cell>
-                            <Table.Cell>
-                              {" "}
-                              <Typography
-                                variant="body2"
-                                color="#4f5902"
-                                align="center"
-                              >
-                                {plant.nickname}
-                              </Typography>
-                            </Table.Cell>
-                            <Table.Cell>
-                              <Progress
-                                percent={percent[i]}
-                                color="blue"
-                                active
-                              >
-                                <Typography variant="body2" color="#4f5902">
-                                  {percent[i]}% watered this month
-                                </Typography>
-                              </Progress>
-                            </Table.Cell>
-                            <Table.Cell>
-                              <div align="center">
-                                <Button
-                                  compact
-                                  id={plant.name}
-                                  icon
-                                  labelPosition="right"
-                                  primary
-                                  size="small"
-                                  onClick={async () => {
-                                    await handleAddWater(plant._id);
-                                    await refetch();
-                                  }}
-                                >
-                                  <Icon name="tint" />
-                                  <Typography
-                                    align="center"
-                                    variant="body2"
-                                    color="white"
-                                  >
-                                    Add Water
-                                  </Typography>
-                                </Button>
-                              </div>
-                            </Table.Cell>
-                          </Table.Row>
-                        ))}
-                      </Table.Body>
-
-                      <Table.Footer fullWidth>
-                        <Table.Row>
-                          <Table.HeaderCell />
-                          <Table.HeaderCell colSpan="8">
-                            <Segment textAlign="right">
-                              <Typography variant="body1" color="#4f5902">
-                                You have {plantCount} plants in your garden{" "}
-                              </Typography>
-                            </Segment>
-                          </Table.HeaderCell>
-                        </Table.Row>
-                      </Table.Footer>
-                    </Table>
                   </Grid.Column>
                 </Grid>
               </Box>
@@ -293,9 +158,6 @@ export default function MyGarden() {
                       Manage your Garden
                     </Typography>
                   </Grid.Column>
-                  <Grid.Column textAlign="center" width={16}>
-                    {plantForm}
-                  </Grid.Column>
                   <Grid.Column
                     textAlign="center"
                     justifyContent="center"
@@ -311,7 +173,7 @@ export default function MyGarden() {
                           size="small"
                           style={{ backgroundColor: "#EBDBAE" }}
                           onClick={(e) => {
-                           setPlantToggle(true)
+                            setPlantToggle(true);
                           }}
                         >
                           <Icon color="#4f5902" name="remove circle" />
@@ -331,7 +193,12 @@ export default function MyGarden() {
                     >
                       <Card
                         id="plant-card"
-                        sx={{ maxWidth: 345, minWidth: 232, margin: 1, bgcolor: "#EBDBAE" }}
+                        sx={{
+                          maxWidth: 345,
+                          minWidth: 232,
+                          margin: 1,
+                          bgcolor: "#EBDBAE",
+                        }}
                       >
                         <CardActionArea>
                           <CardMedia
@@ -436,7 +303,7 @@ export default function MyGarden() {
         aria-labelledby="modal-modal-title"
         aria-describedby="modal-modal-description"
       >
-        <AddPlantForm handlePlantModal={handlePlantModal}  />
+        <AddPlantForm handlePlantModal={handlePlantModal} />
       </Modal>
     </>
   );
