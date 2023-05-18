@@ -13,7 +13,7 @@ import './App.css';
 import Navbar from './components/NavBar/index.js';
 import Footer from './components/Footer';
 import About from './pages/About';
-import MyGarden from './pages/MyGarden';
+import MyGarden from './pages/MyGarden/index';
 import Home from './pages/Home';
 import Testimonials from './pages/Testimonials';
 import Contact from './pages/Contact';
