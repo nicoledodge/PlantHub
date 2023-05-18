@@ -13,7 +13,7 @@ db.once('open', async () => {
   for (let i = 0; i < plantSeeds.length; i++) {
       const { _id,  } = await Plant.create(plantSeeds[i]);
       const user = await User.findOneAndUpdate(
-        { username: "nikkidodge" },
+        { username: "The Plantfather" },
         {
           $addToSet: {
             myPlants: _id,
