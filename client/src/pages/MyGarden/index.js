@@ -1,144 +1,85 @@
-import React, { useEffect, useState } from "react";
+import React, {useState } from "react";
 import { useQuery, useMutation } from "@apollo/client";
 import { QUERY_ME } from "../../utils/queries";
-import { ADD_WATER, REMOVE_PLANT } from "../../utils/mutations";
 import Auth from "../../utils/auth";
-import PlantCard from "./Components/Card";
-import PlantTable from "./Components/Table";
-import { Box, Typography } from "@mui/material/";
-
+import {Typography } from "@mui/material/";
+import styled from "styled-components";
+import { RiArrowUpSLine, RiArrowDownSLine } from "react-icons/ri";
+import Dashboard from "./Components/Dashboard";
+import { Button,Modal } from "semantic-ui-react";
+import AddPlantForm from "./Components/AddPlant";
 const MyGarden = () => {
   const { loading, data, refetch } = useQuery(QUERY_ME);
-
-  const [addWater, { error }] = useMutation(ADD_WATER);
-
-  const [removePlant, { err }] = useMutation(REMOVE_PLANT);
-
   const plantData = data?.me.myPlants || [];
-
   const userData = data?.me || [];
 
-  const handleAddWater = async (plantId) => {
-    try {
-        await addWater({
-        variables: { plantId },
-      });
-    } catch (err) {
-      console.error(err);
-    }
-  };
+  const [viewPlantModal, setViewPlantModal] = useState(false);
+  const closeForm = () => setViewPlantModal(false);
+  const closeAndUpdate = async () => {
+    closeForm()
+    await refetch()
+  }
+  const openForm = () => setViewPlantModal(true);
+  const GardenContainer = styled.div`
+    background-color: #4f5902;
+    display: flex;
+    flex: 1;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+  `;
 
-  const handleDeletePlant = async (plantId) => {
-    try {
-        await removePlant({
-        variables: { plantId },
-      });
-    } catch (err) {
-      console.error(err);
-    }
-  };
+  const DashboardHeader = styled.div`
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background-color: inherit;
+  `;
 
-  const dashboardStyle = {
-    width: "100%",
-    backgroundColor: "lightBlue",
-    display: "flex",
-    alignItems: "center",
-    justifyContent: "center",
-    flexWrap: "wrap",
-    paddingTop: "5px",
-    "@media screen and (min-width: 800px)": {
-      padding: "10% 15%",
-    },
-  };
-
-  const plantFeedContainer = {
-    width: "95%",
-    paddingTop: "5px",
-    backgroundColor: "purple",
-    display: "flex",
-    flexWrap: "wrap",
-    justifyContent: "center",
-    alignItems: "center",
-    "@media screen and (min-width: 800px)": {
-      backgroundColor: "black",
-    },
-    "@media screen and (min-width: 1100px)": {
-      backgroundColor: "green",
-      justifyContent: "space-around",
-    },
-  };
-
-  const tableContainer = {
-    width: "95%",
-    display: "flex",
-    justifyContent: "center",
-    alignItems: "center",
-    backgroundColor: "navy",
-    "@media screen and (min-width: 800px)": {
-      padding: "5% 5%",
-      backgroundColor: "blue",
-    },
-  };
-
-  const cardContainer = {
-    width: '95%',
-    backgroundColor: 'red',
-    marginTop: '5px',
-    "@media screen and (min-width: 800px)": {
-        padding: "5%",
-        backgroundColor: "black",
-        marginHorizontal: "5px",
-        display: 'flex',
-        alignItems: 'center',
-        justifyContent: 'center',
-        width: "45%"
-      }
-}
-
-return (
-    <div className="garden-container">
-      <br></br>
-      <Box
-        sx={{
-          display: "flex",
-          flexWrap: "wrap",
-          justifyContent: "center",
-          p: 2,
-          m: 1,
-        }}
-      >
+  return (
+    <GardenContainer>
+      {loading? <DashboardHeader>
         <Typography
           gutterBottom
           variant="h4"
-          component="div"
           style={{
             textAlign: "center",
             fontFamily: "Oswald, sans-serif",
             color: "#EBDBAE",
           }}
         >
-          Hello {userData.me?.username}, welcome to your garden
+          Loading Your Garden!
         </Typography>
-      </Box>
-      <div style={dashboardStyle}>
-        <div style={plantFeedContainer} id="plant-feed">
-          {/* Elements for the first column */}
-          {/* Placeholder for the card with a small image */}
-          {plantData?.map((plant) => (
-            <>
-              {/* key={plant._id} */}
-              <div key={plant._id} style={cardContainer}>
-              <PlantCard plant={plant} />
-              </div>
-            </>
-          ))}
-        </div>
-        <div style={tableContainer} id="plant-table">
-          <PlantTable plantData={plantData} handleAddWater={handleAddWater} />
-        </div>
-      </div></div>)
+      </DashboardHeader>
 
-
+      :<><DashboardHeader>
+        <Typography
+          gutterBottom
+          variant="h4"
+          style={{
+            textAlign: "center",
+            fontFamily: "Oswald, sans-serif",
+            color: "#EBDBAE",
+          }}
+        >
+          Hello {userData?.username}, welcome to your garden
+        </Typography>
+        <Button onClick={openForm}>Add to Garden</Button>
+      </DashboardHeader>
+      <Dashboard plantData={plantData} user={userData?.username} />
+      <Modal
+        open={viewPlantModal}
+        onClose={closeForm}
+        aria-labelledby="modal-modal-title"
+        aria-describedby="modal-modal-description"
+      >
+        <AddPlantForm closeForm={closeForm} closeAndUpdate={closeAndUpdate}/>
+      </Modal>
+      </>}
+    </GardenContainer>
+  );
 };
 
-export default MyGarden
+export default MyGarden;

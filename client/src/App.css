@@ -59,6 +59,13 @@ body {
 }
 .content-container {
   min-height: calc(100vh - 20px) !important;
+  margin-Bottom: -70;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+.contact-container > * {
+  height: 100%;
 }
 .header {
   color: #647f4d !important;
@@ -83,9 +90,7 @@ Nav {
 #team-card:hover {
   background-color: #cdd9a0;
 }
-.garden-container {
-  background-color: #4f5902;
-}
+
 
 .about-img {
   min-width: 100vw;
@@ -120,5 +125,4 @@ Nav {
 .addplantbtn{
     background-color: #EBDBAE;
 }
-
 

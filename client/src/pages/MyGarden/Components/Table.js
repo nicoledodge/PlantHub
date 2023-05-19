@@ -5,7 +5,8 @@ const PlantTable = ({ plantData, handleAddWater }) => {
     const percent = (plant.waterAdded / plant.waterNeeded) * 100;
     return percent.toFixed();
   };
-
+  console.log("i'm the table")
+  console.log(plantData)
   //This text is a custom component that accepts text as children, variants for different styling, and color.
   const Text = ({ children, variant, color }) => {
     color = color || "#4f5902";
@@ -47,8 +48,8 @@ const PlantTable = ({ plantData, handleAddWater }) => {
       </Table.Header>
 
       <Table.Body>
-        {plantData.map((plant, i) => (
-          <Table.Row>
+        {plantData.map((plant) => (
+          <Table.Row key={plant._id}>
             <Table.Cell>
               <Text>{plant.name}</Text>
             </Table.Cell>

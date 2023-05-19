@@ -12,7 +12,7 @@ import { useMutation } from "@apollo/client";
 import { LOGIN_USER } from "../../utils/mutations";
 import Auth from "../../utils/auth";
 
-const LoginModal = ({ handleSignUp, handleLoginModal }) => {
+const LoginModal = ({ handleSignUpModal, handleLoginModal }) => {
   const [formState, setFormState] = useState({ email: "", password: "" });
   const [login, { error, data }] = useMutation(LOGIN_USER);
 
@@ -78,14 +78,14 @@ const LoginModal = ({ handleSignUp, handleLoginModal }) => {
         </Form>
         <Message>
           New to us?{" "}
-          <div
+          <Button
             onClick={() => {
               handleLoginModal();
-              handleSignUp();
+              handleSignUpModal();
             }}
           >
             Sign Up
-          </div>
+          </Button>
         </Message>
       </Grid.Column>
     </Grid>

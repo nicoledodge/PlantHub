@@ -27,12 +27,7 @@ function MyGarden() {
 
   const [removePlant, { err }] = useMutation(REMOVE_PLANT);
 
-  const [plantToggle, setPlantToggle] = useState(false);
 
-  const handlePlantModal = () => {
-    setPlantToggle(false);
-    refetch();
-  };
 
   const plantData = data?.me.myPlants || [];
 
