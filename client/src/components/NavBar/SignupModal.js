@@ -13,7 +13,7 @@ import { ADD_USER } from "../../utils/mutations";
 import { useMutation } from "@apollo/client";
 import Auth from "../../utils/auth";
 
-const SignUpModal = ({ handleSignUp, handleLoginModal }) => {
+const SignUpModal = ({ handleSignUpModal, handleLoginModal }) => {
   const [formState, setFormState] = useState({
     firstName: "",
     lastName: "",
@@ -44,6 +44,7 @@ const SignUpModal = ({ handleSignUp, handleLoginModal }) => {
       });
 
       Auth.login(data.addUser.token);
+      handleSignUpModal()
     } catch (e) {
       console.error(e);
     }
@@ -141,16 +142,17 @@ const SignUpModal = ({ handleSignUp, handleLoginModal }) => {
             </Button>
           </Segment>
         </Form>
+   
         <Message>
           Already a Member?{" "}
-          <div
+          <Button
             onClick={() => {
               handleLoginModal();
-              handleSignUp();
+              handleSignUpModal();
             }}
           >
             Login
-          </div>
+          </Button>
         </Message>
       </Grid.Column>
     </Grid>

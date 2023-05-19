@@ -94,6 +94,7 @@ const Nav = () => {
                                 key={page}
                                 href={page}
                                 onClick={handleCloseNavMenu}
+                                key={page}
                                 sx={{fontSize: "15px", my: 2, color: '#EBDBAE', display: 'block'}}
                             >
                                 {page}
@@ -144,7 +145,7 @@ const Nav = () => {
             aria-describedby="modal-modal-description"
         >
             <LoginModal handleLoginModal={handleLoginModal.bind(this)}
-                   handleSignUp={handleSignUpModal.bind(this)}/>
+                   handleSignUpModal={handleSignUpModal.bind(this)}/>
         </Modal>
         <Modal
             open={signUpToggle}
@@ -152,7 +153,8 @@ const Nav = () => {
             aria-labelledby="modal-modal-title"
             aria-describedby="modal-modal-description"
         >
-            <SignUpModal/>
+            <SignUpModal handleLoginModal={handleLoginModal.bind(this)}
+                   handleSignUpModal={handleSignUpModal.bind(this)}/>
         </Modal>
     </>;
 };

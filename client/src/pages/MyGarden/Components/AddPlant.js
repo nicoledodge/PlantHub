@@ -2,10 +2,9 @@ import React, { useState } from "react";
 import { Button, Form, Grid, Header, Segment } from "semantic-ui-react";
 import { ADD_PLANT } from "../../../utils/mutations";
 import { useMutation } from "@apollo/client";
-import Auth from "../../../utils/auth";
 import SizeChartModal from "./SizeChartModal";
 
-export default function AddPlantForm({ handlePlantModal }) {
+export default function AddPlantForm({ closeForm, closeAndUpdate }) {
   const [plantState, setPlantState] = useState({
     name: "",
     nickname: "",
@@ -46,10 +45,9 @@ export default function AddPlantForm({ handlePlantModal }) {
       const { data } = await addPlant({
         variables: {
           ...plantState,
-          waterNeeded: Number(plantState.waterNeeded),
         },
       });
-      handlePlantModal();
+      closeAndUpdate();
     } catch (e) {
       console.log(e);
     }
@@ -60,14 +58,14 @@ export default function AddPlantForm({ handlePlantModal }) {
         <Grid.Column>
           <Header as="div" id="addPlantHead">
             Add a plant
-            <Button
-              style={{ position: "absolute", right: "5" }}
-              color="red"
-              onClick={handlePlantModal}
-            >
-              Cancel
-            </Button>
           </Header>
+          <Button
+            style={{ position: "fixed", top: "5px", right: "5px" }}
+            color="red"
+            onClick={closeForm}
+          >
+            Cancel
+          </Button>
           <Form size="large" onSubmit={handleFormSubmit}>
             <Segment stacked>
               <Form.Field>
@@ -138,7 +136,9 @@ export default function AddPlantForm({ handlePlantModal }) {
                   ]}
                   onChange={(e) => handleChange(e, "plantSize")}
                 />
-                <SizeChartModal />
+                <SizeChartModal  open={sizeModalViewable}
+        onOpen={onOpen}
+        onClose={onClose}/>
               </Form.Field>
               <Form.Field>
                 <Form.Input
@@ -165,11 +165,6 @@ export default function AddPlantForm({ handlePlantModal }) {
           </Form>
         </Grid.Column>
       </Grid>
-      <SizeChartModal
-        open={sizeModalViewable}
-        onOpen={onOpen}
-        onClose={onClose}
-      />
     </>
   );
 }
