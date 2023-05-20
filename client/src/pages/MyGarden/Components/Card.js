@@ -5,64 +5,23 @@ import CardMedia from "@mui/material/CardMedia";
 import Typography from "@mui/material/Typography";
 import { CardActionArea } from "@mui/material";
 import { Icon, List, Button } from "semantic-ui-react";
-import styled from "styled-components";
+import { ContentContainer, ImageContainer, MainLayout, ListLayout, NameBox, WaterBox, IconBox } from "../StyledElements/CardElements";
+import { REMOVE_PLANT } from "../../../utils/mutations";
+import { useMutation } from "@apollo/client";
 const PlantCard = ({ plant, user }) => {
-  const ContentContainer = styled.div`
-    display: flex;
-    justify-content: center;
-    align-items: center;
-  `;
-
-  const ImageContainer = styled.div`
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    width: 250px;
-    background-color: blue;
-    @media screen and (min-width: 1400px) {
-      flex-direction: column;
+  const [removePlant, { err }] = useMutation(REMOVE_PLANT);
+  const handleDeletePlant = async (plantId) => {
+    try {
+      await removePlant({
+        variables: { plantId },
+      });
+    } catch (err) {
+      console.error(err);
     }
-  `;
-
-  const MainLayout = styled.div`
-    display: none;
-    @media screen and (min-width: 1400px) {
-      display: flex;
-      flex-direction: column;
-    }
-  `;
-
-  const ListLayout = styled.div`
-    display: flex;
-    width: 100%;
-    background-color: blue;
-    @media screen and (min-width: 1400px) {
-      display: none;
-    }
-  `;
-
-  const NameBox = styled.div`
-    width: 30%;
-    display: flex;
-    align-items: center;
-    background-color: red;
-  `;
-
-  const WaterBox = styled.div`
-    width: 55%;
-    display: flex;
-    align-items: center;
-  `;
-
-  const IconBox = styled.div`
-    width: 15%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-  `;
+  };
 
   const [status, setStatus] = useState("");
-  useEffect(()=>{
+  useEffect(() => {
     let actualMonthlyWaterAdded = (plant.waterAdded / plant.waterNeeded) * 100;
     let currentDate = new Date();
     let currentYear = currentDate.getFullYear();
@@ -88,9 +47,7 @@ const PlantCard = ({ plant, user }) => {
       return;
     }
     setStatus(`${user}, I'm thirsty!`);
-  },[plant])
-
- 
+  }, [plant]);
 
   return (
     <>
@@ -180,10 +137,7 @@ const PlantCard = ({ plant, user }) => {
                     primary
                     size="small"
                     style={{ backgroundColor: "#4f5902" }}
-                    // onClick={async () => {
-                    //   await handleDeletePlant(plant._id);
-                    //   await refetch();
-                    // }}
+                    onClick={async () => await handleDeletePlant(plant._id)}
                   >
                     <Icon name="remove circle" />
                     <Typography variant="body1" color="white">
