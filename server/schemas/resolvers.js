@@ -1,7 +1,16 @@
 const { AuthenticationError } = require('apollo-server-express');
 const { User, Plant, Blog } = require('../models');
 const { signToken } = require('../utils/auth');
-
+const multer = require('multer');
+const storage = multer.diskStorage({
+  destination: (req, file, cb) => {
+    cb(null, 'uploads/');
+  },
+  filename: (req, file, cb) => {
+    cb(null, file.originalname);
+  },
+});
+const upload = multer({ storage });
 const resolvers = {
   Query: {
     allUsers: async () => {
@@ -191,7 +200,29 @@ const resolvers = {
         }
         throw new AuthenticationError('Please login to delete a comment.');
       },
+      uploadImage: async (_, { file }) => {
+        const { createReadStream, filename, mimetype, encoding } = await file;
+        const stream = createReadStream();
+        const path = `uploads/${filename}`;
+  
+        return new Promise((resolve, reject) => {
+          stream.on('error', (error) => {
+            if (stream.truncated) {
+              // Delete the truncated file
+              fs.unlinkSync(path);
+            }
+            reject(error);
+          });
+  
+          stream.on('end', () => {
+            resolve({ filename, mimetype, encoding });
+          });
+  
+          stream.pipe(fs.createWriteStream(path));
+        });
+      },
     },
+
   };
 
 module.exports = resolvers;

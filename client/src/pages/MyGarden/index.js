@@ -18,6 +18,28 @@ const MyGarden = () => {
     closeForm()
     await refetch()
   }
+<<<<<<< Updated upstream
+=======
+  const openForm = () => setViewPlantModal(true);
+
+  const GardenContainer = styled.div`
+    background-color: #4f5902;
+    display: flex;
+    flex: 1;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+  `;
+
+  const DashboardHeader = styled.div`
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background-color: inherit;
+  `;
+>>>>>>> Stashed changes
 
   return (
     <GardenContainer>
