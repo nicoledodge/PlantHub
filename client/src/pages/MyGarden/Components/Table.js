@@ -1,12 +1,25 @@
-import { Table, Progress, Icon, Button, Segment } from "semantic-ui-react";
+import { Table, Progress, Icon, Button } from "semantic-ui-react";
 import { Typography } from "@mui/material";
-const PlantTable = ({ plantData, handleAddWater }) => {
+import { ADD_WATER} from "../../../utils/mutations";
+import { useMutation } from "@apollo/client";
+
+const PlantTable = ({ plantData }) => {
+  const [addWater, { error }] = useMutation(ADD_WATER);
+  
+  const handleAddWater = async (plantId) => {
+    try {
+      await addWater({
+        variables: { plantId },
+      });
+    } catch (err) {
+      console.error(err);
+    }
+  };
   const getPercent = (plant) => {
     const percent = (plant.waterAdded / plant.waterNeeded) * 100;
     return percent.toFixed();
   };
-  console.log("i'm the table")
-  console.log(plantData)
+
   //This text is a custom component that accepts text as children, variants for different styling, and color.
   const Text = ({ children, variant, color }) => {
     color = color || "#4f5902";
