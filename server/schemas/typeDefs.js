@@ -1,5 +1,4 @@
-const { gql } = require('apollo-server-express');
-
+const { gql } = require("apollo-server-express");
 const typeDefs = gql`
   type User {
     _id: ID
@@ -44,11 +43,8 @@ const typeDefs = gql`
     commentCreator: String
     createdAt: String
   }
-  type File {
-    filename: String!
-    mimetype: String!
-    encoding: String!
-  }
+
+
 
   type Query {
     allUsers: [User]
@@ -62,9 +58,22 @@ const typeDefs = gql`
   }
 
   type Mutation {
-    addUser(firstName: String!, lastName: String!, username: String!, email: String!, password: String!, location: String!): Auth
-    login(email: String!, password: String!): Auth 
-    addPlant(name: String!, nickname: String, plantType: String!, plantSize: String!, waterNeeded: Int!): Plant
+    addUser(
+      firstName: String!
+      lastName: String!
+      username: String!
+      email: String!
+      password: String!
+      location: String!
+    ): Auth
+    login(email: String!, password: String!): Auth
+    addPlant(
+      name: String!
+      nickname: String
+      plantType: String!
+      plantSize: String!
+      waterNeeded: Int!
+    ): Plant
     addWater(plantId: ID!): Plant
     removePlant(plantId: ID!): Plant
     removeWater(plantId: ID!, waterAdded: Int!): Plant
@@ -72,7 +81,6 @@ const typeDefs = gql`
     addComment(postId: ID!, commentText: String!): Blog
     removePost(postId: ID!): Blog
     removeComment(postId: ID!, commentId: ID!): Blog
-    uploadImage(file: Upload!): File!
   }
 `;
 

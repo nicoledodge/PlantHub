@@ -135,3 +135,13 @@ export const REMOVE_COMMENT = gql`
     }
   }
 `;
+
+export const UPLOAD_IMAGE = gql`
+mutation uploadImage ($file: Upload!) {
+  uploadImage(file: $file) {
+    filename
+    mimetype
+    encoding
+  }
+}
+`;
