@@ -7,6 +7,7 @@ import { GardenContainer,DashboardHeader } from "./StyledElements/GardenElements
 import Dashboard from "./Components/Dashboard";
 import { Button,Modal } from "semantic-ui-react";
 import AddPlantForm from "./Components/AddPlant";
+import ImageUpload from "./Components/ImageUpload";
 const MyGarden = () => {
   const { loading, data, refetch } = useQuery(QUERY_ME);
   const plantData = data?.me.myPlants || [];
@@ -18,28 +19,8 @@ const MyGarden = () => {
     closeForm()
     await refetch()
   }
-<<<<<<< Updated upstream
-=======
-  const openForm = () => setViewPlantModal(true);
 
-  const GardenContainer = styled.div`
-    background-color: #4f5902;
-    display: flex;
-    flex: 1;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-  `;
 
-  const DashboardHeader = styled.div`
-    width: 100%;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    background-color: inherit;
-  `;
->>>>>>> Stashed changes
 
   return (
     <GardenContainer>
@@ -60,6 +41,7 @@ const MyGarden = () => {
       : !plantData.length 
       ?<>
               <Button onClick={openForm}>Add to Garden</Button>
+              <ImageUpload/>
 
       </>
       :<><DashboardHeader>

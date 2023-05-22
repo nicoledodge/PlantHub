@@ -19,6 +19,7 @@
   },
   "dependencies": {
     "dotenv": "^10.0.0",
-    "env": "^0.0.2"
+    "env": "^0.0.2",
+    "graphql-upload": "^16.0.2"
   }
 }

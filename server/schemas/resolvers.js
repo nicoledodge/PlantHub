@@ -1,23 +1,17 @@
-const { AuthenticationError } = require('apollo-server-express');
-const { User, Plant, Blog } = require('../models');
-const { signToken } = require('../utils/auth');
-const multer = require('multer');
-const storage = multer.diskStorage({
-  destination: (req, file, cb) => {
-    cb(null, 'uploads/');
-  },
-  filename: (req, file, cb) => {
-    cb(null, file.originalname);
-  },
-});
-const upload = multer({ storage });
+const { AuthenticationError } = require("apollo-server-express");
+const { User, Plant, Blog } = require("../models");
+const { signToken } = require("../utils/auth");
+// const { GraphQLUpload } = require('graphql-upload');
 const resolvers = {
+  // Upload: GraphQLUpload,
   Query: {
     allUsers: async () => {
-      return User.find().populate('myPlants').populate('myPosts');
+      return User.find().populate("myPlants").populate("myPosts");
     },
     user: async (parent, { username }) => {
-      return User.findOne({ username }).populate('myPlants').populate('myPosts');
+      return User.findOne({ username })
+        .populate("myPlants")
+        .populate("myPosts");
     },
     plant: async (parent, { plantId }) => {
       return Plant.findOne({ _id: plantId });
@@ -27,9 +21,11 @@ const resolvers = {
     },
     me: async (parent, args, context) => {
       if (context.user) {
-        return User.findOne({ _id: context.user._id }).populate('myPlants').populate('myPosts');
+        return User.findOne({ _id: context.user._id })
+          .populate("myPlants")
+          .populate("myPosts");
       }
-      throw new AuthenticationError('You need to be logged in!');
+      throw new AuthenticationError("You need to be logged in!");
     },
     allPosts: async () => {
       return Blog.find().sort({ createdAt: -1 });
@@ -40,8 +36,18 @@ const resolvers = {
   },
 
   Mutation: {
-    addUser: async (parent, { firstName, lastName, username, email, password, location }) => {
-      const user = await User.create({ firstName, lastName, username, email, password, location });
+    addUser: async (
+      parent,
+      { firstName, lastName, username, email, password, location }
+    ) => {
+      const user = await User.create({
+        firstName,
+        lastName,
+        username,
+        email,
+        password,
+        location,
+      });
       const token = signToken(user);
       return { token, user };
     },
@@ -50,41 +56,45 @@ const resolvers = {
       const user = await User.findOne({ email });
 
       if (!user) {
-        throw new AuthenticationError('No user found with this email address');
+        throw new AuthenticationError("No user found with this email address");
       }
 
       const correctPw = await user.isCorrectPassword(password);
 
       if (!correctPw) {
-        throw new AuthenticationError('Incorrect credentials');
+        throw new AuthenticationError("Incorrect credentials");
       }
 
       const token = signToken(user);
 
       return { token, user };
     },
-    addPlant: async (parent, { name, nickname, plantType, plantSize, waterNeeded }, context ) => {
+    addPlant: async (
+      parent,
+      { name, nickname, plantType, plantSize, waterNeeded },
+      context
+    ) => {
       if (context.user) {
         const plant = await Plant.create({
           name: name,
           nickname: nickname,
           plantType: plantType,
           plantSize: plantSize,
-          waterNeeded: waterNeeded
+          waterNeeded: waterNeeded,
         });
 
         await User.findOneAndUpdate(
-          { _id: context.user._id},
+          { _id: context.user._id },
           { $addToSet: { myPlants: plant._id } }
         );
 
         return plant;
       }
-      throw new AuthenticationError('You need to be logged in!');
+      throw new AuthenticationError("You need to be logged in!");
     },
-    addWater: async (parent, { plantId}, context ) => {
-      if (context.user){
-        const plant = await Plant.findOne({_id: plantId})
+    addWater: async (parent, { plantId }, context) => {
+      if (context.user) {
+        const plant = await Plant.findOne({ _id: plantId });
 
         return Plant.findOneAndUpdate(
           { _id: plantId },
@@ -99,7 +109,7 @@ const resolvers = {
           }
         );
       }
-      throw new AuthenticationError('You need to be logged in!');
+      throw new AuthenticationError("You need to be logged in!");
     },
     removePlant: async (parent, { plantId }, context) => {
       if (context.user) {
@@ -114,11 +124,11 @@ const resolvers = {
 
         return plant;
       }
-      throw new AuthenticationError('You need to be logged in!');
+      throw new AuthenticationError("You need to be logged in!");
     },
-    removeWater: async (parent, { plantId}, context ) => {
-      if (context.user){
-        const plant = await Plant.findOne({_id: plantId})
+    removeWater: async (parent, { plantId }, context) => {
+      if (context.user) {
+        const plant = await Plant.findOne({ _id: plantId });
 
         return Plant.findOneAndUpdate(
           { _id: plantId },
@@ -133,96 +143,90 @@ const resolvers = {
           }
         );
       }
-      throw new AuthenticationError('You need to be logged in!');
+      throw new AuthenticationError("You need to be logged in!");
     },
-      addPost: async (parent, { postText }, context) => {
-        if (context.user) {
-          const post = await Blog.create({
-            postText: postText,
-            postCreator: context.user.username
-          });
-  
-          await User.findOneAndUpdate(
-            { username: context.user.username},
-            { $addToSet: { myPosts: post._id } }
-          );
+    addPost: async (parent, { postText }, context) => {
+      if (context.user) {
+        const post = await Blog.create({
+          postText: postText,
+          postCreator: context.user.username,
+        });
 
-          return post;
-        }
-        throw new AuthenticationError('Please login to create a post.');
-      },
-      addComment: async (parent, { postId, commentText }, context) => {
-      if (context.user){
-          return Blog.findOneAndUpdate(
-            { _id: postId },
-            { $addToSet: {
-              comments: { commentText, commentCreator: context.user.username},
-            }, 
-           },
-            {
-              new: true,
-              runValidators: true,
-            }
-          );
-        }
-        throw new AuthenticationError('Please login to create a comment.');
-      }, 
-      removePost: async (parent, { postId }, context) => {
-        if (context.user) {
-          const post = await Blog.findOneAndDelete({
-            _id: postId,
-            postCreator: context.user.username,
-          });
-
-          await User.findOneAndUpdate(
-            { _id: context.user._id },
-            { $pull: { myPosts: post._id } }
-          );
+        await User.findOneAndUpdate(
+          { username: context.user.username },
+          { $addToSet: { myPosts: post._id } }
+        );
 
         return post;
       }
-         throw new AuthenticationError('Please login to delete a post');
-      },
-      removeComment: async (parent, { postId, commentId }, context) => {
-        if (context.user) {
-          return Blog.findOneAndUpdate(
-            { _id: postId },
-            {
-              $pull: {
-                comments: {
-                  _id: commentId,
-                  commentAuthor: context.user.username,
-                },
+      throw new AuthenticationError("Please login to create a post.");
+    },
+    addComment: async (parent, { postId, commentText }, context) => {
+      if (context.user) {
+        return Blog.findOneAndUpdate(
+          { _id: postId },
+          {
+            $addToSet: {
+              comments: { commentText, commentCreator: context.user.username },
+            },
+          },
+          {
+            new: true,
+            runValidators: true,
+          }
+        );
+      }
+      throw new AuthenticationError("Please login to create a comment.");
+    },
+    removePost: async (parent, { postId }, context) => {
+      if (context.user) {
+        const post = await Blog.findOneAndDelete({
+          _id: postId,
+          postCreator: context.user.username,
+        });
+
+        await User.findOneAndUpdate(
+          { _id: context.user._id },
+          { $pull: { myPosts: post._id } }
+        );
+
+        return post;
+      }
+      throw new AuthenticationError("Please login to delete a post");
+    },
+    removeComment: async (parent, { postId, commentId }, context) => {
+      if (context.user) {
+        return Blog.findOneAndUpdate(
+          { _id: postId },
+          {
+            $pull: {
+              comments: {
+                _id: commentId,
+                commentAuthor: context.user.username,
               },
             },
-            { new: true }
-          );
-        }
-        throw new AuthenticationError('Please login to delete a comment.');
-      },
-      uploadImage: async (_, { file }) => {
-        const { createReadStream, filename, mimetype, encoding } = await file;
-        const stream = createReadStream();
-        const path = `uploads/${filename}`;
-  
-        return new Promise((resolve, reject) => {
-          stream.on('error', (error) => {
-            if (stream.truncated) {
-              // Delete the truncated file
-              fs.unlinkSync(path);
-            }
-            reject(error);
-          });
-  
-          stream.on('end', () => {
-            resolve({ filename, mimetype, encoding });
-          });
-  
-          stream.pipe(fs.createWriteStream(path));
-        });
-      },
+          },
+          { new: true }
+        );
+      }
+      throw new AuthenticationError("Please login to delete a comment.");
     },
-
-  };
+    // uploadImage: async (_, { file }) => {
+    //   console.log("upload image")
+      // const { createReadStream, filename, mimetype } = await file;
+    
+      // // Define the path to save the uploaded file
+      // const filePath = path.join(__dirname, '../uploads', filename);
+    
+      // // Create a writable stream and save the file
+      // return new Promise((resolve, reject) => {
+      //   createReadStream()
+      //     .pipe(createWriteStream(filePath))
+      //     .on('finish', () => resolve({ filename, mimetype }))
+      //     .on('error', (error) => reject(error));
+      // });
+    // },
+  },
+};
 
 module.exports = resolvers;
