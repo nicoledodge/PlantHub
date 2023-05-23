@@ -44,8 +44,6 @@ const typeDefs = gql`
     createdAt: String
   }
 
-
-
   type Query {
     allUsers: [User]
     user(username: String!): User
