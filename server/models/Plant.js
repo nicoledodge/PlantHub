@@ -17,7 +17,9 @@ const plantSchema = new Schema({
   plantType: {
     type: String,
     required: true,
-    trim: true
+    trim: true,
+    enum: {values: ["Outdoor", "Indoor"],
+    message: "You must enter a valid plant type!"}
   },
   plantSize: {
     type: String,
