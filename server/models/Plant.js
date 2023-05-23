@@ -17,7 +17,9 @@ const plantSchema = new Schema({
   plantType: {
     type: String,
     required: true,
-    trim: true
+    trim: true,
+    enum: {values: ["Outdoor", "Indoor"],
+    message: "You must enter a valid plant type!"}
   },
   plantSize: {
     type: String,
@@ -43,6 +45,27 @@ const plantSchema = new Schema({
 {
     timestamps: true
 })
+
+// Method to reset waterNeeded to 0 at the start of each month
+plantSchema.statics.resetWaterNeeded = async function () {
+  const currentDate = new Date();
+  const currentMonth = currentDate.getMonth() + 1;
+  const currentYear = currentDate.getFullYear();
+
+  // Find all plants created in the current month and year
+  const plants = await this.find({
+    createdAt: {
+      $gte: new Date(`${currentYear}-${currentMonth}-01`),
+      $lt: new Date(`${currentYear}-${currentMonth + 1}-01`),
+    },
+  });
+
+  // Reset waterNeeded to 0 for each plant
+  for (const plant of plants) {
+    plant.waterNeeded = 0;
+    await plant.save();
+  }
+};
 
 const Plant = model('Plant', plantSchema);
 
