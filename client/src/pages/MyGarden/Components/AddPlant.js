@@ -1,8 +1,13 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Button, Form, Grid, Header, Segment } from "semantic-ui-react";
 import { ADD_PLANT } from "../../../utils/mutations";
 import { useMutation } from "@apollo/client";
 import SizeChartModal from "./SizeChartModal";
+import {
+  ImageContainer,
+  RecordSummary,
+  SummaryContainer,
+} from "../StyledElements/AddPlantElement";
 
 export default function AddPlantForm({ closeForm, closeAndUpdate }) {
   const [plantState, setPlantState] = useState({
@@ -12,6 +17,65 @@ export default function AddPlantForm({ closeForm, closeAndUpdate }) {
     plantSize: "",
     waterNeeded: 15,
   });
+  const [plantRecommendations, setPlantRecommendations] = useState(null);
+
+  useEffect(() => {
+    // Your function logic here
+    if (plantRecommendations === null) {
+      return; // Exit out of the useEffect hook
+    }
+    console.log("plant recommendations are here!")
+    console.log(plantRecommendations)
+    console.log(plantRecommendations.minWater)
+    let neededWater = Math.floor(plantRecommendations.minWater * 2.5)*10;
+    console.log(neededWater)
+    setPlantState((prevState) => ({
+      ...prevState,
+      name: plantRecommendations.plant_name,
+      waterNeeded: neededWater,
+    }));
+  }, [plantRecommendations]); // Specify the dependency as [value]
+
+  
+  const handleUpload = async (file) => {
+    try {
+      const formData = new FormData();
+      formData.append("image", file);
+      const response = await fetch("/api/upload", {
+        method: "POST",
+        body: formData,
+      });
+
+      if (response.ok) {
+        const data = await response.json();
+        console.log(data);
+        setPlantRecommendations({
+          plant_name: data.suggestions[0].plant_details?.scientific_name,
+          minWater: data.suggestions[0].plant_details.watering?.max,
+          maxWater: data.suggestions[0].plant_details.watering?.min,
+          probability: (data.suggestions[0].probability * 100).toFixed(2),
+          description:
+            data.suggestions[0].plant_details.wiki_description?.value.split(
+              "."
+            )[0],
+          link: data.suggestions[0].plant_details?.url,
+          image: data.suggestions[0].plant_details.wiki_image?.value,
+        });
+        
+
+        // Handle the response or perform additional actions
+      } else {
+        alert("Error uploading file:", response.statusText);
+        // Handle the error
+      }
+    } catch (error) {
+      console.error("Error uploading file:", error);
+      alert(error)
+      // Handle the error
+    }
+  };
+  console.log(plantRecommendations);
+
   const [sizeModalViewable, setSizeModalViewable] = useState(false);
   const onClose = () => setSizeModalViewable(false);
   const onOpen = () => setSizeModalViewable(true);
@@ -52,6 +116,7 @@ export default function AddPlantForm({ closeForm, closeAndUpdate }) {
       console.log(e);
     }
   };
+
   return (
     <>
       <Grid>
@@ -66,6 +131,43 @@ export default function AddPlantForm({ closeForm, closeAndUpdate }) {
           >
             Cancel
           </Button>
+
+          <SummaryContainer>
+            {!plantRecommendations ? (
+              <>
+                <input
+                  type="file"
+                  onChange={(e) => handleUpload(e.target.files[0])}
+                />
+              </>
+            ) : (
+              <>
+                <ImageContainer>
+                  <p>{plantRecommendations.plant_name}</p>
+                  <img
+                    src={plantRecommendations.image}
+                    alt={plantRecommendations.description}
+                    style={{
+                      width: "100%",
+                      height: "100%",
+                      objectFit: "cover",
+                    }}
+                  />
+                </ImageContainer>
+                <RecordSummary>
+                  <p>
+                    Probability of match: {plantRecommendations.probability}%
+                  </p>
+                  <p>
+                    {plantRecommendations.description}{" "}
+                    {plantRecommendations.probability}%
+                  </p>
+                  <p>{plantRecommendations.link}</p>
+                  {!plantRecommendations?.minWater ? <p>Please visit the Wiki for guidance on water care</p> : plantRecommendations.minWater === 1 ? <p>Your plant doesn't require too much water</p> : plantRecommendations.minWater === 2? <p>Your water required a moderate to high amount of water</p> : <p>Your plant needs a lot water and care, pick carefully!</p>}
+                </RecordSummary>
+              </>
+            )}
+          </SummaryContainer>
           <Form size="large" onSubmit={handleFormSubmit}>
             <Segment stacked>
               <Form.Field>
@@ -136,9 +238,11 @@ export default function AddPlantForm({ closeForm, closeAndUpdate }) {
                   ]}
                   onChange={(e) => handleChange(e, "plantSize")}
                 />
-                <SizeChartModal  open={sizeModalViewable}
-        onOpen={onOpen}
-        onClose={onClose}/>
+                <SizeChartModal
+                  open={sizeModalViewable}
+                  onOpen={onOpen}
+                  onClose={onClose}
+                />
               </Form.Field>
               <Form.Field>
                 <Form.Input

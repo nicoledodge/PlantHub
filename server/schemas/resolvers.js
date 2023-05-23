@@ -1,9 +1,7 @@
 const { AuthenticationError } = require("apollo-server-express");
 const { User, Plant, Blog } = require("../models");
 const { signToken } = require("../utils/auth");
-// const { GraphQLUpload } = require('graphql-upload');
 const resolvers = {
-  // Upload: GraphQLUpload,
   Query: {
     allUsers: async () => {
       return User.find().populate("myPlants").populate("myPosts");
@@ -92,6 +90,7 @@ const resolvers = {
       }
       throw new AuthenticationError("You need to be logged in!");
     },
+  
     addWater: async (parent, { plantId }, context) => {
       if (context.user) {
         const plant = await Plant.findOne({ _id: plantId });
@@ -210,22 +209,7 @@ const resolvers = {
         );
       }
       throw new AuthenticationError("Please login to delete a comment.");
-    },
-    // uploadImage: async (_, { file }) => {
-    //   console.log("upload image")
-      // const { createReadStream, filename, mimetype } = await file;
-    
-      // // Define the path to save the uploaded file
-      // const filePath = path.join(__dirname, '../uploads', filename);
-    
-      // // Create a writable stream and save the file
-      // return new Promise((resolve, reject) => {
-      //   createReadStream()
-      //     .pipe(createWriteStream(filePath))
-      //     .on('finish', () => resolve({ filename, mimetype }))
-      //     .on('error', (error) => reject(error));
-      // });
-    // },
+    }
   },
 };
 
