@@ -5,7 +5,15 @@ import CardMedia from "@mui/material/CardMedia";
 import Typography from "@mui/material/Typography";
 import { CardActionArea } from "@mui/material";
 import { Icon, List, Button } from "semantic-ui-react";
-import { ContentContainer, ImageContainer, MainLayout, ListLayout, NameBox, WaterBox, IconBox } from "../StyledElements/CardElements";
+import {
+  ContentContainer,
+  ImageContainer,
+  MainLayout,
+  ListLayout,
+  NameBox,
+  WaterBox,
+  IconBox,
+} from "../StyledElements/CardElements";
 import { REMOVE_PLANT } from "../../../utils/mutations";
 import { useMutation } from "@apollo/client";
 const PlantCard = ({ plant, user }) => {
@@ -19,7 +27,7 @@ const PlantCard = ({ plant, user }) => {
       console.error(err);
     }
   };
-  console.log(plant)
+  console.log(plant);
   const [status, setStatus] = useState("");
   useEffect(() => {
     let actualMonthlyWaterAdded = (plant.waterAdded / plant.waterNeeded) * 100;
@@ -53,7 +61,11 @@ const PlantCard = ({ plant, user }) => {
     <>
       <Card
         id="plant-card"
-        style={{ backgroundColor: "#EBDBAE", padding: "5px", width: "100%" }}
+        style={{
+          backgroundColor: "#EBDBAE",
+          width: "100%",
+          marginTop: "1.33%",
+        }}
       >
         <CardActionArea
           style={{
@@ -64,88 +76,66 @@ const PlantCard = ({ plant, user }) => {
         >
           <CardContent style={{ width: "100%" }}>
             <ContentContainer>
-              <ListLayout>
-                <NameBox>
-                  <p>{plant.nickname}</p>
-                </NameBox>
-                <WaterBox>
-                  <p>{status}</p>
-                  <Typography variant="body1" color="4f5902">
-                    Days watered this month: {plant.waterAdded}
-                  </Typography>
-                </WaterBox>
-                <IconBox>
-                  <p>Icon Box</p>
-                </IconBox>
-              </ListLayout>
+              <Typography
+                gutterBottom
+                variant="h4"
+                component="div"
+                style={{
+                  textAlign: "center",
+                  fontFamily: "Fuzzy Bubbles, cursive",
+                  color: "4f5902",
+                  marginVertical: 3,
+                }}
+              >
+                {plant.nickname || plant.name}
+              </Typography>
+              <ImageContainer>
+                <CardMedia
+                  component="img"
+                  style={{
+                    width: "100%",
+                    maxHeight: '100%',
+                    backgroundPosition: "center",
+                    backgroundRepeat: "no-repeat",
+                    backgroundSize: "contain",
+                    borderRadius: 10,
+                  }}
+                  image={plant.image || "./images/money-tree.webp"}
+                  alt={`Picture of your beloved ${
+                    plant.nickname || plant.name
+                  }`}
+                />
+              </ImageContainer>
               <MainLayout>
-                {/* Rest of the code for MainLayout */}
-
-                <ImageContainer>
-                  <Typography
-                    gutterBottom
-                    variant="h4"
-                    component="div"
-                    style={{
-                      textAlign: "center",
-                      fontFamily: "Fuzzy Bubbles, cursive",
-                      color: "4f5902",
-                    }}
-                  >
-                    {plant.nickname}
+                  <Typography variant="body1" color="4f5902">
+                  <strong>Type</strong>: {plant.plantType}
                   </Typography>
-                  <CardMedia
-                    component="img"
-                    height="200"
-                    image={plant.image || "./images/money-tree.webp"}
-                    alt={plant.name}
-                    style={{ backgroundColor: "#4f5902" }}
-                  />
-                </ImageContainer>
-                <List>
-                  <List.Item>
-                    {" "}
-                    <Typography variant="body1" color="4f5902">
-                      Type: {plant.plantType}
-                    </Typography>
-                  </List.Item>
-                  <List.Item>
-                    {" "}
-                    <Typography variant="body1" color="4f5902">
-                      Birthday: {plant.createdAt}
-                    </Typography>
-                  </List.Item>
-                  <List.Item>
-                    {" "}
-                    <Typography variant="body1" color="4f5902">
-                      Size: {plant.plantSize}
-                    </Typography>
-                  </List.Item>
-                  <List.Item>
-                    {" "}
-                    <Typography variant="body1" color="4f5902">
-                      Days watered this month: {plant.waterAdded}
-                    </Typography>
-                  </List.Item>
-                </List>
+                  <Typography variant="body1" color="4f5902">
+                    <strong>Birthday</strong>: {plant.createdAt.split("at")[0]}
+                  </Typography>
+                  <Typography variant="body1" color="4f5902">
+                  <strong>Size</strong>: {plant.plantSize}
+                  </Typography>
+                  <Typography variant="body1" color="4f5902">
+                  <strong>Days Watered This Month</strong>: {plant.waterAdded}
+                  </Typography>
+                <Button
+                  className="removegardenbtn"
+                  icon
+                  labelPosition="left"
+                  primary
+                  size="small"
+                  style={{ backgroundColor: "#4f5902" }}
+                  onClick={async () => await handleDeletePlant(plant._id)}
+                >
+                  <Icon name="remove circle" />
+                  <Typography variant="body1" color="white">
+                    Remove from Garden
+                  </Typography>
+                </Button>
 
-                <div style={{ textAlign: "center" }}>
-                  <Button
-                    className="removegardenbtn"
-                    icon
-                    labelPosition="left"
-                    primary
-                    size="small"
-                    style={{ backgroundColor: "#4f5902" }}
-                    onClick={async () => await handleDeletePlant(plant._id)}
-                  >
-                    <Icon name="remove circle" />
-                    <Typography variant="body1" color="white">
-                      Remove from Garden
-                    </Typography>
-                  </Button>
-                </div>
               </MainLayout>
+              
             </ContentContainer>
           </CardContent>
         </CardActionArea>

@@ -1,34 +1,58 @@
 import styled from "styled-components";
 export const DashboardContainer = styled.div`
-    width: 100%;
+  width: 100%;
+  display: flex;
+  flex-direction: column-reverse;
+  align-items: center;
+  justify-content: center;
+  @media screen and (min-width: 1400px) {
+    flex-direction: row;
+    flex: 1;
+  }
+`;
+export const TableContainer = styled.div`
+  display: none;
+  @media screen and (min-width: 1400px) {
+    width: 70%;
+    flex: 1;
     display: flex;
-    flex-direction: column-reverse;
-    align-items: center;
     justify-content: center;
-    @media screen and (min-width: 1400px) {
-      flex-direction: row;
-      flex: 1;
-    }
-  `;
+    align-items: center;
+    padding: 5% 1%;
+  }
+`;
 
-  export const PlantFeedContainer = styled.div`
-    width: 95%;
-    padding: 5px 0px;
+export const PlantFeedContainer = styled.div`
+  margin-top: 5%;
+  width: 95%;
+  padding: 5px 10px;
+  padding-bottom: 10%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  @media screen and (min-width: 1400px) {
     max-height: 80vh;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    padding-bottom: 5%;
-    @media screen and (min-width: 1400px) {
-      width: 30%;
-      padding: 1%;
-    }
-  `;
+    width: 30%;
+    padding: 1%;
+  }
+`;
 
-  export const ScrollableContent = styled.div`
+export const ScrollableContent = styled.div`
+  width: 100%;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-start;
+  align-items: space-around;
+  gap: 2%;
+  @media screen and (min-width: 800px) {
+    gap: 1.33%;
+  }
+  @media screen and (min-width: 1400px) {
+    max-height: 80vh;
+    padding: 1%;
+
     overflow-y: auto;
-    width: 100%;
-    max-height:80vh;
+    max-height: 80vh;
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
@@ -37,7 +61,6 @@ export const DashboardContainer = styled.div`
     /* Scroll Indicator Styles */
     &::-webkit-scrollbar {
       width: 8px;
-      
     }
 
     &::-webkit-scrollbar-track {
@@ -47,10 +70,9 @@ export const DashboardContainer = styled.div`
     }
 
     &::-webkit-scrollbar-thumb {
-      background-color: #C5C78B; 
+      background-color: #c5c78b;
       border-radius: 4px;
     }
-
 
     .scroll-indicator {
       position: absolute;
@@ -86,34 +108,29 @@ export const DashboardContainer = styled.div`
         background-color: rgba(255, 255, 255, 1);
       }
     }
-   
-  `;
+  }
+`;
 
-  export const TableContainer = styled.div`
-    width: 95%;
-    flex: 1;
+export const CardContainer = styled.div`
+  margin-top: 5px;
+  width: 48%;
+  @media screen and (min-width: 800px) {
+    width: 32%;
+  }
+  @media screen and (min-width: 1400px) {
+    width: 48%;
+    padding: 2px;
+    margin-horizontal: 5px;
     display: flex;
-    justify-content: center;
     align-items: center;
-    padding: 5% 5%;
-  `;
-  export const CardContainer = styled.div`
-    width: 95%;
-    margin-top: 5px;
-    @media screen and (min-width: 1400px) {
-      width: 50%;
-      padding: 2px;
-      margin-horizontal: 5px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-    }
-    @media screen and (min-width: 2000px) {
-      width: 33%;
-      padding: 2px;
-      margin-horizontal: 5px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-    }
-  `;
+    justify-content: center;
+  }
+  @media screen and (min-width: 2000px) {
+    width: 32%;
+    padding: 2px;
+    margin-horizontal: 5px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+`;
