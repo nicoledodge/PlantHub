@@ -22,6 +22,7 @@ const typeDefs = gql`
     waterNeeded: Int
     waterAdded: Int
     createdAt: String
+    image: String
   }
 
   type Auth {
@@ -71,6 +72,7 @@ const typeDefs = gql`
       plantType: String!
       plantSize: String!
       waterNeeded: Int!
+      hasImage: Boolean!
     ): Plant
     addWater(plantId: ID!): Plant
     removePlant(plantId: ID!): Plant

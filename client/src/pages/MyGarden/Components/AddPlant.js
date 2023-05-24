@@ -10,12 +10,14 @@ import {
 } from "../StyledElements/AddPlantElement";
 
 export default function AddPlantForm({ closeForm, closeAndUpdate }) {
-  const [plantState, setPlantState] = useState({
+  const [addPlant, { error, data }] = useMutation(ADD_PLANT);
+    const [plantState, setPlantState] = useState({
     name: "",
     nickname: "",
     plantType: "",
     plantSize: "",
     waterNeeded: 15,
+    hasImage: false
   });
   const [plantRecommendations, setPlantRecommendations] = useState(null);
 
@@ -27,16 +29,16 @@ export default function AddPlantForm({ closeForm, closeAndUpdate }) {
     console.log("plant recommendations are here!")
     console.log(plantRecommendations)
     console.log(plantRecommendations.minWater)
-    let neededWater = Math.floor(plantRecommendations.minWater * 2.5)*10;
+    let neededWater = (Math.floor(plantRecommendations?.minWater * 10));
     console.log(neededWater)
     setPlantState((prevState) => ({
       ...prevState,
       name: plantRecommendations.plant_name,
-      waterNeeded: neededWater,
+      waterNeeded: neededWater || 15,
+      hasImage: true
     }));
   }, [plantRecommendations]); // Specify the dependency as [value]
 
-  
   const handleUpload = async (file) => {
     try {
       const formData = new FormData();
@@ -79,7 +81,6 @@ export default function AddPlantForm({ closeForm, closeAndUpdate }) {
   const [sizeModalViewable, setSizeModalViewable] = useState(false);
   const onClose = () => setSizeModalViewable(false);
   const onOpen = () => setSizeModalViewable(true);
-  const [addPlant, { error, data }] = useMutation(ADD_PLANT);
   const handleChange = (event, dropdownName) => {
     if (typeof dropdownName !== "string") {
       const { name, value } = event.target;
@@ -106,11 +107,14 @@ export default function AddPlantForm({ closeForm, closeAndUpdate }) {
   const handleFormSubmit = async (event) => {
     event.preventDefault();
     try {
+      console.log("DDING A PLANT")
+      console.log(plantState)
       const { data } = await addPlant({
         variables: {
           ...plantState,
         },
       });
+      console.log(data)
       closeAndUpdate();
     } catch (e) {
       console.log(e);

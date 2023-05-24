@@ -1,4 +1,4 @@
-import { gql } from '@apollo/client';
+import { gql } from "@apollo/client";
 
 export const LOGIN_USER = gql`
   mutation login($email: String!, $password: String!) {
@@ -14,8 +14,22 @@ export const LOGIN_USER = gql`
 `;
 
 export const ADD_USER = gql`
-  mutation addUser($firstName: String!, $lastName: String!, $username: String! $email: String!, $password: String!, $location: String!) {
-    addUser(firstName: $firstName, lastName: $lastName, username: $username email: $email, password: $password, location: $location) {
+  mutation addUser(
+    $firstName: String!
+    $lastName: String!
+    $username: String!
+    $email: String!
+    $password: String!
+    $location: String!
+  ) {
+    addUser(
+      firstName: $firstName
+      lastName: $lastName
+      username: $username
+      email: $email
+      password: $password
+      location: $location
+    ) {
       token
       user {
         _id
@@ -26,14 +40,30 @@ export const ADD_USER = gql`
 `;
 
 export const ADD_PLANT = gql`
-  mutation addPlant($name: String!, $nickname: String, $plantType: String!, $plantSize: String!, $waterNeeded: Int!) {
-    addPlant(name: $name, nickname: $nickname, plantType: $plantType, plantSize: $plantSize, waterNeeded: $waterNeeded) {
+  mutation addPlant(
+    $name: String!
+    $nickname: String
+    $plantType: String!
+    $plantSize: String!
+    $waterNeeded: Int!
+    $hasImage: Boolean!
+  ) {
+    addPlant(
+      name: $name
+      nickname: $nickname
+      plantType: $plantType
+      plantSize: $plantSize
+      waterNeeded: $waterNeeded
+      hasImage: $hasImage
+    ) {
       _id
       name
       nickname
       plantType
       plantSize
+      waterAdded
       waterNeeded
+      image
     }
   }
 `;
@@ -89,7 +119,7 @@ export const ADD_POST = gql`
 
 export const REMOVE_POST = gql`
   mutation removePost($postId: ID!) {
-    removePost(postId:$postId) {
+    removePost(postId: $postId) {
       _id
       postText
       postCreator
@@ -134,14 +164,4 @@ export const REMOVE_COMMENT = gql`
       }
     }
   }
-`;
-
-export const UPLOAD_IMAGE = gql`
-mutation uploadImage ($file: Upload!) {
-  uploadImage(file: $file) {
-    filename
-    mimetype
-    encoding
-  }
-}
 `;
