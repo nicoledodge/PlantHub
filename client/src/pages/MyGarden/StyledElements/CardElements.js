@@ -2,27 +2,26 @@ import styled from "styled-components";
 
 export const ContentContainer = styled.div`
 display: flex;
-justify-content: center;
+flex-direction: column;
+// justify-content: center;
 align-items: center;
 `;
 
 export const ImageContainer = styled.div`
+width: 90%;
+max-height: 35%;
 display: flex;
 justify-content: center;
 align-items: center;
-width: 250px;
-background-color: blue;
+flex-direction: column;
 @media screen and (min-width: 1400px) {
   flex-direction: column;
 }
 `;
 
 export const MainLayout = styled.div`
-display: none;
-@media screen and (min-width: 1400px) {
   display: flex;
   flex-direction: column;
-}
 `;
 
 export const ListLayout = styled.div`

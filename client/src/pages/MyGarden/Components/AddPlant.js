@@ -11,14 +11,15 @@ import {
 
 export default function AddPlantForm({ closeForm, closeAndUpdate }) {
   const [addPlant, { error, data }] = useMutation(ADD_PLANT);
-    const [plantState, setPlantState] = useState({
+  const initialState = {
     name: "",
     nickname: "",
     plantType: "",
     plantSize: "",
     waterNeeded: 15,
     hasImage: false
-  });
+  }
+    const [plantState, setPlantState] = useState(initialState);
   const [plantRecommendations, setPlantRecommendations] = useState(null);
 
   useEffect(() => {
@@ -115,11 +116,16 @@ export default function AddPlantForm({ closeForm, closeAndUpdate }) {
         },
       });
       console.log(data)
-      closeAndUpdate();
+      handleSuccessfulAdd()
     } catch (e) {
       console.log(e);
     }
   };
+  const handleSuccessfulAdd  = () => {
+    setPlantRecommendations(null)
+    setPlantState(initialState)
+    closeAndUpdate();
+  }
 
   return (
     <>
