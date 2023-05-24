@@ -4,12 +4,15 @@ const path = require("path");
 
 async function getImageString(path) {
     try {
+        console.log(path)
       const data = await sharp(path)
         .resize({ width: 500, height: 500 })
         .toBuffer();
+      await sharp(data).toFile(path);
       const imageString = data.toString("base64");
       return imageString;
     } catch (err) {
+    console.log("Path incorrect")
       console.error(err);
     }
   }

@@ -19,7 +19,7 @@ const PlantCard = ({ plant, user }) => {
       console.error(err);
     }
   };
-
+  console.log(plant)
   const [status, setStatus] = useState("");
   useEffect(() => {
     let actualMonthlyWaterAdded = (plant.waterAdded / plant.waterNeeded) * 100;
@@ -97,7 +97,7 @@ const PlantCard = ({ plant, user }) => {
                   <CardMedia
                     component="img"
                     height="200"
-                    image="./images/money-tree.webp"
+                    image={plant.image || "./images/money-tree.webp"}
                     alt={plant.name}
                     style={{ backgroundColor: "#4f5902" }}
                   />

@@ -12,35 +12,33 @@ const { storage,fileFilter, getImageString } = require("./utils/multer");
 require('dotenv').config();
 const upload = multer({ storage, fileFilter });
 const cron = require('node-cron')
-const {Plant} = require("./models")
 
+// async function getPlantData() {
+//   const prompt = `Prompt to ask ChatGPT`
+//   try {
+//     const response = await axios.post('https://api.openai.com/v1/engines/davinci/completions', {
+//       prompt: prompt,
+//       max_tokens: 300,
+//       temperature: 0.1,
+//       n: 1,
+//       // stop: ['\n', '.', '!', '?']
+//     }, {
+//       headers: {
+//         'Content-Type': 'application/json',
+//         'Authorization': `Bearer ${process.env.OPENAI_API_KEY}` // Replace with your OpenAI API key
+//       }
+//     });
 
-async function getPlantData() {
-  const prompt = `Prompt to ask ChatGPT`
-  try {
-    const response = await axios.post('https://api.openai.com/v1/engines/davinci/completions', {
-      prompt: prompt,
-      max_tokens: 300,
-      temperature: 0.1,
-      n: 1,
-      // stop: ['\n', '.', '!', '?']
-    }, {
-      headers: {
-        'Content-Type': 'application/json',
-        'Authorization': `Bearer ${process.env.OPENAI_API_KEY}` // Replace with your OpenAI API key
-      }
-    });
+//     console.log(response)
 
-    console.log(response)
-
-    const data = response.data?.choices
-    console.log(data)
-  } 
-    catch (error) {
-      res.json(error)
-      console.error('Error:', error.response.data.error);
-    } 
-}
+//     const data = response.data?.choices
+//     console.log(data)
+//   } 
+//     catch (error) {
+//       res.json(error)
+//       console.error('Error:', error.response.data.error);
+//     } 
+// }
 
 // Serve up static assets
 app.use(express.static(path.join(__dirname, "../client/build")));
@@ -98,7 +96,6 @@ app.post("/api/upload", upload.single("image"), async (req, res) => {
     );
     res.json(response.data)
   } catch (error) {
-    console.log("ERROR WITH PLANT ID API")
     res.json(error)
     console.log(error)
   }

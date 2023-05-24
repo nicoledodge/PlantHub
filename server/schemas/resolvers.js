@@ -1,6 +1,52 @@
 const { AuthenticationError } = require("apollo-server-express");
 const { User, Plant, Blog } = require("../models");
 const { signToken } = require("../utils/auth");
+const path = require("path");
+const fs = require("fs");
+const AWS = require("aws-sdk");
+const { uuid } = require("uuidv4");
+require("dotenv").config();
+AWS.config.update({
+  accessKeyId: process.env.AWS_ACCESS_KEY_ID,
+  secretAccessKey: process.env.AWS_SECRET_ACCESS_KEY,
+  region: process.env.AWS_REGION,
+});
+const s3 = new AWS.S3();
+
+const uploadImageToS3 = (params) => {
+  return new Promise((resolve, reject) => {
+    s3.upload(params, (err, data) => {
+      if (err) {
+        console.log("Error uploading image:", err);
+        reject(err);
+      } else {
+        console.log("Image uploaded successfully:", data.Location);
+        resolve(data);
+      }
+    });
+  });
+};
+
+const uploadImage = async (filePath, fileExtension) => {
+  const fileContent = fs.readFileSync(filePath);
+  const fileName = uuid();
+  const params = {
+    Bucket: process.env.AWS_BUCKET_NAME,
+    Key: `${process.env.AWS_BUCKET_FOLDER}/${fileName}${fileExtension}`,
+    Body: fileContent,
+  };
+  console.log(params)
+  try {
+    const uploadResponse = await uploadImageToS3(params);
+    console.log("Upload response:", uploadResponse);
+    return uploadResponse.Location;
+    // Handle the upload response or perform any additional actions
+  } catch (error) {
+    console.log("Upload error:", error);
+    // Handle the error appropriately
+  }
+};
+
 const resolvers = {
   Query: {
     allUsers: async () => {
@@ -19,9 +65,14 @@ const resolvers = {
     },
     me: async (parent, args, context) => {
       if (context.user) {
-        return User.findOne({ _id: context.user._id })
-          .populate("myPlants")
-          .populate("myPosts");
+        try {
+          return User.findOne({ _id: context.user._id })
+            .populate("myPlants")
+            .populate("myPosts");
+        } catch (error) {
+          console.log(error);
+          return error;
+        }
       }
       throw new AuthenticationError("You need to be logged in!");
     },
@@ -68,29 +119,55 @@ const resolvers = {
       return { token, user };
     },
     addPlant: async (
-      parent,
-      { name, nickname, plantType, plantSize, waterNeeded },
+      _,
+      { name, nickname, plantType, plantSize, waterNeeded, hasImage },
       context
     ) => {
+      var plant;
+      console.log("adding a plant!!!!");
       if (context.user) {
-        const plant = await Plant.create({
-          name: name,
-          nickname: nickname,
-          plantType: plantType,
-          plantSize: plantSize,
-          waterNeeded: waterNeeded,
-        });
-
-        await User.findOneAndUpdate(
-          { _id: context.user._id },
-          { $addToSet: { myPlants: plant._id } }
-        );
-
-        return plant;
+        try {
+          if (hasImage) {
+            const uploadsFolder = path.join(__dirname, "../uploads");
+            // Read the files in the uploads folder
+            const files = fs.readdirSync(uploadsFolder);
+            console.log(files);
+            if (files.length > 0) {
+              // Get the first file
+              const firstFile = files[0];
+              const imagePath = `${uploadsFolder}/${firstFile}`;
+              const fileExtension = path.extname(firstFile).toLowerCase();
+              const imageLink = await uploadImage(imagePath, fileExtension);
+              plant = await Plant.create({
+                name: name,
+                nickname: nickname,
+                plantType: plantType,
+                plantSize: plantSize,
+                waterNeeded: waterNeeded,
+                image: imageLink,
+              });
+            }
+          } else {
+            plant = await Plant.create({
+              name: name,
+              nickname: nickname,
+              plantType: plantType,
+              plantSize: plantSize,
+              waterNeeded: waterNeeded,
+            });
+          }
+          await User.findOneAndUpdate(
+            { _id: context.user._id },
+            { $addToSet: { myPlants: plant._id } }
+          );
+          return plant;
+        } catch (error) {
+          console.log(error);
+        }
       }
       throw new AuthenticationError("You need to be logged in!");
     },
-  
+
     addWater: async (parent, { plantId }, context) => {
       if (context.user) {
         const plant = await Plant.findOne({ _id: plantId });
@@ -209,8 +286,21 @@ const resolvers = {
         );
       }
       throw new AuthenticationError("Please login to delete a comment.");
-    }
+    },
   },
 };
+
+// const listObjects = async () => {
+//   try {
+//     console.log("trying to list s3 objects")
+//     const response = await s3.listObjects({ Bucket: process.env.AWS_BUCKET_NAME }).promise();
+//     console.log('Objects in the bucket:', response.Contents);
+//   } catch (error) {
+//     console.error('Error listing objects:', error);
+//   }
+// };
+
+// // Call the function to list objects in the bucket
+// listObjects();
 
 module.exports = resolvers;

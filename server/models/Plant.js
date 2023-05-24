@@ -40,7 +40,8 @@ const plantSchema = new Schema({
     type: Date,
     default: Date.now,
     get: (timestamp) => dateFormat(timestamp),
-  }
+  },
+  image: String
 },
 {
     timestamps: true

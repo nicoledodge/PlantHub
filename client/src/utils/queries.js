@@ -19,6 +19,7 @@ export const QUERY_ME = gql`
         waterNeeded
         waterAdded
         createdAt
+        image
       }
     }
   }
