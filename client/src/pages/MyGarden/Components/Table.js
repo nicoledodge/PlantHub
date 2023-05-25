@@ -74,6 +74,7 @@ const PlantTable = ({ plantData }) => {
                   labelPosition="right"
                   primary
                   size="small"
+                  disabled={plant.status === "I'm thirsty!" ? false: true}
                   onClick={async () => await handleAddWater(plant._id)}
                 >
                   <Icon name="tint" />

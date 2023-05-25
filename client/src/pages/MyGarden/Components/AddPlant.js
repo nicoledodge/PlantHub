@@ -45,7 +45,6 @@ export default function AddPlantForm({ closeForm, closeAndUpdate }) {
       if (response.ok) {
         const data = await response.json();
         console.log(data)
-        return
         if(data?.suggestions?.length){
           setPlantRecommendations({
             plant_name: data.suggestions[0].plant_details?.scientific_name,

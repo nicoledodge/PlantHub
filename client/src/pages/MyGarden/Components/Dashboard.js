@@ -1,14 +1,14 @@
 import { DashboardContainer,PlantFeedContainer,ScrollableContent,CardContainer,TableContainer } from "../StyledElements/DashboardElements";
 import PlantCard from "./Card";
 import PlantTable from "./Table";
-const Dashboard = ({ plantData,user,triggerRefetch }) => {
+const Dashboard = ({ plantData,setDeletionId }) => {
   return (
     <DashboardContainer>
       <PlantFeedContainer id="plant-feed">
         <ScrollableContent>
           {plantData?.map((plant) => (
             <CardContainer key={plant._id}>
-              <PlantCard user={user} plant={plant} triggerRefetch={triggerRefetch}/>
+              <PlantCard plant={plant} setDeletionId={setDeletionId}/>
             </CardContainer>
           ))}
         </ScrollableContent>

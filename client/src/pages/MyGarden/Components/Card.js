@@ -11,23 +11,26 @@ import {
 } from "../StyledElements/CardElements";
 import { REMOVE_PLANT, ADD_WATER } from "../../../utils/mutations";
 import { useMutation } from "@apollo/client";
-const PlantCard = ({ plant, user, triggerRefetch }) => {
+const PlantCard = ({
+  plant,
+  setDeletionId
+}) => {
   const [removePlant] = useMutation(REMOVE_PLANT);
   const [addWater] = useMutation(ADD_WATER);
   const [deleteMessage, setDeleteMessage] = useState("Delete Plant");
   const [waterMessage, setWaterMessage] = useState("Add Water");
 
   const handleDeletePlant = async (plantId) => {
-      await removePlant({
-        variables: { plantId },
-      });
-      await triggerRefetch();
+    await removePlant({
+      variables: { plantId },
+    });
+    setDeletionId(plantId)
   };
 
   const handleAddWater = async (plantId) => {
-      await addWater({
-        variables: { plantId },
-      });
+    await addWater({
+      variables: { plantId },
+    });
   };
 
   return (
@@ -38,7 +41,7 @@ const PlantCard = ({ plant, user, triggerRefetch }) => {
           backgroundColor: "#EBDBAE",
           width: "100%",
           marginTop: "1.33%",
-          height: "100%",
+          flex: 1,
         }}
       >
         <CardContent style={{ width: "100%" }}>
@@ -82,7 +85,8 @@ const PlantCard = ({ plant, user, triggerRefetch }) => {
                 <strong>Size</strong>: {plant.plantSize}
               </Typography>
               <Typography variant="body1" color="4f5902">
-                <strong>Days Watered This Month</strong>: {plant.waterAdded}/{plant.waterNeeded}
+                <strong>Days Watered This Month</strong>: {plant.waterAdded}/
+                {plant.waterNeeded}
               </Typography>
               <Typography variant="body1" color="4f5902">
                 <strong>Hydration Status: </strong>: {plant.status}
@@ -103,12 +107,14 @@ const PlantCard = ({ plant, user, triggerRefetch }) => {
                 labelPosition="right"
                 primary
                 size="small"
+                disabled={plant.status === "I'm thirsty!" ? false : true}
                 onClick={async () => {
                   if (waterMessage === "Add Water") {
-                    setWaterMessage("Confirm Add Watering");
+                    setWaterMessage("Confirm Add Water");
                     return;
                   }
                   await handleAddWater(plant._id);
+                  setWaterMessage("Add Water");
                 }}
               >
                 <Icon name="tint" />

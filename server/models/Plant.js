@@ -54,34 +54,34 @@ const plantSchema = new Schema(
     toObject: { getters: true },
   }
 );
-plantSchema.virtual("percentage").get(function () {
-  return ((this.waterAdded / this.waterNeeded) * 100).toFixed();
-});
+// plantSchema.virtual("percentage").get(function () {
+//   return ((this.waterAdded / this.waterNeeded) * 100).toFixed();
+// });
 
-plantSchema.virtual("status").get(function () {
-  //get number of days in this month
-  let currentDate = new Date();
-  let currentYear = currentDate.getFullYear();
-  let currentMonth = currentDate.getMonth();
-  let currentDayOfMonth = currentDate.getDate();
-  let numberOfDaysInMonth = new Date(
-    currentYear,
-    currentMonth + 1,
-    0
-  ).getDate();
-  let ontargetGoal = (currentDayOfMonth / numberOfDaysInMonth) * 100;
-  if (
-    this.percentage > ontargetGoal &&
-    this.percentage === 100
-  ) {
-    return ("Your plant is all watered up for the month! :D");
-  }
-  //determine if on target
-  if (this.percentage >= ontargetGoal) {
-    return("Your plant is hydrated!");
-  }
-  return `I'm thirsty!`
-});
+// plantSchema.virtual("status").get(function () {
+//   //get number of days in this month
+//   let currentDate = new Date();
+//   let currentYear = currentDate.getFullYear();
+//   let currentMonth = currentDate.getMonth();
+//   let currentDayOfMonth = currentDate.getDate();
+//   let numberOfDaysInMonth = new Date(
+//     currentYear,
+//     currentMonth + 1,
+//     0
+//   ).getDate();
+//   let ontargetGoal = (currentDayOfMonth / numberOfDaysInMonth) * 100;
+//   if (
+//     this.percentage > ontargetGoal &&
+//     this.percentage === 100
+//   ) {
+//     return ("Your plant is all watered up for the month! :D");
+//   }
+//   //determine if on target
+//   if (this.percentage >= ontargetGoal) {
+//     return("Your plant is hydrated!");
+//   }
+//   return `I'm thirsty!`
+// });
 
 plantSchema.pre("save", function(next){
   // Calculate the waterAdded value based on the current day of the month

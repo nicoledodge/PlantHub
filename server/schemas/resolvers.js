@@ -73,7 +73,7 @@ const resolvers = {
           const user =await  User.findOne({ _id: context.user._id })
           .populate("myPlants")
           .populate("myPosts").exec();
-          user.myPlants.sort((a, b) => a.percentage - b.percentage);
+          user.myPlants.sort((a, b) => a?.waterAdded/a?.waterNeeded - b?.waterAdded/b?.waterNeeded);
           return user;
             } catch (error) {
           return error;

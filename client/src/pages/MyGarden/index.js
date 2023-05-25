@@ -13,18 +13,44 @@ import AddPlantForm from "./Components/AddPlant";
 
 const MyGarden = () => {
   const { loading, data, refetch } = useQuery(QUERY_ME);
-  const [userData, setUserData] = useState(data?.me || [])
   const [plantData,setPlantData] = useState(data?.me.myPlants || [])
- 
+  const [deletionId, setDeletionId] = useState(null)
+  const userData=data?.me || []
+  let currentDate = new Date();
+  let currentYear = currentDate.getFullYear();
+  let currentMonth = currentDate.getMonth();
+  let currentDayOfMonth = currentDate.getDate();
+  let numberOfDaysInMonth = new Date(
+    currentYear,
+    currentMonth + 1,
+    0
+  ).getDate();
+  let ontargetGoal = (currentDayOfMonth / numberOfDaysInMonth) * 100;
   useEffect(() => {
+   //Manually filter out the plant to prevent an unnecessary refetch
+    if(deletionId){
+      setPlantData((prevPlantData)=> prevPlantData.filter(plant => plant._id !== deletionId))
+      setDeletionId(null)
+      return
+    }
     //Manually update percentage to avoid a refresh when water is added
     setPlantData(data?.me?.myPlants.map(plant => {
       return{
       ...plant,
-      percentage: ((plant.waterAdded/plant.waterNeeded)*100).toFixed()
+      percentage: ((plant.waterAdded/plant.waterNeeded)*100).toFixed(),
+      status: updateStatus((plant.waterAdded/plant.waterNeeded)*100)
     }})|| [])
-    setUserData(data?.me || [])
-  }, [data]);
+  }, [data,deletionId]);
+  const updateStatus = (value) => {
+    if (value === 100) {
+      return ("Your plant is all watered up for the month! :D");
+    }
+    //determine if on target
+    if (value >= ontargetGoal) {
+      return("Your plant is hydrated!");
+    }
+    return `I'm thirsty!`
+  }
 
   const [viewPlantModal, setViewPlantModal] = useState(false);
   const closeForm = () => setViewPlantModal(false);
@@ -32,12 +58,8 @@ const MyGarden = () => {
 
   const closeAndUpdate = async () => {
     closeForm();
-    await triggerRefetch();
-  };
-
-  const triggerRefetch = async () => {
     await refetch();
-  }
+  };
 
   const HeaderText = ({ children }) => {
     return (
@@ -79,7 +101,7 @@ const MyGarden = () => {
           </HeaderText>
         ) : (
           <>
-            <Dashboard plantData={plantData} user={userData?.username} triggerRefetch={triggerRefetch} />
+            <Dashboard plantData={plantData} setDeletionId={setDeletionId} />
           </>
         )}
       </>
