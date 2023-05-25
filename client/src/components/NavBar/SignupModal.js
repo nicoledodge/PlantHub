@@ -24,7 +24,7 @@ const SignUpModal = ({ handleSignUpModal, handleLoginModal }) => {
   });
   console.log(formState);
 
-  const [addUser, { error, data }] = useMutation(ADD_USER);
+  const [addUser] = useMutation(ADD_USER);
 
   // handles change for input
   const handleChange = (event) => {

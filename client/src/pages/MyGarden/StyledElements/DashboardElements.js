@@ -23,7 +23,7 @@ export const TableContainer = styled.div`
 `;
 
 export const PlantFeedContainer = styled.div`
-  margin-top: 5%;
+  margin-top: 1%;
   width: 95%;
   padding: 5px 10px;
   padding-bottom: 10%;
@@ -31,7 +31,8 @@ export const PlantFeedContainer = styled.div`
   justify-content: center;
   align-items: center;
   @media screen and (min-width: 1400px) {
-    max-height: 80vh;
+    margin-top: 0;
+    max-height: 90vh;
     width: 30%;
     padding: 1%;
   }
@@ -48,11 +49,9 @@ export const ScrollableContent = styled.div`
     gap: 1.33%;
   }
   @media screen and (min-width: 1400px) {
-    max-height: 80vh;
     padding: 1%;
-
     overflow-y: auto;
-    max-height: 80vh;
+    max-height: 90vh;
     display: flex;
     flex-wrap: wrap;
     justify-content: center;

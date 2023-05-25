@@ -23,6 +23,8 @@ const typeDefs = gql`
     waterAdded: Int
     createdAt: String
     image: String
+    percentage: Int
+    status: String
   }
 
   type Auth {

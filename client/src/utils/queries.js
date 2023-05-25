@@ -20,6 +20,8 @@ export const QUERY_ME = gql`
         waterAdded
         createdAt
         image
+        percentage
+        status
       }
     }
   }

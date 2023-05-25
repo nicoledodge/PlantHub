@@ -1,15 +1,14 @@
 import React from "react";
-import { Comment, Feed, Button, Icon } from "semantic-ui-react";
+import { Comment, Feed, Button } from "semantic-ui-react";
 import ReplyComment from "./ReplyComment";
 import Likes from "./Likes";
-import facts from "../pages/FactsDB";
 
 const FeedExampleBasic = (props) => (
   <Feed>
     {props.allPost.map((post) => (
       <Feed.Event>
         <Feed.Label>
-          <img src="https://react.semantic-ui.com/images/avatar/small/elliot.jpg" />
+          <img src="https://react.semantic-ui.com/images/avatar/small/elliot.jpg"  alt="Semantic UI Avatar placeholder"/>
         </Feed.Label>
         <Feed.Content>
           <Feed.Summary>
@@ -27,6 +26,7 @@ const FeedExampleBasic = (props) => (
                 <Comment.Avatar
                   as="a"
                   src="https://react.semantic-ui.com/images/avatar/small/helen.jpg"
+                  alt="Semantic UI Avatar placeholder"
                 />
                 <Comment.Content>
                   <Comment.Author as="a">

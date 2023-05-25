@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState,useEffect } from "react";
 import { useQuery } from "@apollo/client";
 import { QUERY_ME } from "../../utils/queries";
 import Auth from "../../utils/auth";
@@ -12,25 +12,32 @@ import { Button, Modal } from "semantic-ui-react";
 import AddPlantForm from "./Components/AddPlant";
 
 const MyGarden = () => {
-  const { loading, data, error, refetch } = useQuery(QUERY_ME);
+  const { loading, data, refetch } = useQuery(QUERY_ME);
+  const [userData, setUserData] = useState(data?.me || [])
+  const [plantData,setPlantData] = useState(data?.me.myPlants || [])
+ 
+  useEffect(() => {
+    //Manually update percentage to avoid a refresh when water is added
+    setPlantData(data?.me?.myPlants.map(plant => {
+      return{
+      ...plant,
+      percentage: ((plant.waterAdded/plant.waterNeeded)*100).toFixed()
+    }})|| [])
+    setUserData(data?.me || [])
+  }, [data]);
 
-  // Check if there is an error
-  if (error) {
-    // Handle the error based on your requirements
-    console.error('Error fetching data:', error);
-    // You can show an error message or take any other necessary actions
-  }
-  console.log(data)
-    const plantData = data?.me.myPlants || [];
-  const userData = data?.me || [];
   const [viewPlantModal, setViewPlantModal] = useState(false);
   const closeForm = () => setViewPlantModal(false);
   const openForm = () => setViewPlantModal(true);
 
   const closeAndUpdate = async () => {
     closeForm();
-    await refetch();
+    await triggerRefetch();
   };
+
+  const triggerRefetch = async () => {
+    await refetch();
+  }
 
   const HeaderText = ({ children }) => {
     return (
@@ -72,7 +79,7 @@ const MyGarden = () => {
           </HeaderText>
         ) : (
           <>
-            <Dashboard plantData={plantData} user={userData?.username} />
+            <Dashboard plantData={plantData} user={userData?.username} triggerRefetch={triggerRefetch} />
           </>
         )}
       </>

@@ -53,9 +53,13 @@ const resolvers = {
       return User.find().populate("myPlants").populate("myPosts");
     },
     user: async (parent, { username }) => {
-      return User.findOne({ username })
+      const user = User.findOne({ username })
         .populate("myPlants")
         .populate("myPosts");
+        populatedUser.myPlants.forEach((plant) => {
+          plant.percentage = plant.get('percentage');
+        });
+        return populatedUser;
     },
     plant: async (parent, { plantId }) => {
       return Plant.findOne({ _id: plantId });
@@ -66,11 +70,12 @@ const resolvers = {
     me: async (parent, args, context) => {
       if (context.user) {
         try {
-          return User.findOne({ _id: context.user._id })
-            .populate("myPlants")
-            .populate("myPosts");
-        } catch (error) {
-          console.log(error);
+          const user =await  User.findOne({ _id: context.user._id })
+          .populate("myPlants")
+          .populate("myPosts").exec();
+          user.myPlants.sort((a, b) => a.percentage - b.percentage);
+          return user;
+            } catch (error) {
           return error;
         }
       }
@@ -189,6 +194,7 @@ const resolvers = {
     },
     removePlant: async (parent, { plantId }, context) => {
       if (context.user) {
+        console.log("DLEETING THIS PLANT!")
         const plant = await Plant.findOneAndDelete({
           _id: plantId,
         });

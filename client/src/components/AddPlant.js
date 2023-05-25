@@ -4,15 +4,11 @@ import {
   Form,
   Grid,
   Header,
-  Image,
-  Message,
   Segment,
-  Checkbox,
-  Modal, Dropdown
+  Modal
 } from "semantic-ui-react";
 import { ADD_PLANT } from "../utils/mutations";
 import { useMutation } from "@apollo/client";
-import Auth from "../utils/auth";
 
 function SizeChartModal() {
   const [open, setOpen] = React.useState(false)
@@ -40,7 +36,7 @@ function SizeChartModal() {
     </Grid.Column>
     <Grid.Column>
       <h2>large</h2>
-      <p>Although some may fit on a desktop or perhaps a shelf, these are perfect  floor plants. Depending on the variety of plant you've chosen, they can grow to be anywhere from 3 to 7 feet tall.</p>
+      <p>Although some may fit on a desktop or perhaps a shelf, these are perfect floor plants. Depending on the variety of plant you've chosen, they can grow to be anywhere from 3 to 7 feet tall.</p>
     </Grid.Column>
   </Grid>
       </Modal.Content>
@@ -62,8 +58,8 @@ export default function AddPlantForm({handlePlantModal}) {
     waterNeeded: 15,
   });  
 
-  const [addPlant, { error, data }] = useMutation(ADD_PLANT);
-  console.log(plantState )
+  const [addPlant] = useMutation(ADD_PLANT);
+
   // handles change for input
   const handleChange = (event, dropdownName) => {
     console.log(event)
@@ -96,7 +92,7 @@ export default function AddPlantForm({handlePlantModal}) {
   const handleFormSubmit = async (event) => {
     event.preventDefault();
     try {
-      const { data } = await addPlant({
+      await addPlant({
         variables: { ...plantState,
         waterNeeded: Number(plantState.waterNeeded) },
       });

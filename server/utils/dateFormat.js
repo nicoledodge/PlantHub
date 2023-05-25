@@ -1,9 +1,7 @@
 const addDateSuffix = (date) => {
     let dateStr = date.toString();
-  
     // get last char of date string
     const lastChar = dateStr.charAt(dateStr.length - 1);
-  
     if (lastChar === '1' && dateStr !== '11') {
       dateStr = `${dateStr}st`;
     } else if (lastChar === '2' && dateStr !== '12') {
@@ -13,7 +11,6 @@ const addDateSuffix = (date) => {
     } else {
       dateStr = `${dateStr}th`;
     }
-  
     return dateStr;
   };
   
@@ -37,10 +34,8 @@ const addDateSuffix = (date) => {
       10: monthLength === 'short' ? 'Nov' : 'November',
       11: monthLength === 'short' ? 'Dec' : 'December',
     };
-  
     const dateObj = new Date(timestamp);
     const formattedMonth = months[dateObj.getMonth()];
-  
     const dayOfMonth = dateSuffix
       ? addDateSuffix(dateObj.getDate())
       : dateObj.getDate();

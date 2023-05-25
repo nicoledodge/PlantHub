@@ -4,20 +4,11 @@ import { ADD_WATER} from "../../../utils/mutations";
 import { useMutation } from "@apollo/client";
 
 const PlantTable = ({ plantData }) => {
-  const [addWater, { error }] = useMutation(ADD_WATER);
-  
+  const [addWater] = useMutation(ADD_WATER);
   const handleAddWater = async (plantId) => {
-    try {
       await addWater({
         variables: { plantId },
       });
-    } catch (err) {
-      console.error(err);
-    }
-  };
-  const getPercent = (plant) => {
-    const percent = (plant.waterAdded / plant.waterNeeded) * 100;
-    return percent.toFixed();
   };
 
   //This text is a custom component that accepts text as children, variants for different styling, and color.
@@ -70,8 +61,8 @@ const PlantTable = ({ plantData }) => {
               <Text>{plant.nickname}</Text>
             </Table.Cell>
             <Table.Cell>
-              <Progress percent={getPercent(plant)} color="blue" active>
-                <Text>{getPercent(plant)}% watered this month</Text>
+              <Progress percent={plant.percentage} color={plant.status === `I'm thirsty!` ? "red" : "blue"} active>
+                <Text>{plant.percentage}% watered this month</Text>
               </Progress>
             </Table.Cell>
             <Table.Cell>

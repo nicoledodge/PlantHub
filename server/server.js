@@ -13,33 +13,6 @@ require('dotenv').config();
 const upload = multer({ storage, fileFilter });
 const cron = require('node-cron')
 
-// async function getPlantData() {
-//   const prompt = `Prompt to ask ChatGPT`
-//   try {
-//     const response = await axios.post('https://api.openai.com/v1/engines/davinci/completions', {
-//       prompt: prompt,
-//       max_tokens: 300,
-//       temperature: 0.1,
-//       n: 1,
-//       // stop: ['\n', '.', '!', '?']
-//     }, {
-//       headers: {
-//         'Content-Type': 'application/json',
-//         'Authorization': `Bearer ${process.env.OPENAI_API_KEY}` // Replace with your OpenAI API key
-//       }
-//     });
-
-//     console.log(response)
-
-//     const data = response.data?.choices
-//     console.log(data)
-//   } 
-//     catch (error) {
-//       res.json(error)
-//       console.error('Error:', error.response.data.error);
-//     } 
-// }
-
 // Serve up static assets
 app.use(express.static(path.join(__dirname, "../client/build")));
 
@@ -70,8 +43,6 @@ app.use(express.urlencoded({ extended: false }));
 app.use(express.json());
 
 app.post("/api/upload", upload.single("image"), async (req, res) => {
-  // The uploaded file can be accessed via req.file
-  console.log("UPLOADING");
   if (!req.file) {
     return res.status(400).json({ error: "No file uploaded" });
   }
@@ -96,8 +67,8 @@ app.post("/api/upload", upload.single("image"), async (req, res) => {
     );
     res.json(response.data)
   } catch (error) {
-    res.json(error)
     console.log(error)
+    res.json(error)
   }
 });
 

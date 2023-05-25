@@ -10,7 +10,7 @@ import Auth from "../utils/auth";
 const AddComment = (props) => {
   const [postText, setPostText] = useState("");
 
-  const [addPost, { error }] = useMutation(ADD_POST, {
+  const [addPost] = useMutation(ADD_POST, {
     update(cache, { data: { addPost } }) {
       try {
         const posts = cache.readQuery({ query: QUERY_POSTS });
