@@ -71,9 +71,16 @@ const Nav = () => {
                                 display: {xs: 'block', md: 'none'},
                             }}
                         >
-                            {pages.map((page) => <MenuItem key={page} onClick={handleCloseNavMenu}>
-                                    <Typography textAlign="center">{page}</Typography>
-                                </MenuItem>)}
+                            {settings.map((setting, key) => <Link to={setting.routeTo || '#'}>
+                                <MenuItem key={key} onClick={() => {
+                                    handleCloseNavMenu();
+                                    setting.callback && setting.callback()}
+                                }>
+                                    <Typography textAlign="center">{setting.name}</Typography>
+
+                                </MenuItem>
+
+                                </Link>)}
                         </Menu>
                     </Box>
                     <Typography

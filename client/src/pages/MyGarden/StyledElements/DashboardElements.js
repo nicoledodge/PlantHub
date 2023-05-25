@@ -114,6 +114,7 @@ export const ScrollableContent = styled.div`
 export const CardContainer = styled.div`
   margin-top: 5px;
   width: 48%;
+  height: 100%;
   @media screen and (min-width: 800px) {
     width: 32%;
   }

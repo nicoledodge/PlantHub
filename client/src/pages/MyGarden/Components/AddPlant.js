@@ -7,6 +7,8 @@ import {
   ImageContainer,
   RecordSummary,
   SummaryContainer,
+  RecommendationText,
+  Image,
 } from "../StyledElements/AddPlantElement";
 
 export default function AddPlantForm({ closeForm, closeAndUpdate }) {
@@ -17,26 +19,22 @@ export default function AddPlantForm({ closeForm, closeAndUpdate }) {
     plantType: "",
     plantSize: "",
     waterNeeded: 15,
-    hasImage: false
-  }
-    const [plantState, setPlantState] = useState(initialState);
+    hasImage: false,
+  };
+  const [plantState, setPlantState] = useState(initialState);
+  console.log(plantState)
   const [plantRecommendations, setPlantRecommendations] = useState(null);
-
   useEffect(() => {
     // Your function logic here
     if (plantRecommendations === null) {
       return; // Exit out of the useEffect hook
     }
-    console.log("plant recommendations are here!")
-    console.log(plantRecommendations)
-    console.log(plantRecommendations.minWater)
-    let neededWater = (Math.floor(plantRecommendations?.minWater * 10));
-    console.log(neededWater)
+    let neededWater = Math.floor(plantRecommendations?.minWater * 10);
     setPlantState((prevState) => ({
       ...prevState,
       name: plantRecommendations.plant_name,
       waterNeeded: neededWater || 15,
-      hasImage: true
+      hasImage: true,
     }));
   }, [plantRecommendations]); // Specify the dependency as [value]
 
@@ -64,7 +62,6 @@ export default function AddPlantForm({ closeForm, closeAndUpdate }) {
           link: data.suggestions[0].plant_details?.url,
           image: data.suggestions[0].plant_details.wiki_image?.value,
         });
-        
 
         // Handle the response or perform additional actions
       } else {
@@ -73,7 +70,7 @@ export default function AddPlantForm({ closeForm, closeAndUpdate }) {
       }
     } catch (error) {
       console.error("Error uploading file:", error);
-      alert(error)
+      alert(error);
       // Handle the error
     }
   };
@@ -99,33 +96,34 @@ export default function AddPlantForm({ closeForm, closeAndUpdate }) {
       return;
     }
     const { innerText } = event.target;
+    //Prevent bug on dropdown whwere it takes tabs as arguement
     setPlantState({
       ...plantState,
-      [dropdownName]: innerText,
+      [dropdownName]: innerText.split("\n")[0],
     });
   };
 
   const handleFormSubmit = async (event) => {
     event.preventDefault();
     try {
-      console.log("DDING A PLANT")
-      console.log(plantState)
+      console.log("DDING A PLANT");
+      console.log(plantState);
       const { data } = await addPlant({
         variables: {
           ...plantState,
         },
       });
-      console.log(data)
-      handleSuccessfulAdd()
+      console.log(data);
+      handleSuccessfulAdd();
     } catch (e) {
       console.log(e);
     }
   };
-  const handleSuccessfulAdd  = () => {
-    setPlantRecommendations(null)
-    setPlantState(initialState)
+  const handleSuccessfulAdd = () => {
+    setPlantRecommendations(null);
+    setPlantState(initialState);
     closeAndUpdate();
-  }
+  };
 
   return (
     <>
@@ -142,44 +140,68 @@ export default function AddPlantForm({ closeForm, closeAndUpdate }) {
             Cancel
           </Button>
 
-          <SummaryContainer>
             {!plantRecommendations ? (
-              <>
+              <SummaryContainer style={{marginTop: "5%", flexDirection: "column"}}>
+                  <RecommendationText>
+                    New Feature!: Upload A Picture of Your Plant and Get Plant Details
+                  </RecommendationText>
+                  <br></br>
                 <input
                   type="file"
                   onChange={(e) => handleUpload(e.target.files[0])}
-                />
-              </>
-            ) : (
-              <>
+                  />
+                  </SummaryContainer>
+            ) : (              <SummaryContainer>
                 <ImageContainer>
-                  <p>{plantRecommendations.plant_name}</p>
                   <img
                     src={plantRecommendations.image}
                     alt={plantRecommendations.description}
-                    style={{
-                      width: "100%",
-                      height: "100%",
-                      objectFit: "cover",
-                      borderRadius: '8'
-                    }}
                   />
                 </ImageContainer>
                 <RecordSummary>
-                  <p>
-                    Probability of match: {plantRecommendations.probability}%
-                  </p>
-                  <p>
-                    {plantRecommendations.description}{" "}
+                  <RecommendationText>
+                    <strong>Plant Type: </strong>
+                    {plantRecommendations.plant_name}
+                  </RecommendationText>
+                  <RecommendationText>
+                    <strong>Plant Match Probability: </strong>
                     {plantRecommendations.probability}%
-                  </p>
-                  <p>{plantRecommendations.link}</p>
-                  {!plantRecommendations?.minWater ? <p>Please visit the Wiki for guidance on water care</p> : plantRecommendations.minWater === 1 ? <p>Your plant doesn't require too much water</p> : plantRecommendations.minWater === 2? <p>Your water required a moderate to high amount of water</p> : <p>Your plant needs a lot water and care, pick carefully!</p>}
+                  </RecommendationText>
+                  <RecommendationText>
+                    <strong>Plant Description: </strong>
+                    {plantRecommendations.description}
+                  </RecommendationText>
+                  <a
+                    href={plantRecommendations.link}
+                    target="_blank"
+                    rel="noreferrer"
+                  >
+                    <RecommendationText style={{ color: "blue" }}>
+                      Visit the Wiki for caretips!
+                    </RecommendationText>
+                  </a>
+                  <br></br>
+                  <RecommendationText>
+                  <strong>Watering Guidelines: </strong>
+                  {!plantRecommendations?.minWater ? (
+                    
+                      "Please visit the Wiki for guidance on water care"
+                  ) : plantRecommendations.minWater === 1 ? (
+                     " Your plant doesn't require too much water"
+                  ) : plantRecommendations.minWater === 2 ? (
+                     " Your water required a moderate to high amount of water"
+                  ) : (
+                      "Your plant needs a lot water and care, pick carefully!"
+                  )}
+                  </RecommendationText>
                 </RecordSummary>
-              </>
-            )}
           </SummaryContainer>
-          <Form size="large" onSubmit={handleFormSubmit}>
+            )}
+          <Form
+            size="large"
+            onSubmit={handleFormSubmit}
+            style={{ marginTop: "5%" }}
+          >
             <Segment stacked>
               <Form.Field>
                 <Form.Input

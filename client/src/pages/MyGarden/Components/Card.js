@@ -57,6 +57,7 @@ const PlantCard = ({ plant, user }) => {
     setStatus(`${user}, I'm thirsty!`);
   }, [plant]);
 
+
   return (
     <>
       <Card
@@ -65,6 +66,7 @@ const PlantCard = ({ plant, user }) => {
           backgroundColor: "#EBDBAE",
           width: "100%",
           marginTop: "1.33%",
+          height: "100%"
         }}
       >
         <CardActionArea
