@@ -8,10 +8,10 @@ const PORT = process.env.PORT || 3001;
 const app = express();
 const axios = require("axios");
 const multer = require("multer");
+const cron = require('node-cron')
 const { storage,fileFilter, getImageString } = require("./utils/multer");
 require('dotenv').config();
 const upload = multer({ storage, fileFilter });
-const cron = require('node-cron')
 
 // Serve up static assets
 app.use(express.static(path.join(__dirname, "../client/build")));
